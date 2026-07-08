@@ -5,15 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacOn — Documentation</title>
 <meta name="description" content="MacOn documentation: install the CLI and app, run macon init, write macon.yml pipelines with a test matrix, connect Bitbucket or GitHub, ship to TestFlight, and run MacOn as a service.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MacOn — Documentation">
+<meta property="og:description" content="Install, macon init, macon.yml pipelines, the test matrix, providers, TestFlight, and running MacOn as a service.">
+<meta property="og:image" content="macon-icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacOn — Documentation">
+<meta name="twitter:image" content="macon-icon.png">
 <link rel="icon" type="image/png" href="macon-icon.png">
 <script>
   (function () {
     document.documentElement.classList.add('js');
+    var theme = 'light';
     try {
       var saved = localStorage.getItem('macon-theme');
-      document.documentElement.setAttribute('data-theme',
-        saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+      theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
   })();
 </script>
 <style>
@@ -41,6 +52,13 @@
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
   ::view-transition-old(root) { z-index: 1; }
   ::view-transition-new(root) { z-index: 9999; }
+  /* The toggle animates on top of the reveal: its icon spins + crossfades. */
+  #theme-toggle { view-transition-name: macon-theme-toggle; }
+  ::view-transition-group(macon-theme-toggle) { z-index: 10000; }
+  ::view-transition-old(macon-theme-toggle) { animation: tt-out .5s cubic-bezier(.4,0,.2,1) both; }
+  ::view-transition-new(macon-theme-toggle) { animation: tt-in  .5s cubic-bezier(.4,0,.2,1) both; }
+  @keyframes tt-out { to   { transform: rotate(-170deg) scale(.4); opacity: 0; } }
+  @keyframes tt-in  { from { transform: rotate(170deg)  scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
   body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6;
     -webkit-font-smoothing: antialiased; overflow-x: clip; transition: background .4s, color .4s; }
   a { color: var(--accent); text-decoration: none; }
@@ -67,8 +85,14 @@
   .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px;
     border-radius: 50%; background: transparent; border: 1px solid var(--border); color: var(--text); cursor: pointer; }
   .icon-btn:hover { background: var(--bg-2); }
-  .icon-btn:focus, .icon-btn:focus-visible { outline: none; }
+  .icon-btn:focus { outline: none; }                 /* no ring on tap/click */
   .icon-btn svg { width: 17px; height: 17px; }
+  /* Keyboard focus only (not pointer): visible ring for accessibility. */
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
+  }
+  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .doc-search:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   [data-theme="light"] .moon { display: block; } [data-theme="light"] .sun { display: none; }
   [data-theme="dark"] .moon { display: none; }  [data-theme="dark"] .sun { display: block; }
   #menu-btn { display: none; position: relative; }
@@ -198,6 +222,7 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="docs.html" class="active">Docs</a>
+      <a href="about.html">About</a>
       <a href="https://github.com/alimusawa313/MacON">GitHub</a>
     </div>
     <div class="nav-tools">
@@ -491,6 +516,7 @@ macon service install --config macon-export.json  <span class="c"># …as a serv
     <div>Mac<span style="color:var(--accent)">On</span> — a local iOS CI runner for macOS.</div>
     <div style="display:flex;gap:1.4rem;flex-wrap:wrap;">
       <a href="index.html">Home</a>
+      <a href="about.html">About</a>
       <a href="https://github.com/alimusawa313/MacON">GitHub</a>
       <a href="https://github.com/alimusawa313/MacON/blob/main/MaconKit/CLI.md">CLI reference</a>
     </div>
@@ -504,11 +530,20 @@ macon service install --config macon-export.json  <span class="c"># …as a serv
     function apply(next) {
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem('macon-theme', next); } catch (e) {}
+      var tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.setAttribute('content', next === 'dark' ? '#000000' : '#ffffff');
     }
     btn.addEventListener('click', function () {
       var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!document.startViewTransition || reduce) { apply(next); return; }
+      if (!document.startViewTransition || reduce) {
+        apply(next);
+        if (!reduce) btn.querySelectorAll('svg').forEach(function (s) {
+          s.animate([{ transform: 'rotate(-170deg) scale(.4)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+                    { duration: 420, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+        });
+        return;
+      }
       var r = btn.getBoundingClientRect();
       var x = r.left + r.width / 2, y = r.top + r.height / 2;
       var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));

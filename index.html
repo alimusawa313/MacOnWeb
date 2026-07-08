@@ -5,17 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacOn — Your Mac is the CI runner</title>
 <meta name="description" content="MacOn turns your Mac into a local iOS CI runner. Watch Bitbucket or GitHub, build macon.yml pipelines, test across simulators, and ship to TestFlight — free, fast, and private. A Mac app and a Homebrew CLI.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MacOn — Your Mac is the CI runner">
+<meta property="og:description" content="A local iOS CI runner for macOS. Watch Bitbucket or GitHub, build macon.yml pipelines, test across simulators, ship to TestFlight — free, fast, and private.">
+<meta property="og:image" content="macon-icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacOn — Your Mac is the CI runner">
+<meta name="twitter:description" content="A local iOS CI runner for macOS — free, fast, and private. A Mac app and a Homebrew CLI.">
+<meta name="twitter:image" content="macon-icon.png">
 <link rel="icon" type="image/png" href="macon-icon.png">
 <link rel="apple-touch-icon" href="macon-icon.png">
 <!-- Set theme before paint to avoid a flash. -->
 <script>
   (function () {
     document.documentElement.classList.add('js');   // enables motion; no-JS shows all
+    var theme = 'light';
     try {
       var saved = localStorage.getItem('macon-theme');
-      var theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
   })();
 </script>
 <style>
@@ -61,6 +73,13 @@
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
   ::view-transition-old(root) { z-index: 1; }
   ::view-transition-new(root) { z-index: 9999; }
+  /* The toggle animates on top of the reveal: its icon spins + crossfades. */
+  #theme-toggle { view-transition-name: macon-theme-toggle; }
+  ::view-transition-group(macon-theme-toggle) { z-index: 10000; }
+  ::view-transition-old(macon-theme-toggle) { animation: tt-out .5s cubic-bezier(.4,0,.2,1) both; }
+  ::view-transition-new(macon-theme-toggle) { animation: tt-in  .5s cubic-bezier(.4,0,.2,1) both; }
+  @keyframes tt-out { to   { transform: rotate(-170deg) scale(.4); opacity: 0; } }
+  @keyframes tt-in  { from { transform: rotate(170deg)  scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
   body {
     font-family: var(--sans);
     background: var(--bg);
@@ -138,8 +157,13 @@
     cursor: pointer; transition: background .2s;
   }
   .icon-btn:hover { background: var(--bg-2); }
-  .icon-btn:focus, .icon-btn:focus-visible { outline: none; }
+  .icon-btn:focus { outline: none; }                 /* no ring on tap/click */
   .icon-btn svg { width: 17px; height: 17px; }
+  /* Keyboard focus only (not pointer): visible ring for accessibility. */
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
+  }
+  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   #menu-btn { display: none; position: relative; }   /* shown only on mobile */
   #menu-btn svg { position: absolute; top: 50%; left: 50%; width: 17px; height: 17px;
     transform: translate(-50%, -50%) rotate(0deg);
@@ -250,6 +274,29 @@
   .doc-card p { color: var(--text-2); font-size: .95rem; margin-top: .5rem; }
   .doc-card .arrow { color: var(--accent); font-size: .9rem; margin-top: 1rem; display: inline-block; }
 
+  /* About */
+  .about-lead { max-width: 46ch; margin: 0 auto; font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 600;
+    letter-spacing: -0.015em; line-height: 1.25; text-wrap: balance; }
+  .about-body { max-width: 60ch; margin: 1.6rem auto 0; color: var(--text-2); font-size: 1.08rem; }
+  .about-body + .about-body { margin-top: 1rem; }
+  .about-body strong { color: var(--text); font-weight: 600; }
+
+  /* FAQ (grid-rows animation — smooth, no layout thrash) */
+  .faq { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: .8rem; }
+  .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: var(--card-shadow); overflow: hidden; }
+  .faq-q { width: 100%; text-align: left; background: none; border: none; cursor: pointer; color: var(--text);
+    font: 600 1.08rem var(--sans); padding: 1.15rem 1.3rem; display: flex; align-items: center;
+    justify-content: space-between; gap: 1rem; }
+  .faq-q::after { content: "+"; font-weight: 400; font-size: 1.5rem; color: var(--accent); line-height: 1;
+    transition: transform .3s cubic-bezier(.4,0,.2,1); }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .34s cubic-bezier(.4,0,.2,1); }
+  .faq-item.open .faq-a { grid-template-rows: 1fr; }
+  .faq-a-inner { overflow: hidden; }
+  .faq-a-inner p { margin: 0; padding: 0 1.3rem 1.2rem; color: var(--text-2); max-width: 62ch; }
+  .faq-a-inner code { font-size: .9em; }
+
   /* Footer */
   footer { border-top: 1px solid var(--border); padding: 3rem 1.5rem calc(3rem + env(safe-area-inset-bottom, 0px)); color: var(--text-2); font-size: .85rem; }
   .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -355,8 +402,9 @@
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#cli">CLI</a>
-      <a href="#pipeline">Pipelines</a>
+      <a href="about.html">About</a>
       <a href="docs.html">Docs</a>
+      <a href="#faq">FAQ</a>
       <a href="https://github.com/alimusawa313/MacON">GitHub</a>
     </div>
     <div class="nav-tools">
@@ -558,8 +606,52 @@ macon help                           <span class="c"># full usage</span></div>
   </div>
 </section>
 
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head center">
+      <h2>Questions &amp; answers.</h2>
+      <p>The things people ask before turning their Mac into CI.</p>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is MacOn free?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. It runs on hardware you already own, so there are no per-minute build charges — and it's open source.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Do I have to replace my current CI?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>No. MacOn is additive. A common setup is MacOn for fast PR and test builds, with a hosted CI (or an always-on MacOn service) handling release builds. Your existing Bitrise/Xcode Cloud setup keeps working untouched.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Which platforms can it build?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Any Apple platform — iOS, iPadOS, watchOS, tvOS, and visionOS — plus macOS. The first four run on simulators (managed with <code>macon sims</code>); macOS builds run natively.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Bitbucket or GitHub?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Both. Watch a branch or open pull requests, and choose polling or instant webhooks — per pipeline.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Does my Mac need to stay on?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>While it's watching, yes. For unattended use, install it as a <code>launchd</code> service (<code>macon service install</code>) on an always-on machine — even a cloud EC2 Mac — so it starts at login and restarts on crash.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is it secure?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>It uses a team-only trust model. Secrets live in the macOS Keychain, never in your repo, and your code is only ever checked out on your own machine.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Can it ship to TestFlight?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes — MacOn runs your fastlane lanes, so a <code>beta</code> lane with an App Store Connect API key uploads to TestFlight just like it would anywhere else.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What do I need to get started?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>macOS 14 or later and Xcode. Run <code>macon init</code> and it checks the rest of the toolchain (fastlane, SwiftLint, simulators…) and installs what's missing.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= CTA ================= -->
-<section class="center">
+<section class="center alt">
   <div class="wrap">
     <div class="section-head center" style="margin-bottom:2rem">
       <h2>Turn your Mac into CI.</h2>
@@ -576,8 +668,10 @@ macon help                           <span class="c"># full usage</span></div>
   <div class="footer-inner">
     <div>Mac<span style="color:var(--accent)">On</span> — a local iOS CI runner for macOS.</div>
     <div style="display:flex;gap:1.4rem;flex-wrap:wrap;">
+      <a href="about.html">About</a>
+      <a href="docs.html">Docs</a>
+      <a href="#faq">FAQ</a>
       <a href="https://github.com/alimusawa313/MacON">GitHub</a>
-      <a href="https://github.com/alimusawa313/MacON/blob/main/MaconKit/CLI.md">CLI docs</a>
       <a href="https://github.com/alimusawa313/MacON/releases">Releases</a>
     </div>
   </div>
@@ -625,6 +719,15 @@ macon help                           <span class="c"># full usage</span></div>
     });
   })();
 
+  // FAQ open/close — CSS grid-rows animates it; JS just toggles the class.
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var q = item.querySelector('.faq-q');
+    q.addEventListener('click', function () {
+      var open = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
   // Nav shadow after a little scroll
   (function () {
     var nav = document.querySelector('nav');
@@ -639,11 +742,20 @@ macon help                           <span class="c"># full usage</span></div>
     function apply(next) {
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem('macon-theme', next); } catch (e) {}
+      var tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.setAttribute('content', next === 'dark' ? '#000000' : '#ffffff');
     }
     btn.addEventListener('click', function () {
       var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!document.startViewTransition || reduce) { apply(next); return; }
+      if (!document.startViewTransition || reduce) {
+        apply(next);
+        if (!reduce) btn.querySelectorAll('svg').forEach(function (s) {
+          s.animate([{ transform: 'rotate(-170deg) scale(.4)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+                    { duration: 420, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+        });
+        return;
+      }
       var r = btn.getBoundingClientRect();
       var x = r.left + r.width / 2, y = r.top + r.height / 2;
       var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));

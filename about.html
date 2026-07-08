@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacOn — About</title>
+<meta name="description" content="Why MacOn exists: turn the Mac on your desk into a fast, free, private iOS CI runner that sits alongside your hosted CI. An open-source project by Ali Haidar.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MacOn — About">
+<meta property="og:description" content="Why MacOn exists — turn the Mac on your desk into a fast, free, private iOS CI runner that sits alongside your hosted CI.">
+<meta property="og:image" content="macon-icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacOn — About">
+<meta name="twitter:image" content="macon-icon.png">
+<link rel="icon" type="image/png" href="macon-icon.png">
+<link rel="apple-touch-icon" href="macon-icon.png">
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    var theme = 'light';
+    try {
+      var saved = localStorage.getItem('macon-theme');
+      theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
+  })();
+</script>
+<style>
+  :root {
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, monospace;
+    --bg: #ffffff; --bg-2: #f5f5f7; --text: #1d1d1f; --text-2: #6e6e73;
+    --accent: #0071e3; --accent-hover: #0077ed; --on-accent: #fff;
+    --border: rgba(0,0,0,0.10); --nav-bg: rgba(255,255,255,0.72);
+  }
+  [data-theme="dark"] {
+    --bg: #000; --bg-2: #101012; --text: #f5f5f7; --text-2: #a1a1a6;
+    --accent: #2997ff; --accent-hover: #47a5ff;
+    --border: rgba(255,255,255,0.13); --nav-bg: rgba(10,10,12,0.72);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-behavior: smooth; overscroll-behavior: none; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: clip; transition: background .4s, color .4s; }
+  a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+  :not(pre) > code { font-family: var(--mono); font-size: .86em; background: var(--bg-2);
+    padding: .12em .4em; border-radius: 5px; border: 1px solid var(--border); }
+
+  /* Circular theme reveal */
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+  ::view-transition-old(root) { z-index: 1; } ::view-transition-new(root) { z-index: 9999; }
+  #theme-toggle { view-transition-name: macon-theme-toggle; }
+  ::view-transition-group(macon-theme-toggle) { z-index: 10000; }
+  ::view-transition-old(macon-theme-toggle) { animation: tt-out .5s cubic-bezier(.4,0,.2,1) both; }
+  ::view-transition-new(macon-theme-toggle) { animation: tt-in  .5s cubic-bezier(.4,0,.2,1) both; }
+  @keyframes tt-out { to   { transform: rotate(-170deg) scale(.4); opacity: 0; } }
+  @keyframes tt-in  { from { transform: rotate(170deg)  scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  /* Nav (shared look) */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--nav-bg);
+    backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border); transition: box-shadow .3s; }
+  nav.scrolled { box-shadow: 0 6px 24px rgba(0,0,0,0.08); }
+  [data-theme="dark"] nav.scrolled { box-shadow: 0 6px 24px rgba(0,0,0,0.5); }
+  .nav-inner { max-width: 1280px; margin: 0 auto; height: 52px; display: flex; align-items: center;
+    gap: 1.5rem; padding: 0 1.5rem; }
+  .brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: 1.15rem;
+    letter-spacing: -0.02em; color: var(--text); }
+  .brand:hover { text-decoration: none; } .brand .on { color: var(--accent); }
+  .brand-logo { width: 26px; height: 26px; border-radius: 6px; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+  .brand:hover .brand-logo { transform: rotate(-8deg) scale(1.06); }
+  .nav-links { display: flex; gap: 1.5rem; margin-left: auto; }
+  .nav-links a { color: var(--text-2); font-size: .88rem; }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  .nav-tools { display: flex; align-items: center; gap: .5rem; margin-left: 1.1rem; }
+  .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px;
+    border-radius: 50%; background: transparent; border: 1px solid var(--border); color: var(--text); cursor: pointer; }
+  .icon-btn:hover { background: var(--bg-2); }
+  .icon-btn:focus { outline: none; }
+  .icon-btn svg { width: 17px; height: 17px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  [data-theme="light"] .moon { display: block; } [data-theme="light"] .sun { display: none; }
+  [data-theme="dark"] .moon { display: none; }  [data-theme="dark"] .sun { display: block; }
+  #menu-btn { display: none; position: relative; }
+  #menu-btn svg { position: absolute; top: 50%; left: 50%; width: 17px; height: 17px;
+    transform: translate(-50%, -50%) rotate(0deg); transition: opacity .28s ease, transform .3s cubic-bezier(.2,.7,.2,1); }
+  #menu-btn .x { opacity: 0; transform: translate(-50%, -50%) rotate(-90deg); }
+  #menu-btn.open .bars { opacity: 0; transform: translate(-50%, -50%) rotate(90deg); }
+  #menu-btn.open .x { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+
+  /* Article */
+  main { max-width: 720px; margin: 0 auto; padding: clamp(3rem, 8vw, 5.5rem) 1.5rem 5rem; }
+  .eyebrow { font-size: .82rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem; }
+  h1 { font-size: clamp(2.4rem, 7vw, 3.8rem); letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; }
+  .lead { font-size: clamp(1.15rem, 2.4vw, 1.45rem); color: var(--text-2); margin-top: 1.3rem; max-width: 52ch; }
+  h2 { font-size: clamp(1.4rem, 3.5vw, 1.9rem); letter-spacing: -0.015em; margin: 2.8rem 0 .8rem; text-wrap: balance; }
+  main p { color: #3a3a3c; font-size: 1.08rem; margin: 0 0 1rem; }
+  [data-theme="dark"] main p { color: #d0d0d3; }
+  main p strong { color: var(--text); font-weight: 600; }
+  .rule { height: 1px; background: var(--border); border: 0; margin: 3rem 0; }
+
+  .btn { display: inline-flex; align-items: center; gap: .5rem; font-size: 1rem; font-weight: 500;
+    padding: .7rem 1.4rem; border-radius: 980px; border: 1px solid transparent; cursor: pointer;
+    transition: background .2s, border-color .2s, transform .15s; }
+  .btn:hover { text-decoration: none; } .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .ctas { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
+
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    color: var(--text-2); font-size: .85rem; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  footer a { color: var(--text-2); } footer a:hover { color: var(--text); }
+
+  @media (max-width: 620px) {
+    #menu-btn { display: inline-flex; }
+    .nav-tools { margin-left: auto; }
+    .nav-links {
+      position: fixed; top: 52px; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border); padding: .4rem 1.3rem 1rem; margin-left: 0;
+      opacity: 0; visibility: hidden; transform: translateY(-100%);
+      transition: transform .32s cubic-bezier(.2,.7,.2,1), opacity .32s, visibility 0s linear .32s;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.14);
+    }
+    .nav-links.open { opacity: 1; visibility: visible; transform: translateY(0);
+      transition: transform .32s cubic-bezier(.2,.7,.2,1), opacity .32s, visibility 0s; }
+    .nav-links a { padding: .85rem .2rem; font-size: 1.05rem; color: var(--text); border-bottom: 1px solid var(--border); }
+    .nav-links a:last-child { border-bottom: none; }
+    .footer-inner { flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <button class="icon-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a href="index.html" class="brand"><img src="macon-icon.png" alt="" class="brand-logo"><span>Mac<span class="on">On</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="docs.html">Docs</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="https://github.com/alimusawa313/MacON">GitHub</a>
+    </div>
+    <div class="nav-tools">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <p class="eyebrow">About</p>
+  <h1>Your Mac was always enough.</h1>
+  <p class="lead">MacOn turns the Mac on your desk into a proper iOS CI runner — fast, free, and private — without giving up the hosted CI you rely on for releases.</p>
+
+  <hr class="rule">
+
+  <h2>Why it exists</h2>
+  <p>iOS CI is uniquely painful. Builds must run on macOS, code signing and provisioning profiles fight you, and every push waits in a queue behind <strong>metered, expensive build minutes</strong>.</p>
+  <p>Meanwhile, the fastest Mac in the room is often sitting right on your desk — idle. MacOn was built to close that gap: point it at a repository and it becomes the runner, with warm caches and zero queue.</p>
+
+  <h2>The idea: use the right machine for each job</h2>
+  <p>MacOn isn't here to replace hosted CI — it's here to sit <strong>alongside</strong> it. The setup that works best is a hybrid:</p>
+  <p>Run MacOn for everyday <strong>PR and test builds</strong> — instant and free on hardware you already own. Keep a hosted CI, or an always-on MacOn service, for <strong>release builds</strong> that need to run even when your laptop is closed. Neither one being down blocks you.</p>
+
+  <h2>How it works</h2>
+  <p>MacOn watches a Bitbucket or GitHub repository — a branch or open pull requests, via polling or instant webhooks. On each new commit it checks out the code, runs the pipeline defined in your repo's <code>macon.yml</code>, and reports status back. It builds any Apple platform and ships to TestFlight through your fastlane lanes.</p>
+  <p>It comes as a <strong>Mac app</strong> and a <strong>Homebrew CLI</strong> that share one core, so a pipeline runs identically whether you click a button or type <code>macon watch</code>. Set it up visually, export it, and run it headless on a server.</p>
+
+  <h2>Open source</h2>
+  <p>MacOn is an open-source project by <strong><a href="https://www.linkedin.com/in/ali-haidar-8484b8208" target="_blank" rel="noopener">Ali Haidar</a></strong>, born from a DevOps challenge and a stubborn belief that a developer's own Mac is more than capable of being their CI. The code, releases, and Homebrew tap all live on GitHub.</p>
+
+  <div class="ctas">
+    <a href="index.html#cli" class="btn btn-primary">Install the CLI</a>
+    <a href="https://www.linkedin.com/in/ali-haidar-8484b8208" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn</a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>Mac<span style="color:var(--accent)">On</span> — a local iOS CI runner for macOS.</div>
+    <div style="display:flex;gap:1.4rem;flex-wrap:wrap;">
+      <a href="index.html">Home</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://www.linkedin.com/in/ali-haidar-8484b8208" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/alimusawa313/MacON">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle with circular reveal
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    function apply(next) {
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('macon-theme', next); } catch (e) {}
+      var tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.setAttribute('content', next === 'dark' ? '#000000' : '#ffffff');
+    }
+    btn.addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!document.startViewTransition || reduce) {
+        apply(next);
+        if (!reduce) btn.querySelectorAll('svg').forEach(function (s) {
+          s.animate([{ transform: 'rotate(-170deg) scale(.4)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+                    { duration: 420, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+        });
+        return;
+      }
+      var r = btn.getBoundingClientRect();
+      var x = r.left + r.width / 2, y = r.top + r.height / 2;
+      var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      var vt = document.startViewTransition(function () { apply(next); });
+      vt.ready.then(function () {
+        document.documentElement.animate(
+          { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + end + 'px at ' + x + 'px ' + y + 'px)'] },
+          { duration: 520, easing: 'cubic-bezier(.4,0,.2,1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      });
+    });
+  })();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+    try { if (localStorage.getItem('macon-theme')) return; } catch (err) {}
+    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+  });
+
+  // Mobile hamburger
+  (function () {
+    var btn = document.getElementById('menu-btn');
+    var links = document.querySelector('.nav-links');
+    function setOpen(open) {
+      links.classList.toggle('open', open);
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function () { setOpen(!links.classList.contains('open')); });
+    links.addEventListener('click', function (e) { if (e.target.tagName === 'A') setOpen(false); });
+  })();
+
+  // Nav shadow on scroll
+  (function () {
+    var nav = document.querySelector('nav');
+    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
+</body>
+</html>
