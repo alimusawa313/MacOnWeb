@@ -323,6 +323,7 @@ macon service install --config macon-export.json  <span class="c"># …as a serv
     <div class="codeblock"><button class="copy">Copy</button>macon watch --workspace acme --repo app --branch main --companion
 macon watch --config macon-export.json --companion    <span class="c"># with your app setup</span></div>
     <p>The server is lightweight and read-only — the app can watch, but not start or change builds. It rides alongside the watch, so it sees the same runs you'd see in the desktop app.</p>
+    <p>Prefer the desktop app? Flip it on in <strong>Settings → Companion app</strong>, then <strong>Pair a device</strong> shows the address, code, and a QR. Pairings are shared with the CLI, so a device works with either.</p>
     <div class="callout gh">
       <span>The app is a separate open-source project — pair it once and it reconnects on its own.</span>
       <a class="btn-sm" href="https://github.com/alimusawa313/MacON_Companion">Companion on GitHub ↗</a>
