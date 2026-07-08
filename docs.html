@@ -100,6 +100,11 @@
       <a href="#export">App ↔ CLI export</a>
     </div>
     <div class="side-group">
+      <h4>Companion app</h4>
+      <a href="#companion">iPhone &amp; iPad</a>
+      <a href="#companion-pair">Pairing &amp; devices</a>
+    </div>
+    <div class="side-group">
       <h4>Reference</h4>
       <a href="https://github.com/alimusawa313/MacON/blob/main/MaconKit/CLI.md">Full CLI reference ↗</a>
       <a href="https://github.com/alimusawa313/MacON">Source on GitHub ↗</a>
@@ -148,6 +153,7 @@ macon init --check    <span class="c"># report only, install nothing</span></div
         <tr><td><code>macon run …</code></td><td>Run one workflow once, then exit.</td></tr>
         <tr><td><code>macon watch …</code></td><td>Watch a repo and build new commits (until Ctrl-C).</td></tr>
         <tr><td><code>macon service …</code></td><td>Run a watch as a background launchd service.</td></tr>
+        <tr><td><code>macon companion …</code></td><td>Manage companion-app (iPhone/iPad) pairings.</td></tr>
         <tr><td><code>macon pipelines [file]</code></td><td>List pipelines in an app export file.</td></tr>
       </tbody>
     </table></div>
@@ -191,6 +197,7 @@ macon watch --config macon-export.json</div>
         <tr><td><code>--timeout MINS</code></td><td>Cancel a build that runs longer than this.</td></tr>
         <tr><td><code>--workflow N</code> / <code>--file</code></td><td>Which workflow / which pipeline file.</td></tr>
         <tr><td><code>--no-status</code></td><td>Don't post build status back to the host.</td></tr>
+        <tr><td><code>--companion [--companion-port N]</code></td><td>Serve the <a href="#companion">iPhone/iPad app</a> (default port 8899).</td></tr>
       </tbody>
     </table></div>
 
@@ -310,6 +317,32 @@ base64 -i ~/Downloads/AuthKey_XXXX.p8 | pbcopy</div>
 macon watch --config macon-export.json     <span class="c"># run them all</span>
 macon service install --config macon-export.json  <span class="c"># …as a service</span></div>
     <p>Exported without secrets, the file is config-only and safe to commit; supply token/secret values via the environment. Exported with secrets, it's self-contained — keep it private. The app's <strong>Import…</strong> loads a file back, so it also moves a setup between machines.</p>
+
+    <h2 id="companion">Companion app (iPhone &amp; iPad)</h2>
+    <p>The <a href="https://github.com/alimusawa313/MacON_Companion">MacOn companion app</a> lets you <strong>monitor builds and tail logs live</strong> from your phone or iPad — handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
+    <div class="codeblock"><button class="copy">Copy</button>macon watch --workspace acme --repo app --branch main --companion
+macon watch --config macon-export.json --companion    <span class="c"># with your app setup</span></div>
+    <p>The server is lightweight and read-only — the app can watch, but not start or change builds. It rides alongside the watch, so it sees the same runs you'd see in the desktop app.</p>
+    <div class="callout gh">
+      <span>The app is a separate open-source project — pair it once and it reconnects on its own.</span>
+      <a class="btn-sm" href="https://github.com/alimusawa313/MacON_Companion">Companion on GitHub ↗</a>
+    </div>
+
+    <h2 id="companion-pair">Pairing &amp; devices</h2>
+    <p>On start, the companion server prints a one-time <strong>address</strong> and <strong>code</strong>. In the app, tap <em>Add runner</em> and enter them — the code is exchanged for a long-lived device token stored in the iOS Keychain, so you only pair once. Codes are single-use, expire (15 min by default), and are rate-limited.</p>
+    <div class="codeblock"><button class="copy">Copy</button>┌─ Pair the MacOn companion app ──────────────────────
+│  Address:  alis-mac.local:8899
+│  Code:     K7QP-2M9X-4RTD   ·  valid 15 min, one device
+└──────────────────────────────────────────────────────</div>
+    <p><strong>Headless or cloud (EC2) Macs</strong> have no screen to read — the code prints to the log, so grab it over SSH. Expose the port through a <code>cloudflared</code> tunnel and point the app at the tunnel host (the app talks HTTPS/WSS):</p>
+    <div class="codeblock"><button class="copy">Copy</button>cloudflared tunnel --url http://localhost:8899   <span class="c"># → https://&lt;name&gt;.trycloudflare.com</span></div>
+    <p>Manage paired devices from the CLI — file-based, so it works even with no server running:</p>
+    <div class="codeblock"><button class="copy">Copy</button>macon companion devices           <span class="c"># list paired iPhones/iPads</span>
+macon companion revoke &lt;prefix&gt;    <span class="c"># revoke one (token prefix from `devices`)</span>
+macon companion revoke-all        <span class="c"># revoke everything</span></div>
+    <div class="callout">
+      <span><strong>On the roadmap:</strong> the app monitors builds and streams logs today. Streaming the Mac's screen (watch the simulator run) is a planned later phase.</span>
+    </div>
 
     <div class="callout" style="margin-top:2.5rem">
       <span>That's the full picture. For the exhaustive flag-by-flag reference, see the <a href="https://github.com/alimusawa313/MacON/blob/main/MaconKit/CLI.md">CLI.md on GitHub ↗</a>.</span>
