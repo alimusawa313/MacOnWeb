@@ -19,39 +19,17 @@
     if (tc) tc.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
   })();
 </script>
-<style>
-  :root {
-    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
-    --bg: #ffffff; --text: #1d1d1f; --text-2: #6e6e73; --accent: #0071e3; --accent-hover: #0077ed;
-    --on-accent: #fff; --border: rgba(0,0,0,0.10);
-  }
-  [data-theme="dark"] {
-    --bg: #000; --text: #f5f5f7; --text-2: #a1a1a6; --accent: #2997ff; --accent-hover: #47a5ff;
-    --border: rgba(255,255,255,0.13);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh;
-    display: grid; place-items: center; text-align: center; padding: 2rem; -webkit-font-smoothing: antialiased; }
-  a { text-decoration: none; }
-  .logo { width: 84px; height: 84px; border-radius: 20px; filter: drop-shadow(0 14px 30px rgba(0,0,0,0.2)); }
-  .code { font-size: .82rem; font-weight: 600; letter-spacing: .1em; color: var(--accent); margin: 1.6rem 0 .6rem; }
-  h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); letter-spacing: -0.02em; margin-bottom: .8rem; text-wrap: balance; }
-  p { color: var(--text-2); font-size: 1.1rem; max-width: 42ch; margin: 0 auto 2rem; }
-  .btn { display: inline-flex; align-items: center; gap: .5rem; font-size: 1rem; font-weight: 500;
-    padding: .7rem 1.5rem; border-radius: 980px; background: var(--accent); color: var(--on-accent); transition: background .2s; }
-  .btn:hover { background: var(--accent-hover); }
-  .links { margin-top: 1.4rem; display: flex; gap: 1.4rem; justify-content: center; flex-wrap: wrap; font-size: .9rem; }
-  .links a { color: var(--text-2); } .links a:hover { color: var(--text); }
-</style>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/notfound.css">
 </head>
-<body>
+<body class="nf">
   <div>
-    <a href="index.html"><img src="macon-icon.png" alt="MacOn" class="logo"></a>
-    <p class="code">ERROR 404</p>
+    <a href="index.html"><img src="macon-icon.png" alt="MacOn" class="nf-logo"></a>
+    <p class="nf-code">ERROR 404</p>
     <h1>This page went off the grid.</h1>
     <p>The link may be broken or the page may have moved. Let's get you back to something that builds.</p>
-    <a href="index.html" class="btn">Back to home</a>
-    <div class="links">
+    <a href="index.html" class="btn btn-primary">Back to home</a>
+    <div class="nf-links">
       <a href="docs.html">Docs</a>
       <a href="about.html">About</a>
       <a href="https://github.com/alimusawa313/MacON">GitHub</a>

@@ -1,0 +1,109 @@
+/* base.css — design tokens, reset, typography, buttons, theme reveal (shared) */
+
+:root {
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, monospace;
+
+  --bg: #ffffff;
+  --bg-2: #f5f5f7;
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --on-accent: #ffffff;
+  --border: rgba(0, 0, 0, 0.10);
+  --card: #ffffff;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --code-bg: #1d1d1f;
+  --code-text: #f5f5f7;
+  --side-active: rgba(0, 113, 227, 0.10);
+}
+
+[data-theme="dark"] {
+  --bg: #000000;
+  --bg-2: #101012;
+  --text: #f5f5f7;
+  --text-2: #a1a1a6;
+  --accent: #2997ff;
+  --accent-hover: #47a5ff;
+  --on-accent: #ffffff;
+  --border: rgba(255, 255, 255, 0.13);
+  --card: #151517;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --nav-bg: rgba(10, 10, 12, 0.72);
+  --code-bg: #161617;
+  --code-text: #f5f5f7;
+  --side-active: rgba(41, 151, 255, 0.16);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  width: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.47;
+  -webkit-font-smoothing: antialiased;
+  transition: background .4s ease, color .4s ease;
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; }
+
+:not(pre) > code {
+  font-family: var(--mono); font-size: .86em;
+  background: var(--bg-2); padding: .12em .4em; border-radius: 5px;
+  border: 1px solid var(--border);
+}
+
+section { padding: clamp(4rem, 10vw, 8rem) 1.5rem; }
+.wrap { max-width: 1080px; margin: 0 auto; width: 100%; }
+.center { text-align: center; }
+.alt { background: var(--bg-2); }
+.muted { color: var(--text-2); }
+
+h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.06; text-wrap: balance; font-weight: 700; }
+.eyebrow { font-size: .82rem; font-weight: 600; letter-spacing: .02em; color: var(--accent); margin-bottom: 1rem; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: 1rem; font-weight: 500; padding: .7rem 1.4rem;
+  border-radius: 980px; border: 1px solid transparent; cursor: pointer;
+  transition: background .2s, border-color .2s, transform .15s, box-shadow .2s;
+}
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-hover); box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 40%, transparent); }
+.btn-ghost { background: transparent; color: var(--accent); border-color: var(--border); }
+.btn-ghost:hover { border-color: var(--accent); }
+
+/* Circular theme reveal (View Transitions API) — JS animates the clip-path */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 9999; }
+#theme-toggle { view-transition-name: macon-theme-toggle; }
+::view-transition-group(macon-theme-toggle) { z-index: 10000; }
+::view-transition-old(macon-theme-toggle) { animation: tt-out .5s cubic-bezier(.4, 0, .2, 1) both; }
+::view-transition-new(macon-theme-toggle) { animation: tt-in  .5s cubic-bezier(.4, 0, .2, 1) both; }
+@keyframes tt-out { to   { transform: rotate(-170deg) scale(.4); opacity: 0; } }
+@keyframes tt-in  { from { transform: rotate(170deg)  scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

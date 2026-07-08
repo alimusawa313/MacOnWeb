@@ -27,188 +27,14 @@
     if (tc) tc.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
   })();
 </script>
-<style>
-  :root {
-    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, monospace;
-    --bg: #ffffff; --bg-2: #f5f5f7; --text: #1d1d1f; --text-2: #6e6e73;
-    --accent: #0071e3; --accent-hover: #0077ed; --on-accent: #fff;
-    --border: rgba(0,0,0,0.10); --card: #ffffff; --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    --nav-bg: rgba(255,255,255,0.72); --code-bg: #1d1d1f; --code-text: #f5f5f7;
-    --side-active: rgba(0,113,227,0.10);
-  }
-  [data-theme="dark"] {
-    --bg: #000; --bg-2: #101012; --text: #f5f5f7; --text-2: #a1a1a6;
-    --accent: #2997ff; --accent-hover: #47a5ff; --on-accent: #fff;
-    --border: rgba(255,255,255,0.13); --card: #151517; --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
-    --nav-bg: rgba(10,10,12,0.72); --code-bg: #161617; --code-text: #f5f5f7;
-    --side-active: rgba(41,151,255,0.16);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
-  html { -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 70px; overscroll-behavior: none; }
-
-  /* Circular theme reveal (View Transitions API) — the JS animates the clip-path. */
-  ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-  ::view-transition-old(root) { z-index: 1; }
-  ::view-transition-new(root) { z-index: 9999; }
-  /* The toggle animates on top of the reveal: its icon spins + crossfades. */
-  #theme-toggle { view-transition-name: macon-theme-toggle; }
-  ::view-transition-group(macon-theme-toggle) { z-index: 10000; }
-  ::view-transition-old(macon-theme-toggle) { animation: tt-out .5s cubic-bezier(.4,0,.2,1) both; }
-  ::view-transition-new(macon-theme-toggle) { animation: tt-in  .5s cubic-bezier(.4,0,.2,1) both; }
-  @keyframes tt-out { to   { transform: rotate(-170deg) scale(.4); opacity: 0; } }
-  @keyframes tt-in  { from { transform: rotate(170deg)  scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
-  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6;
-    -webkit-font-smoothing: antialiased; overflow-x: clip; transition: background .4s, color .4s; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  :not(pre) > code { font-family: var(--mono); font-size: .86em; background: var(--bg-2);
-    padding: .12em .4em; border-radius: 5px; border: 1px solid var(--border); }
-
-  /* Nav */
-  nav { position: sticky; top: 0; z-index: 100; background: var(--nav-bg);
-    backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--border); }
-  .nav-inner { max-width: 1280px; margin: 0 auto; height: 52px; display: flex; align-items: center;
-    gap: 1.5rem; padding: 0 1.5rem; }
-  .brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: 1.15rem;
-    letter-spacing: -0.02em; color: var(--text); }
-  .brand:hover { text-decoration: none; }
-  .brand .on { color: var(--accent); }
-  .brand-logo { width: 26px; height: 26px; border-radius: 6px; }
-  .nav-links { display: flex; gap: 1.4rem; margin-left: auto; }
-  .nav-links a { color: var(--text-2); font-size: .88rem; }
-  .nav-links a.active { color: var(--text); font-weight: 500; }
-  .nav-links a:hover { color: var(--text); text-decoration: none; }
-  .nav-tools { display: flex; align-items: center; gap: .5rem; margin-left: 1.1rem; }
-  .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px;
-    border-radius: 50%; background: transparent; border: 1px solid var(--border); color: var(--text); cursor: pointer; }
-  .icon-btn:hover { background: var(--bg-2); }
-  .icon-btn:focus { outline: none; }                 /* no ring on tap/click */
-  .icon-btn svg { width: 17px; height: 17px; }
-  /* Keyboard focus only (not pointer): visible ring for accessibility. */
-  a:focus-visible, button:focus-visible, summary:focus-visible {
-    outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
-  }
-  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .doc-search:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-  [data-theme="light"] .moon { display: block; } [data-theme="light"] .sun { display: none; }
-  [data-theme="dark"] .moon { display: none; }  [data-theme="dark"] .sun { display: block; }
-  #menu-btn { display: none; position: relative; }
-  #menu-btn svg { position: absolute; top: 50%; left: 50%; width: 17px; height: 17px;
-    transform: translate(-50%, -50%) rotate(0deg);
-    transition: opacity .28s ease, transform .3s cubic-bezier(.2,.7,.2,1); }
-  #menu-btn .x { opacity: 0; transform: translate(-50%, -50%) rotate(-90deg); }
-  #menu-btn.open .bars { opacity: 0; transform: translate(-50%, -50%) rotate(90deg); }
-  #menu-btn.open .x { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
-
-  /* Layout */
-  .shell { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 264px minmax(0, 1fr) 220px; gap: 0; }
-
-  /* Sidebar search */
-  .doc-search { width: 100%; max-width: 100%; margin-bottom: 1.5rem; padding: .5rem .75rem; font: inherit; font-size: .9rem;
-    color: var(--text); background: var(--bg-2); border: 1px solid var(--border); border-radius: 9px;
-    -webkit-appearance: none; appearance: none; }
-  .doc-search::placeholder { color: var(--text-2); }
-  .doc-search:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-  .side-empty { color: var(--text-2); font-size: .85rem; padding: .3rem .6rem; display: none; }
-
-  /* "On this page" right rail */
-  .onthispage { position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px);
-    overflow-y: auto; padding: 2.6rem 1.1rem 4rem; }
-  .onthispage h4 { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2);
-    font-weight: 600; margin-bottom: .8rem; }
-  .onthispage nav { display: flex; flex-direction: column; border-left: 1px solid var(--border); }
-  .onthispage a { font-size: .83rem; color: var(--text-2); padding: .32rem .8rem; margin-left: -1px; line-height: 1.35;
-    border-left: 2px solid transparent; }
-  .onthispage a:hover { color: var(--text); text-decoration: none; }
-  .onthispage a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
-  .sidebar {
-    position: sticky; top: 52px; align-self: start; height: calc(100vh - 52px);
-    overflow-y: auto; overflow-x: hidden; padding: 2rem 1.2rem 4rem; border-right: 1px solid var(--border);
-  }
-  .side-group { margin-bottom: 1.6rem; }
-  .side-group h4 { font-size: .74rem; text-transform: uppercase; letter-spacing: .06em;
-    color: var(--text-2); margin: 0 0 .6rem .6rem; font-weight: 600; }
-  .side-group a { display: block; color: var(--text-2); font-size: .9rem; padding: .34rem .6rem;
-    border-radius: 7px; line-height: 1.3; }
-  .side-group a:hover { color: var(--text); background: var(--bg-2); text-decoration: none; }
-  .side-group a.active { color: var(--accent); background: var(--side-active); font-weight: 500; }
-
-  main { padding: 2.6rem clamp(1.2rem, 4vw, 3.5rem) 6rem; max-width: 860px; }
-  .crumb { font-size: .82rem; color: var(--text-2); margin-bottom: .8rem; }
-  main h1 { font-size: clamp(2rem, 5vw, 2.9rem); letter-spacing: -0.02em; line-height: 1.08; margin-bottom: .6rem; }
-  .subtitle { font-size: 1.15rem; color: var(--text-2); margin-bottom: 1.6rem; }
-  main h2 { font-size: 1.7rem; letter-spacing: -0.015em; margin: 3.2rem 0 1rem; padding-top: .4rem;
-    scroll-margin-top: 68px; }
-  main h2:first-of-type { margin-top: 1.5rem; }
-  main h3 { font-size: 1.2rem; margin: 2rem 0 .7rem; scroll-margin-top: 68px; }
-  main p { margin: 0 0 1rem; color: var(--text); }
-  main p, main li { color: #3a3a3c; }
-  [data-theme="dark"] main p, [data-theme="dark"] main li { color: #d0d0d3; }
-  main ul, main ol { margin: 0 0 1rem 1.3rem; }
-  main li { margin: .3rem 0; }
-  .lead { font-size: 1.05rem; }
-
-  /* Callout */
-  .callout { display: flex; gap: .9rem; align-items: flex-start; background: var(--bg-2);
-    border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; margin: 1.4rem 0; font-size: .95rem; }
-  .callout.gh { align-items: center; justify-content: space-between; flex-wrap: wrap; }
-  .callout .btn-sm { display: inline-flex; align-items: center; gap: .4rem; background: var(--accent);
-    color: var(--on-accent); padding: .5rem 1rem; border-radius: 980px; font-size: .88rem; font-weight: 500; white-space: nowrap; }
-  .callout .btn-sm:hover { background: var(--accent-hover); text-decoration: none; }
-
-  /* Code */
-  .code-wrap { position: relative; margin: 1rem 0; }
-  .codeblock { position: relative; background: var(--code-bg); color: var(--code-text); border-radius: 12px;
-    padding: 1.05rem 1.15rem; font: .86rem/1.65 var(--mono); overflow-x: auto; white-space: pre;
-    border: 1px solid rgba(255,255,255,0.08); margin: 1rem 0; width: 100%; max-width: 100%; }
-  .codeblock .c { color: #7d8590; } .codeblock .p { color: #2997ff; } .codeblock .ok { color: #28c840; }
-  .copy { position: absolute; top: .55rem; right: .55rem; background: rgba(255,255,255,0.1); color: #f5f5f7;
-    border: none; border-radius: 7px; padding: .3rem .6rem; font: 500 .72rem var(--sans); cursor: pointer; opacity: .8; }
-  .copy:hover { opacity: 1; background: rgba(255,255,255,0.2); }
-
-  /* Table */
-  .table-wrap { overflow-x: auto; margin: 1rem 0; }
-  table { border-collapse: collapse; width: 100%; font-size: .9rem; }
-  th, td { text-align: left; padding: .6em .9em; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { font-weight: 600; }
-  td code, th code { white-space: nowrap; }
-
-  footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem calc(2.5rem + env(safe-area-inset-bottom, 0px)); color: var(--text-2); font-size: .85rem;
-    grid-column: 1 / -1; }
-  .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-  footer a { color: var(--text-2); } footer a:hover { color: var(--text); }
-
-  .scrim { display: none; }
-
-  @media (max-width: 1200px) {
-    .shell { grid-template-columns: 264px minmax(0, 1fr); }
-    .onthispage { display: none; }
-  }
-  @media (max-width: 900px) {
-    .shell { grid-template-columns: 1fr; }
-    #menu-btn { display: inline-flex; }
-    .sidebar {
-      position: fixed; top: 52px; left: 0; bottom: 0; width: 280px; height: auto; z-index: 90;
-      background: var(--bg); transform: translateX(-105%);
-      transition: transform .32s cubic-bezier(.2,.7,.2,1);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    }
-    .sidebar.open { transform: none; }
-    .scrim.show { display: block; position: fixed; inset: 52px 0 0 0; background: rgba(0,0,0,0.35); z-index: 80; }
-    main { padding-top: 1.8rem; }
-  }
-  @media (max-width: 520px) {
-    .nav-links { display: none; }
-    .nav-tools { margin-left: auto; }   /* push the theme toggle to the right edge */
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; animation: none !important; }
-  }
-</style>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/code.css">
+<link rel="stylesheet" href="css/docs.css">
+<script defer src="js/theme.js"></script>
+<script defer src="js/code.js"></script>
+<script defer src="js/docs.js"></script>
 </head>
 <body>
 
@@ -287,7 +113,6 @@
       <a class="btn-sm" href="https://github.com/alimusawa313/MacON">View on GitHub ↗</a>
     </div>
 
-    <!-- ===== OVERVIEW ===== -->
     <h2 id="overview">Overview</h2>
     <p class="lead">MacOn is a local CI runner for iOS. It watches a Bitbucket or GitHub repository, checks out each new commit or pull request, runs the pipeline defined in your <code>macon.yml</code>, and reports the result back — all on a Mac you control.</p>
     <p>It comes in two forms that share one engine:</p>
@@ -297,7 +122,6 @@
     </ul>
     <p>Anything you set up in the app can be exported and run by the CLI, and vice-versa.</p>
 
-    <!-- ===== INSTALL ===== -->
     <h2 id="install">Install</h2>
     <h3>CLI (Homebrew)</h3>
     <div class="codeblock"><button class="copy">Copy</button>brew tap alimusawa313/macon https://github.com/alimusawa313/homebrew-macon
@@ -305,14 +129,12 @@ brew install macon</div>
     <h3>App</h3>
     <p>Download the latest build from <a href="https://github.com/alimusawa313/MacON/releases">GitHub Releases</a>. Requires macOS 14 or later.</p>
 
-    <!-- ===== FIRST RUN ===== -->
     <h2 id="first-run">First run: <code>macon init</code></h2>
     <p>Before watching anything, confirm the machine has what an iOS build needs. <code>macon init</code> checks the toolchain and installs the Homebrew-managed pieces automatically.</p>
     <div class="codeblock"><button class="copy">Copy</button>macon init            <span class="c"># check + install what's missing</span>
 macon init --check    <span class="c"># report only, install nothing</span></div>
     <p>It verifies Homebrew, Xcode + Command Line Tools, git, Ruby/Bundler, fastlane, SwiftLint, gitleaks, a JDK, cloudflared, and your installed simulator runtimes. Tools available via Homebrew are installed for you; Xcode and simulators print the exact command to run.</p>
 
-    <!-- ===== CLI OVERVIEW ===== -->
     <h2 id="cli-overview">CLI overview</h2>
     <div class="table-wrap"><table>
       <thead><tr><th>Command</th><th>What it does</th></tr></thead>
@@ -327,7 +149,6 @@ macon init --check    <span class="c"># report only, install nothing</span></div
       </tbody>
     </table></div>
 
-    <!-- ===== SIMS ===== -->
     <h2 id="cli-sims">Simulators</h2>
     <p>Inspect and manage the simulators your test matrix targets — for iOS, watchOS, tvOS, and visionOS (macOS builds run natively, no simulator).</p>
     <div class="codeblock"><button class="copy">Copy</button>macon sims                          <span class="c"># list runtimes + device types</span>
@@ -336,7 +157,6 @@ macon sims install watchOS 11.2     <span class="c"># any platform + version</sp
 macon sims create "iPhone 16" 18.1  <span class="c"># create a specific device</span></div>
     <p>Use <code>macon sims</code> to find the exact <code>device</code> and <code>os</code> values for a <a href="#yml-matrix">test matrix</a>.</p>
 
-    <!-- ===== RUN ===== -->
     <h2 id="cli-run">Run once</h2>
     <p>Run a single workflow in a checkout and exit with its status code — perfect for a git hook, cron, or another CI.</p>
     <div class="codeblock"><button class="copy">Copy</button>macon run --workflow test               <span class="c"># in the current directory</span>
@@ -345,7 +165,6 @@ macon run --workflow beta ~/src/planpal <span class="c"># in a given repo</span>
 <span class="c"># secrets come from the shell environment</span>
 ASC_KEY_ID=… ASC_ISSUER_ID=… ASC_KEY_CONTENT=… macon run --workflow beta</div>
 
-    <!-- ===== WATCH ===== -->
     <h2 id="cli-watch">Watch</h2>
     <p>Continuously build new commits (or pull requests). Runs until you stop it.</p>
     <div class="codeblock"><button class="copy">Copy</button><span class="c"># poll a branch on Bitbucket</span>
@@ -372,7 +191,6 @@ macon watch --config macon-export.json</div>
       </tbody>
     </table></div>
 
-    <!-- ===== SERVICE ===== -->
     <h2 id="cli-service">Run as a service</h2>
     <p>Install a watch as a <code>launchd</code> agent so it starts at login and restarts on crash — the way to run MacOn unattended on a dedicated or cloud (EC2) Mac.</p>
     <div class="codeblock"><button class="copy">Copy</button>macon service install --config ~/macon-export.json
@@ -382,7 +200,6 @@ macon service status   [--label NAME]
 macon service uninstall [--label NAME]</div>
     <p>Credentials present in your shell at install time (<code>BITBUCKET_*</code>, <code>GITHUB_TOKEN</code>, <code>ASC_*</code>, <code>SLACK_URL</code>) are copied into the agent. Logs go to <code>~/Library/Logs/macon/&lt;label&gt;.log</code>.</p>
 
-    <!-- ===== YML STRUCTURE ===== -->
     <h2 id="yml-structure">macon.yml — structure</h2>
     <p>A pipeline lives in your repo as <code>macon.yml</code>. It's Bitrise-style: named workflows composed with <code>before_run</code>/<code>after_run</code>, triggers that route branches/PRs to workflows, environment variables, and conditional or always-run steps.</p>
     <div class="codeblock"><button class="copy">Copy</button>name: PlanPal iOS CI
@@ -406,7 +223,6 @@ triggers:
   - { pull_request: "*", workflow: test }
   - { branch: main,      workflow: beta }</div>
 
-    <!-- ===== WORKFLOWS ===== -->
     <h2 id="yml-workflows">Workflows</h2>
     <p>Each workflow is a named list of steps. Compose them so shared setup runs once:</p>
     <ul>
@@ -416,7 +232,6 @@ triggers:
     </ul>
     <p>Pick which workflow runs with <code>--workflow</code>, or leave it to the <a href="#yml-triggers">triggers</a>.</p>
 
-    <!-- ===== STEPS ===== -->
     <h2 id="yml-steps">Steps</h2>
     <p>A step is a name and a shell <code>script</code>. Each becomes its own timed section in the app's log.</p>
     <div class="table-wrap"><table>
@@ -430,7 +245,6 @@ triggers:
       </tbody>
     </table></div>
 
-    <!-- ===== MATRIX ===== -->
     <h2 id="yml-matrix">Test matrix</h2>
     <p>Fan a step out across every combination of values — ideal for UI-testing on multiple devices and OS versions. Each run gets <code>MACON_MATRIX_&lt;KEY&gt;</code> in its environment. All combinations run; the step fails if any of them fails.</p>
     <div class="codeblock"><button class="copy">Copy</button>- name: UI Tests
@@ -440,7 +254,6 @@ triggers:
   script: bundle exec fastlane test device:"$MACON_MATRIX_DEVICE" os:"$MACON_MATRIX_OS"</div>
     <p>Combinations run sequentially so simulators don't contend. Match the values to installed runtimes (<code>macon sims</code>).</p>
 
-    <!-- ===== TRIGGERS ===== -->
     <h2 id="yml-triggers">Triggers</h2>
     <p>Route branches and pull requests to workflows (like Bitrise's trigger map). When a pipeline's workflow field is blank, MacOn matches here.</p>
     <div class="codeblock"><button class="copy">Copy</button>triggers:
@@ -448,7 +261,6 @@ triggers:
   - { branch: main,       workflow: beta }
   - { branch: "dev-*",    workflow: test }   <span class="c"># globs supported</span></div>
 
-    <!-- ===== ENV ===== -->
     <h2 id="yml-env">Built-in variables</h2>
     <p>Every step runs with these set:</p>
     <div class="table-wrap"><table>
@@ -465,7 +277,6 @@ triggers:
     </table></div>
     <p>Provider-native variables (<code>BITBUCKET_*</code> or <code>GITHUB_*</code>) are also injected so tools like Danger work.</p>
 
-    <!-- ===== PROVIDERS ===== -->
     <h2 id="providers">Bitbucket &amp; GitHub</h2>
     <p>A pipeline watches one host. Set credentials once (in the app's Settings, or via environment for the CLI).</p>
     <div class="table-wrap"><table>
@@ -477,11 +288,9 @@ triggers:
     </table></div>
     <p>The GitHub token needs repo access — classic <code>repo</code> scope, or fine-grained with Contents + Commit statuses + Pull requests.</p>
 
-    <!-- ===== SECRETS ===== -->
     <h2 id="secrets">Secrets</h2>
     <p>Secrets your pipeline needs (<code>ASC_KEY_ID</code>, <code>ASC_ISSUER_ID</code>, <code>ASC_KEY_CONTENT</code>, <code>SLACK_URL</code>, …) are injected into every step. In the app they're stored in the macOS Keychain, never in the repo. For the CLI they come from the inherited shell environment — unless you exported the config <em>with</em> secrets.</p>
 
-    <!-- ===== TESTFLIGHT ===== -->
     <h2 id="testflight">Shipping to TestFlight</h2>
     <p>MacOn runs your fastlane lanes, so shipping is a normal <code>beta</code> lane with automatic signing and an App Store Connect API key.</p>
     <ol>
@@ -492,7 +301,6 @@ triggers:
     <div class="codeblock"><button class="copy">Copy</button><span class="c"># base64 of the .p8, straight to your clipboard</span>
 base64 -i ~/Downloads/AuthKey_XXXX.p8 | pbcopy</div>
 
-    <!-- ===== EXPORT ===== -->
     <h2 id="export">App ↔ CLI export</h2>
     <p>Set everything up visually in the app, then run it headless. In the app: <strong>Settings → Export Configuration…</strong> writes a <code>macon-export.json</code> (optionally including secrets). Then:</p>
     <div class="codeblock"><button class="copy">Copy</button>macon pipelines macon-export.json          <span class="c"># see what's inside</span>
@@ -523,138 +331,5 @@ macon service install --config macon-export.json  <span class="c"># …as a serv
   </div>
 </footer>
 
-<script>
-  // Theme toggle with a circular reveal expanding from the button.
-  (function () {
-    var btn = document.getElementById('theme-toggle');
-    function apply(next) {
-      document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('macon-theme', next); } catch (e) {}
-      var tc = document.querySelector('meta[name="theme-color"]');
-      if (tc) tc.setAttribute('content', next === 'dark' ? '#000000' : '#ffffff');
-    }
-    btn.addEventListener('click', function () {
-      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!document.startViewTransition || reduce) {
-        apply(next);
-        if (!reduce) btn.querySelectorAll('svg').forEach(function (s) {
-          s.animate([{ transform: 'rotate(-170deg) scale(.4)', opacity: 0 }, { transform: 'none', opacity: 1 }],
-                    { duration: 420, easing: 'cubic-bezier(.34,1.56,.64,1)' });
-        });
-        return;
-      }
-      var r = btn.getBoundingClientRect();
-      var x = r.left + r.width / 2, y = r.top + r.height / 2;
-      var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-      var vt = document.startViewTransition(function () { apply(next); });
-      vt.ready.then(function () {
-        document.documentElement.animate(
-          { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + end + 'px at ' + x + 'px ' + y + 'px)'] },
-          { duration: 520, easing: 'cubic-bezier(.4,0,.2,1)', pseudoElement: '::view-transition-new(root)' }
-        );
-      });
-    });
-  })();
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-    try { if (localStorage.getItem('macon-theme')) return; } catch (err) {}
-    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-  });
-
-  // Mobile sidebar
-  var sidebar = document.getElementById('sidebar');
-  var scrim = document.getElementById('scrim');
-  var menuBtn = document.getElementById('menu-btn');
-  function closeMenu() {
-    sidebar.classList.remove('open'); scrim.classList.remove('show');
-    menuBtn.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
-  }
-  menuBtn.addEventListener('click', function () {
-    var open = sidebar.classList.toggle('open');
-    scrim.classList.toggle('show', open);
-    menuBtn.classList.toggle('open', open);
-    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  scrim.addEventListener('click', closeMenu);
-  sidebar.addEventListener('click', function (e) { if (e.target.tagName === 'A') closeMenu(); });
-
-  // Copy buttons (with file:// fallback)
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-    return new Promise(function (res, rej) {
-      try { var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
-        document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); res(); }
-      catch (e) { rej(e); }
-    });
-  }
-  // Pin the copy button: lift it out of the scrolling code box into a static wrapper.
-  document.querySelectorAll('.codeblock').forEach(function (block) {
-    var copy = block.querySelector('.copy');
-    if (!copy) return;
-    var wrap = document.createElement('div');
-    wrap.className = 'code-wrap';
-    block.parentNode.insertBefore(wrap, block);
-    wrap.appendChild(block);
-    wrap.appendChild(copy);
-  });
-  document.querySelectorAll('.copy').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var block = btn.parentElement.querySelector('.codeblock');
-      var text = (block ? block.textContent : '').trim();
-      var old = btn.textContent;
-      copyText(text).then(function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = old; }, 1400); })
-        .catch(function () { btn.textContent = 'Copy failed'; setTimeout(function () { btn.textContent = old; }, 1400); });
-    });
-  });
-
-  // Build the "On this page" rail from the section headings
-  (function () {
-    var otp = document.getElementById('otp-nav');
-    document.querySelectorAll('main h2[id]').forEach(function (h) {
-      var a = document.createElement('a');
-      a.href = '#' + h.id;
-      a.textContent = h.textContent;
-      otp.appendChild(a);
-    });
-  })();
-
-  // Scrollspy: highlight the active section in BOTH the sidebar and the right rail
-  (function () {
-    var headings = Array.prototype.slice.call(document.querySelectorAll('main h2[id]'));
-    if (!headings.length || !('IntersectionObserver' in window)) return;
-    var visible = new Set();
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) visible.add(e.target.id); else visible.delete(e.target.id); });
-      var top = headings.map(function (h) { return h.id; }).filter(function (id) { return visible.has(id); })[0];
-      if (!top) return;
-      document.querySelectorAll('.sidebar a.active, #otp-nav a.active').forEach(function (a) { a.classList.remove('active'); });
-      document.querySelectorAll('.sidebar a[href="#' + top + '"], #otp-nav a[href="#' + top + '"]')
-        .forEach(function (a) { a.classList.add('active'); });
-    }, { rootMargin: '-64px 0px -70% 0px', threshold: 0 });
-    headings.forEach(function (h) { io.observe(h); });
-  })();
-
-  // Search: filter the sidebar topics as you type
-  (function () {
-    var input = document.getElementById('doc-search');
-    var empty = document.getElementById('side-empty');
-    if (!input) return;
-    input.addEventListener('input', function () {
-      var q = input.value.trim().toLowerCase();
-      var anyTotal = false;
-      document.querySelectorAll('.sidebar .side-group').forEach(function (group) {
-        var any = false;
-        group.querySelectorAll('a').forEach(function (a) {
-          var match = !q || a.textContent.toLowerCase().indexOf(q) !== -1;
-          a.style.display = match ? '' : 'none';
-          if (match) any = true;
-        });
-        group.style.display = any ? '' : 'none';
-        if (any) anyTotal = true;
-      });
-      empty.style.display = anyTotal ? 'none' : 'block';
-    });
-  })();
-</script>
 </body>
 </html>

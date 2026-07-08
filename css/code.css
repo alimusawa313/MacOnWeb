@@ -1,0 +1,24 @@
+/* code.css — code blocks with a pinned copy button (home & docs) */
+
+.code-wrap { position: relative; }
+.codeblock {
+  position: relative;
+  background: var(--code-bg); color: var(--code-text);
+  border-radius: 12px; padding: 1.1rem 1.2rem; font: .88rem/1.7 var(--mono);
+  overflow-x: auto; white-space: pre; border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%; max-width: 100%;
+}
+.codeblock .c  { color: #7d8590; }   /* comment */
+.codeblock .p  { color: #2997ff; }   /* prompt */
+.codeblock .ok { color: #28c840; }   /* success */
+.codeblock + .codeblock { margin-top: 1rem; }
+
+.copy {
+  position: absolute; top: .6rem; right: .6rem;
+  background: rgba(255, 255, 255, 0.1); color: #f5f5f7; border: none; border-radius: 7px;
+  padding: .3rem .6rem; font: 500 .72rem var(--sans); cursor: pointer; opacity: .8;
+  transition: opacity .2s, background .2s;
+}
+.copy:hover { opacity: 1; background: rgba(255, 255, 255, 0.2); }
+
+.cmd-label { font: 600 .8rem var(--sans); color: var(--text-2); margin: 0 0 .5rem; }
