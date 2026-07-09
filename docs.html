@@ -104,6 +104,7 @@
       <a href="#companion">iPhone &amp; iPad</a>
       <a href="#companion-pair">Pairing &amp; devices</a>
       <a href="#companion-screen">Screen streaming</a>
+      <a href="#companion-control">Remote control</a>
     </div>
     <div class="side-group">
       <h4>Reference</h4>
@@ -348,6 +349,13 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
       <li>Enabled by the <strong>“Let paired devices view this screen”</strong> toggle (Settings → Companion app). macOS asks for <strong>Screen Recording</strong> permission the first time.</li>
       <li>Smooth <strong>60 fps</strong>; up to <strong>120 fps</strong> with a ProMotion Mac and a ProMotion iPad. Actual rate is capped by each display's refresh and how fast the screen content changes.</li>
       <li>Best on the LAN. A headless/cloud Mac has no display to capture unless a virtual display is configured.</li>
+    </ul>
+
+    <h2 id="companion-control">Remote control</h2>
+    <p>While viewing the screen, tap the <strong>floating button</strong> and turn on <strong>Control the Mac</strong> to drive it from the iPad — drag to move the cursor, tap to click, long-press to right-click, two fingers to scroll, and the <strong>Keyboard</strong> button to type.</p>
+    <ul>
+      <li>Off by default and gated on the Mac by <strong>“Let paired devices control this Mac”</strong> (Settings → Companion app). macOS also requires <strong>Accessibility</strong> permission before MacOn can move the cursor or type.</li>
+      <li>Only paired devices (holding a valid token) can connect — but treat control access like handing someone your keyboard.</li>
     </ul>
 
     <div class="callout" style="margin-top:2.5rem">
