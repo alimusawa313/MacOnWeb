@@ -103,6 +103,7 @@
       <h4>Companion app</h4>
       <a href="#companion">iPhone &amp; iPad</a>
       <a href="#companion-pair">Pairing &amp; devices</a>
+      <a href="#companion-screen">Screen streaming</a>
     </div>
     <div class="side-group">
       <h4>Reference</h4>
@@ -341,9 +342,12 @@ macon watch --config macon-export.json --companion    <span class="c"># with you
     <div class="codeblock"><button class="copy">Copy</button>macon companion devices           <span class="c"># list paired iPhones/iPads</span>
 macon companion revoke &lt;prefix&gt;    <span class="c"># revoke one (token prefix from `devices`)</span>
 macon companion revoke-all        <span class="c"># revoke everything</span></div>
-    <div class="callout">
-      <span><strong>On the roadmap:</strong> the app monitors builds and streams logs today. Streaming the Mac's screen (watch the simulator run) is a planned later phase.</span>
-    </div>
+    <h2 id="companion-screen">Screen streaming</h2>
+    <p>Beyond builds and logs, a paired device can <strong>watch the Mac's screen live</strong> — handy for eyeballing a simulator during UI tests. Tap the <strong>display</strong> icon on the dashboard. The Mac captures with ScreenCaptureKit, downscales, and streams JPEG frames over the same connection; capture only runs while someone is watching.</p>
+    <ul>
+      <li>Enabled by the <strong>“Let paired devices view this screen”</strong> toggle (Settings → Companion app). macOS asks for <strong>Screen Recording</strong> permission the first time.</li>
+      <li>Best on the LAN. A headless/cloud Mac has no display to capture unless a virtual display is configured.</li>
+    </ul>
 
     <div class="callout" style="margin-top:2.5rem">
       <span>That's the full picture. For the exhaustive flag-by-flag reference, see the <a href="https://github.com/alimusawa313/MacON/blob/main/MaconKit/CLI.md">CLI.md on GitHub ↗</a>.</span>
