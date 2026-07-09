@@ -103,8 +103,10 @@
       <h4>Companion app</h4>
       <a href="#companion">iPhone &amp; iPad</a>
       <a href="#companion-pair">Pairing &amp; devices</a>
+      <a href="#companion-remote">Remote access</a>
       <a href="#companion-screen">Screen streaming</a>
       <a href="#companion-control">Remote control</a>
+      <a href="#companion-privacy">Privacy screen</a>
     </div>
     <div class="side-group">
       <h4>Reference</h4>
@@ -343,21 +345,45 @@ macon watch --config macon-export.json --companion    <span class="c"># with you
     <div class="codeblock"><button class="copy">Copy</button>macon companion devices           <span class="c"># list paired iPhones/iPads</span>
 macon companion revoke &lt;prefix&gt;    <span class="c"># revoke one (token prefix from `devices`)</span>
 macon companion revoke-all        <span class="c"># revoke everything</span></div>
+
+    <h2 id="companion-remote">Remote access — from anywhere</h2>
+    <p>By default the companion talks to the Mac over your <strong>local network</strong>. To reach it from cellular or another network, the desktop app can open a free <strong>internet tunnel</strong> for you: <strong>Settings → Companion app → Remote access</strong>. It runs <a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/"><code>cloudflared</code></a> (a one-time <code>brew install cloudflared</code>) and shows a public <code>https://…trycloudflare.com</code> address — paste that into the app instead of the LAN address.</p>
+    <ul>
+      <li><strong>Security is unchanged.</strong> The URL alone grants nothing: pairing still needs a one-time code, every other request a device token, and TLS is terminated by Cloudflare.</li>
+      <li><strong>The address rotates</strong> each time the tunnel restarts. On the device, <em>⋯ → Change Address</em> repoints it — your pairing stays valid, no re-pairing.</li>
+      <li>On a headless/EC2 Mac, run the tunnel yourself and point the app at it: <code>cloudflared tunnel --url http://localhost:8899</code>.</li>
+    </ul>
+
     <h2 id="companion-screen">Screen streaming</h2>
-    <p>Beyond builds and logs, a paired device can <strong>watch the Mac's screen live</strong> — handy for eyeballing a simulator during UI tests. Tap the <strong>display</strong> icon on the dashboard. The Mac captures with ScreenCaptureKit and hardware-encodes <strong>H.264</strong> (VideoToolbox); the iPhone/iPad decodes in hardware and displays it. Capture runs only while someone is watching.</p>
+    <p>Beyond builds and logs, a paired device can <strong>watch the Mac's screen live</strong> — handy for eyeballing a simulator during UI tests, or driving a Mac in another room. Tap the <strong>display</strong> icon on the dashboard. The Mac captures with ScreenCaptureKit and hardware-encodes <strong>H.264</strong> (VideoToolbox); the iPhone/iPad decodes in hardware and displays it. Capture runs only while someone is watching.</p>
     <ul>
       <li>Enabled by the <strong>“Let paired devices view this screen”</strong> toggle (Settings → Companion app). macOS asks for <strong>Screen Recording</strong> permission the first time.</li>
-      <li>Smooth <strong>60 fps</strong>; up to <strong>120 fps</strong> with a ProMotion Mac and a ProMotion iPad. Actual rate is capped by each display's refresh and how fast the screen content changes.</li>
-      <li>Best on the LAN. A headless/cloud Mac has no display to capture unless a virtual display is configured.</li>
+      <li><strong>Adaptive quality:</strong> the stream measures what the link can carry and adjusts bitrate on the fly — smoother over Wi-Fi and tunnels, without a fixed ceiling.</li>
+      <li>Pick a <strong>resolution</strong> (360p · 480p · 720p · 1080p · 1440p · Full) and <strong>frame rate</strong> (30 / 60 / 120 fps) from the Touch Bar — drop resolution on a weak or remote link, raise it on a fast LAN. 120 fps needs a ProMotion Mac and iPad.</li>
+      <li>Best on the LAN; usable remotely through the tunnel (higher latency). A headless/cloud Mac has no display to capture unless a virtual display is configured.</li>
     </ul>
 
     <h2 id="companion-control">Remote control</h2>
-    <p>While viewing the screen, turn on <strong>Control the Mac</strong> from the Touch Bar to drive it from the iPad — drag to move the cursor, tap to click, long-press to right-click, two fingers to scroll.</p>
-    <p>A <strong>Sidecar-style Touch Bar</strong> sits under the screen; swipe it left/right between pages. Page one: <em>esc</em>, switch spaces (◂ ▸), Mission Control, right-click, keyboard. Page two: the sticky <strong>⌘ ⌥ ⌃ ⇧</strong> modifier keys plus Undo, Spotlight, App switch, and Dock. Tap a modifier to arm it, then tap or type — e.g. <strong>⌘</strong> then <em>C</em> sends ⌘C, or <strong>⌘</strong> then a tap sends a ⌘-click.</p>
+    <p>While viewing the screen, turn on <strong>Control the Mac</strong> from the Touch Bar to drive it from the iPad. Two ways to move the cursor:</p>
+    <ul>
+      <li><strong>Touchscreen</strong> (default) — tap the screen where you want to click; drag to move, long-press to right-click, two fingers to scroll.</li>
+      <li><strong>Virtual trackpad</strong> — a movable, translucent pad that moves the cursor <em>relatively</em>, like a laptop trackpad: drag to move, tap to click, two fingers to scroll or pinch-to-zoom. Adjustable opacity, sensitivity, and size.</li>
+    </ul>
+    <p>A <strong>Sidecar-style Touch Bar</strong> sits under the screen; swipe it left/right between pages. Page one: <em>esc</em>, switch spaces (◂ ▸), Mission Control, right-click, trackpad, keyboard, plus the resolution and fps pickers. Page two: the sticky <strong>⌘ ⌥ ⌃ ⇧</strong> modifier keys plus Undo, Spotlight, App switch, and Dock. Page three: media keys and a volume slider. Tap a modifier to arm it, then tap or type — e.g. <strong>⌘</strong> then <em>C</em> sends ⌘C, or <strong>⌘</strong> then a tap sends a ⌘-click.</p>
     <ul>
       <li>Off by default and gated on the Mac by <strong>“Let paired devices control this Mac”</strong> (Settings → Companion app). macOS also requires <strong>Accessibility</strong> permission before MacOn can move the cursor or type.</li>
       <li>Only paired devices (holding a valid token) can connect — but treat control access like handing someone your keyboard.</li>
     </ul>
+
+    <h2 id="companion-privacy">Privacy screen</h2>
+    <p>When you're driving the Mac remotely, the <strong>privacy screen</strong> covers its physical display with a “please don't touch” wall — so a passerby can't see what you're doing — while the companion keeps viewing and controlling the real desktop underneath. Raise it from <strong>Settings → Companion app</strong> or the menu-bar extra; dismiss it with the <strong>⌃⌥⌘U</strong> hot key.</p>
+    <ul>
+      <li><strong>Optional passcode</strong> to dismiss (stored hashed in the Keychain) — leave it off and the hot key drops the wall immediately.</li>
+      <li><strong>Customizable</strong>: pick a background (aurora, gradient, solid, pure black, stars, waves, orbs, rays, or your own image), an accent color, a symbol with animation, and the message — all with a live preview.</li>
+      <li><strong>Burn-in aware</strong>: a Motion option (gentle drift or a DVD-style bounce) keeps the bright content moving so it can't burn into an OLED display.</li>
+      <li>It's a privacy curtain, not a security lock — it deters onlookers but isn't a login boundary.</li>
+    </ul>
+    <p>The desktop app also has a <strong>theme picker</strong> (Settings → Appearance): choose a gradient or solid fill and one of six accent colors to restyle the whole app.</p>
 
     <div class="callout" style="margin-top:2.5rem">
       <span>That's the full picture. For the exhaustive flag-by-flag reference, see the <a href="https://github.com/alimusawa313/MacON/blob/main/MaconKit/CLI.md">CLI.md on GitHub ↗</a>.</span>

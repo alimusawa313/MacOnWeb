@@ -140,6 +140,11 @@
         <h3>Always-on service</h3>
         <p>Install as a launchd service that starts at login and restarts on crash — ideal for a dedicated or EC2 Mac.</p>
       </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <h3>Watch &amp; control from your phone</h3>
+        <p>The iPhone/iPad companion tails builds and live logs, streams the Mac's screen, and drives it — cursor, keyboard, gestures. From your LAN or, via a free tunnel, anywhere.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -285,6 +290,10 @@ macon help                           <span class="c"># full usage</span></div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Does my Mac need to stay on?</button>
         <div class="faq-a"><div class="faq-a-inner"><p>While it's watching, yes. For unattended use, install it as a <code>launchd</code> service (<code>macon service install</code>) on an always-on machine — even a cloud EC2 Mac — so it starts at login and restarts on crash.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Can I watch and control the Mac from my phone?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. The free <a href="https://github.com/alimusawa313/MacON_Companion">iPhone/iPad companion</a> pairs with a one-time code, then tails builds and live logs, streams the Mac's screen (hardware H.264), and — with permission — controls it: cursor, keyboard, a virtual trackpad, and Mac gestures. It works on your LAN, or from anywhere through a free internet tunnel the app can open (Settings → Companion app → Remote access). Pairing codes and device tokens are always required.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is it secure?</button>
