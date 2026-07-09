@@ -343,9 +343,10 @@ macon watch --config macon-export.json --companion    <span class="c"># with you
 macon companion revoke &lt;prefix&gt;    <span class="c"># revoke one (token prefix from `devices`)</span>
 macon companion revoke-all        <span class="c"># revoke everything</span></div>
     <h2 id="companion-screen">Screen streaming</h2>
-    <p>Beyond builds and logs, a paired device can <strong>watch the Mac's screen live</strong> — handy for eyeballing a simulator during UI tests. Tap the <strong>display</strong> icon on the dashboard. The Mac captures with ScreenCaptureKit, downscales, and streams JPEG frames over the same connection; capture only runs while someone is watching.</p>
+    <p>Beyond builds and logs, a paired device can <strong>watch the Mac's screen live</strong> — handy for eyeballing a simulator during UI tests. Tap the <strong>display</strong> icon on the dashboard. The Mac captures with ScreenCaptureKit and hardware-encodes <strong>H.264</strong> (VideoToolbox); the iPhone/iPad decodes in hardware and displays it. Capture runs only while someone is watching.</p>
     <ul>
       <li>Enabled by the <strong>“Let paired devices view this screen”</strong> toggle (Settings → Companion app). macOS asks for <strong>Screen Recording</strong> permission the first time.</li>
+      <li>Smooth <strong>60 fps</strong>; up to <strong>120 fps</strong> with a ProMotion Mac and a ProMotion iPad. Actual rate is capped by each display's refresh and how fast the screen content changes.</li>
       <li>Best on the LAN. A headless/cloud Mac has no display to capture unless a virtual display is configured.</li>
     </ul>
 
