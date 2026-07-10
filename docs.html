@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacOn — Documentation</title>
-<meta name="description" content="MacOn documentation: install the CLI and app, run macon init, write macon.yml pipelines with a test matrix, connect Bitbucket or GitHub, ship to TestFlight, and run MacOn as a service.">
+<meta name="description" content="MacOn documentation: install the CLI and app, macon doctor, macon.yml pipelines with a test matrix, remote control from the terminal (status, trigger, logs), Prometheus metrics, the iPhone/iPad companion, and running MacOn as a service.">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://macon.devopsinstitute.id/docs">
 <meta property="og:type" content="website">
@@ -81,6 +81,9 @@
       <a href="#cli-sims">Simulators</a>
       <a href="#cli-run">Run once</a>
       <a href="#cli-watch">Watch</a>
+      <a href="#cli-remote">Remote control</a>
+      <a href="#cli-metrics">Prometheus metrics</a>
+      <a href="#cli-config">Portable config &amp; validate</a>
       <a href="#cli-service">Run as a service</a>
     </div>
     <div class="side-group">
@@ -104,8 +107,10 @@
       <a href="#companion">iPhone &amp; iPad</a>
       <a href="#companion-pair">Pairing &amp; devices</a>
       <a href="#companion-remote">Remote access</a>
+      <a href="#companion-manage">Manage pipelines</a>
       <a href="#companion-screen">Screen streaming</a>
       <a href="#companion-control">Remote control</a>
+      <a href="#companion-deck">Shortcuts deck</a>
       <a href="#companion-privacy">Privacy screen</a>
     </div>
     <div class="side-group">
@@ -141,24 +146,31 @@ brew install macon</div>
     <h3>App</h3>
     <p>Download the latest build from <a href="https://github.com/alimusawa313/MacON/releases">GitHub Releases</a>. Requires macOS 14 or later.</p>
 
-    <h2 id="first-run">First run: <code>macon init</code></h2>
-    <p>Before watching anything, confirm the machine has what an iOS build needs. <code>macon init</code> checks the toolchain and installs the Homebrew-managed pieces automatically.</p>
+    <h2 id="first-run">First run: <code>macon init</code> / <code>macon doctor</code></h2>
+    <p>Before watching anything, confirm the machine has what an iOS build needs. <code>macon init</code> checks everything and installs the Homebrew-managed pieces automatically; <code>macon doctor</code> is the report-only health check.</p>
     <div class="codeblock"><button class="copy">Copy</button>macon init            <span class="c"># check + install what's missing</span>
-macon init --check    <span class="c"># report only, install nothing</span></div>
-    <p>It verifies Homebrew, Xcode + Command Line Tools, git, Ruby/Bundler, fastlane, SwiftLint, gitleaks, a JDK, cloudflared, and your installed simulator runtimes. Tools available via Homebrew are installed for you; Xcode and simulators print the exact command to run.</p>
+macon doctor          <span class="c"># report only, install nothing</span>
+macon doctor --json   <span class="c"># machine-readable; non-zero exit when something's missing</span></div>
+    <p>It verifies Homebrew, Xcode + Command Line Tools, git, Ruby/Bundler, fastlane, SwiftLint, gitleaks, a JDK, cloudflared, simulator runtimes, <strong>disk space</strong> (warns under 20&nbsp;GB free — DerivedData eats it), and the <strong>TCC permissions</strong> (Screen Recording, Accessibility) the current process would need to serve screen/control headless. Tools available via Homebrew are installed for you; Xcode and simulators print the exact command to run.</p>
 
     <h2 id="cli-overview">CLI overview</h2>
     <div class="table-wrap"><table>
       <thead><tr><th>Command</th><th>What it does</th></tr></thead>
       <tbody>
-        <tr><td><code>macon init [--check]</code></td><td>Check the toolchain; install what's missing.</td></tr>
+        <tr><td><code>macon doctor | init [--check]</code></td><td>Check toolchain, permissions, cloudflared, disk; init installs what's missing.</td></tr>
         <tr><td><code>macon sims …</code></td><td>List / install simulator runtimes &amp; devices.</td></tr>
         <tr><td><code>macon lint [path]</code></td><td>Validate and summarize a <code>macon.yml</code>.</td></tr>
         <tr><td><code>macon run …</code></td><td>Run one workflow once, then exit.</td></tr>
         <tr><td><code>macon watch …</code></td><td>Watch a repo and build new commits (until Ctrl-C).</td></tr>
-        <tr><td><code>macon service …</code></td><td>Run a watch as a background launchd service.</td></tr>
+        <tr><td><code>macon status | logs | trigger | cancel</code></td><td><a href="#cli-remote">Remote-control</a> a running runner from the terminal.</td></tr>
+        <tr><td><code>macon pair --host H --code C</code></td><td>Pair this CLI with a remote runner (local pairs itself).</td></tr>
+        <tr><td><code>macon metrics</code></td><td>Print the runner's <a href="#cli-metrics">Prometheus metrics</a>.</td></tr>
+        <tr><td><code>macon config &lt;init|validate&gt;</code></td><td>Scaffold / <a href="#cli-config">check the portable config</a>.</td></tr>
+        <tr><td><code>macon validate [path]</code></td><td>Validate a <code>macon.yml</code> or an export file (by extension).</td></tr>
+        <tr><td><code>macon service …</code> / <code>install-service</code></td><td>Run a watch as a background launchd service.</td></tr>
         <tr><td><code>macon companion …</code></td><td>Manage companion-app (iPhone/iPad) pairings.</td></tr>
         <tr><td><code>macon pipelines [file]</code></td><td>List pipelines in an app export file.</td></tr>
+        <tr><td><code>macon completions &lt;zsh|bash&gt;</code></td><td>Print shell completions.</td></tr>
       </tbody>
     </table></div>
 
@@ -205,9 +217,36 @@ macon watch --config macon-export.json</div>
       </tbody>
     </table></div>
 
+    <h2 id="cli-remote">Remote control — <code>status</code> · <code>logs</code> · <code>trigger</code> · <code>cancel</code></h2>
+    <p>Drive a <strong>running</strong> runner from the terminal — the desktop app's companion server, or a headless <code>macon watch --companion</code>, local or across the network. Full control without the GUI.</p>
+    <div class="codeblock"><button class="copy">Copy</button>macon status                      <span class="c"># pipelines + builds (add --json for scripts)</span>
+macon logs                        <span class="c"># log of the live (or newest) build</span>
+macon logs "My App" --follow      <span class="c"># tail until it finishes; exit 0/1 by result</span>
+macon trigger "My App" --follow   <span class="c"># build the current head now, wait for the verdict</span>
+macon cancel                      <span class="c"># stop whatever is running</span></div>
+    <p><strong>Auth</strong> is the same device token a paired iPhone uses. Against a <strong>local</strong> runner there's nothing to do — the CLI pairs itself through the shared on-disk pairing store and keeps the token in your Keychain. Against a <strong>remote</strong> runner (tunnel, EC2 Mac), pair once with the code the runner prints:</p>
+    <div class="codeblock"><button class="copy">Copy</button>macon pair --host name.trycloudflare.com --code K7QP-2M9X-4RTD
+macon status --host name.trycloudflare.com</div>
+    <p>Pipelines match by name, id, or unique prefix. <code>--follow</code> exits <code>0</code>/<code>1</code> by the build's result, so <code>macon trigger app --follow</code> drops straight into another CI as a gate. <code>--json</code> (on <code>status</code>, <code>doctor</code>, <code>config validate</code>) makes everything scriptable.</p>
+
+    <h2 id="cli-metrics">Prometheus metrics</h2>
+    <p>Every runner serves <code>GET /metrics</code> — Prometheus text exposition, behind the same bearer token: <code>macon_up</code>, pipeline/watching/building gauges, per-pipeline build totals by result, and last-build duration. <code>macon metrics</code> prints it; point a scraper at it for dashboards:</p>
+    <div class="codeblock"><button class="copy">Copy</button><span class="c"># prometheus.yml</span>
+scrape_configs:
+  - job_name: macon
+    static_configs: [{ targets: ["mac-mini.local:8899"] }]
+    authorization: { credentials: "&lt;device token&gt;" }</div>
+
+    <h2 id="cli-config">Portable config &amp; validate</h2>
+    <p>Scaffold and sanity-check the <code>macon-export.json</code> the CLI runs from — without opening the app.</p>
+    <div class="codeblock"><button class="copy">Copy</button>macon config init                  <span class="c"># write a starter macon-export.json</span>
+macon config validate [path]       <span class="c"># field checks; exit 1 on errors (--json)</span>
+macon validate &lt;path&gt;              <span class="c"># .json → export checks, else lints a macon.yml</span></div>
+    <p><code>validate</code> catches empty workspace/repo/branch, duplicate webhook ports, missing provider credentials, and secrets that are in neither the file nor the environment — warnings for the soft stuff, errors for what would break a watch.</p>
+
     <h2 id="cli-service">Run as a service</h2>
-    <p>Install a watch as a <code>launchd</code> agent so it starts at login and restarts on crash — the way to run MacOn unattended on a dedicated or cloud (EC2) Mac.</p>
-    <div class="codeblock"><button class="copy">Copy</button>macon service install --config ~/macon-export.json
+    <p>Install a watch as a <code>launchd</code> agent so it starts at login and restarts on crash — the way to run MacOn unattended on a dedicated or cloud (EC2) Mac. <code>macon install-service</code> is the one-line alias.</p>
+    <div class="codeblock"><button class="copy">Copy</button>macon install-service --config ~/macon-export.json --companion
 macon service install --provider github --workspace org --repo app --webhook --label ci
 
 macon service status   [--label NAME]
@@ -323,11 +362,11 @@ macon service install --config macon-export.json  <span class="c"># …as a serv
     <p>Exported without secrets, the file is config-only and safe to commit; supply token/secret values via the environment. Exported with secrets, it's self-contained — keep it private. The app's <strong>Import…</strong> loads a file back, so it also moves a setup between machines.</p>
 
     <h2 id="companion">Companion app (iPhone &amp; iPad)</h2>
-    <p>The <a href="https://github.com/alimusawa313/MacON_Companion">MacOn companion app</a> lets you <strong>monitor builds and tail logs live</strong> from your phone or iPad — handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
+    <p>The <a href="https://github.com/alimusawa313/MacON_Companion">MacOn companion app</a> turns your phone or iPad into a remote for the runner: a <strong>home hub</strong> with your pipelines, live build logs, screen streaming, remote control, and a Stream Deck-style shortcuts board — handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
     <div class="codeblock"><button class="copy">Copy</button>macon watch --workspace acme --repo app --branch main --companion
 macon watch --config macon-export.json --companion    <span class="c"># with your app setup</span></div>
-    <p>The server is lightweight and read-only — the app can watch, but not start or change builds. It rides alongside the watch, so it sees the same runs you'd see in the desktop app.</p>
-    <p>Prefer the desktop app? Flip it on in <strong>Settings → Companion app</strong>, then <strong>Pair a device</strong> shows the address, code, and a QR. Pairings are shared with the CLI, so a device works with either.</p>
+    <p>Builds show as a <strong>structured step timeline</strong> — each step with its own status, duration, and expandable output (parsed the same way the desktop app does it) — with the raw log one tap away. <strong>Re-run</strong> and <strong>Cancel</strong> sit right in the build view and on a long-press of any run.</p>
+    <p>Prefer the desktop app? Flip it on in <strong>Settings → Companion app</strong>, then <strong>Pair a device</strong> shows the address, code, and a QR. Pairings are shared with the CLI, so a device works with either. The app also matches the desktop's <strong>theme</strong> (gradient/solid × six colors) from its Settings.</p>
     <div class="callout gh">
       <span>The app is a separate open-source project — pair it once and it reconnects on its own.</span>
       <a class="btn-sm" href="https://github.com/alimusawa313/MacON_Companion">Companion on GitHub ↗</a>
@@ -354,6 +393,13 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
       <li>On a headless/EC2 Mac, run the tunnel yourself and point the app at it: <code>cloudflared tunnel --url http://localhost:8899</code>.</li>
     </ul>
 
+    <h2 id="companion-manage">Manage pipelines from the device</h2>
+    <p>The Pipelines screen isn't just a viewer. Each pipeline card has a <strong>watch toggle</strong> (start/stop the runner's watcher) and a long-press menu with <strong>Run Now</strong>, <strong>Edit</strong>, and <strong>Delete</strong>. The <strong>+</strong> button adds a new pipeline with the full editor — name, provider, workspace, <strong>repository and branch picked from searchable dropdowns</strong> (listed through the Mac's saved credentials; tokens never leave the Mac), watch mode, polling/webhook trigger, pipeline file, and fallback build command.</p>
+    <ul>
+      <li>Against the <strong>desktop app's</strong> server, everything works — add, edit, delete, watch, run.</li>
+      <li>Against a <strong>headless CLI</strong> runner, the config is fixed: watch toggles and Run Now work, editing hides itself.</li>
+    </ul>
+
     <h2 id="companion-screen">Screen streaming</h2>
     <p>Beyond builds and logs, a paired device can <strong>watch the Mac's screen live</strong> — handy for eyeballing a simulator during UI tests, or driving a Mac in another room. Tap the <strong>display</strong> icon on the dashboard. The Mac captures with ScreenCaptureKit and hardware-encodes <strong>H.264</strong> (VideoToolbox); the iPhone/iPad decodes in hardware and displays it. Capture runs only while someone is watching.</p>
     <ul>
@@ -373,6 +419,14 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
     <ul>
       <li>Off by default and gated on the Mac by <strong>“Let paired devices control this Mac”</strong> (Settings → Companion app). macOS also requires <strong>Accessibility</strong> permission before MacOn can move the cursor or type.</li>
       <li>Only paired devices (holding a valid token) can connect — but treat control access like handing someone your keyboard.</li>
+    </ul>
+
+    <h2 id="companion-deck">Shortcuts deck (Stream Deck)</h2>
+    <p>The <strong>Shortcuts</strong> board turns the iPad into a Stream Deck for the Mac: a grid of Liquid Glass keys that <strong>launch Mac apps</strong> (with their real icons, fetched from the Mac), <strong>fire keyboard shortcuts</strong> (⌘⌥⌃⇧ + key), or run a <strong>sequence</strong> — a chain of steps like <em>open Chrome → wait → type a URL → Return</em>.</p>
+    <ul>
+      <li>Keys are fully customizable: label, SF Symbol or <strong>emoji</strong>, preset or <strong>custom color</strong>.</li>
+      <li><strong>Edit mode</strong> adds, edits, and <strong>drag-rearranges</strong> keys; a <strong>Fill screen</strong> option stretches them into an even grid (4 keys → a 2×2 board).</li>
+      <li>Requires <em>“Let paired devices control this Mac”</em> on the Mac — the same gate as remote control.</li>
     </ul>
 
     <h2 id="companion-privacy">Privacy screen</h2>

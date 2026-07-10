@@ -142,8 +142,13 @@
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
-        <h3>Watch &amp; control from your phone</h3>
-        <p>The iPhone/iPad companion tails builds and live logs, streams the Mac's screen, and drives it — cursor, keyboard, gestures. From your LAN or, via a free tunnel, anywhere.</p>
+        <h3>Run it from your phone</h3>
+        <p>The iPhone/iPad companion manages pipelines (run, re-run, cancel, edit), tails step-by-step logs, streams the Mac's screen, drives it like a trackpad — and doubles as a Stream Deck. LAN or, via a free tunnel, anywhere.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
+        <h3>Script it from any terminal</h3>
+        <p><code>macon trigger app --follow</code> kicks a build and exits by its result. <code>status</code>, <code>logs</code>, <code>cancel</code>, <code>--json</code>, and a Prometheus <code>/metrics</code> endpoint make it a good citizen in bigger setups.</p>
       </div>
     </div>
   </div>
@@ -175,9 +180,12 @@ macon watch --workspace acme --repo app --branch main
 <span class="c"># or GitHub, instant, via webhook</span>
 macon watch --provider github --workspace org \
   --repo app --webhook --port 8787</div>
-        <p class="cmd-label" style="margin-top:1.4rem">4 · Run it unattended</p>
+        <p class="cmd-label" style="margin-top:1.4rem">4 · Run it unattended &amp; drive it remotely</p>
         <div class="codeblock"><button class="copy">Copy</button><span class="c"># export from the app, run headless as a service</span>
-macon service install --config macon-export.json</div>
+macon install-service --config macon-export.json --companion
+
+<span class="c"># then, from any terminal</span>
+macon trigger "My App" --follow   <span class="c"># build now, exit 0/1 by result</span></div>
       </div>
     </div>
   </div>
@@ -233,7 +241,7 @@ triggers:
       </a>
       <a class="doc-card" href="/docs#cli-overview">
         <h3>CLI reference</h3>
-        <p>Every command: <code>init</code>, <code>sims</code>, <code>watch</code>, <code>service</code>, <code>run</code>, auth, trigger modes, and recipes.</p>
+        <p>Every command: <code>doctor</code>, <code>watch</code>, <code>status</code>, <code>trigger</code>, <code>logs</code>, <code>service</code>, Prometheus metrics, auth, and recipes.</p>
         <span class="arrow">Browse commands →</span>
       </a>
       <a class="doc-card" href="https://github.com/alimusawa313/MacON">
@@ -247,15 +255,23 @@ triggers:
       <details style="max-width:760px;margin:0 auto;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;box-shadow:var(--card-shadow);">
         <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;">Quick help — the commands at a glance</summary>
         <div class="codeblock" style="margin-top:1rem;"><span class="c"># manage the machine</span>
-macon init [--check]                 <span class="c"># toolchain doctor + installer</span>
-macon sims list                      <span class="c"># installed runtimes & devices</span>
+macon doctor [--json]                <span class="c"># toolchain, permissions, disk</span>
+macon init                           <span class="c"># …and install what's missing</span>
 macon sims install watchOS 11.2      <span class="c"># add a simulator runtime</span>
 
 <span class="c"># run CI</span>
 macon lint [macon.yml]               <span class="c"># validate a pipeline file</span>
+macon config init | validate         <span class="c"># scaffold / check the portable config</span>
 macon run --workflow beta [dir]      <span class="c"># run one workflow once</span>
 macon watch --config file.json       <span class="c"># watch exported pipelines</span>
-macon service install [args]         <span class="c"># run as a launchd service</span>
+macon install-service [args]         <span class="c"># run as a launchd service</span>
+
+<span class="c"># drive a running runner</span>
+macon status [--json]                <span class="c"># pipelines + builds</span>
+macon trigger "My App" --follow      <span class="c"># build now, exit 0/1 by result</span>
+macon logs --follow                  <span class="c"># tail the live build</span>
+macon cancel                         <span class="c"># stop it</span>
+macon metrics                        <span class="c"># Prometheus exposition</span>
 
 macon help                           <span class="c"># full usage</span></div>
       </details>
@@ -293,7 +309,7 @@ macon help                           <span class="c"># full usage</span></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Can I watch and control the Mac from my phone?</button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Yes. The free <a href="https://github.com/alimusawa313/MacON_Companion">iPhone/iPad companion</a> pairs with a one-time code, then tails builds and live logs, streams the Mac's screen (hardware H.264), and — with permission — controls it: cursor, keyboard, a virtual trackpad, and Mac gestures. It works on your LAN, or from anywhere through a free internet tunnel the app can open (Settings → Companion app → Remote access). Pairing codes and device tokens are always required.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. The free <a href="https://github.com/alimusawa313/MacON_Companion">iPhone/iPad companion</a> pairs with a one-time code, then <strong>manages pipelines</strong> (watch, run, re-run, cancel — even add/edit with repo &amp; branch dropdowns), shows builds as step-by-step timelines with live logs, streams the Mac's screen (hardware H.264), and — with permission — controls it: cursor, keyboard, a virtual trackpad, Mac gestures, and a Stream Deck-style shortcuts board. It works on your LAN, or from anywhere through a free internet tunnel the app can open (Settings → Companion app → Remote access). Pairing codes and device tokens are always required.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is it secure?</button>
