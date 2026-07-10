@@ -1,4 +1,4 @@
-/* docs.js — mobile sidebar, topic search, "on this page" rail, scrollspy */
+/* docs.js — mobile sidebar, topic search, scrollspy */
 (function () {
   var sidebar = document.getElementById('sidebar');
   var scrim = document.getElementById('scrim');
@@ -19,17 +19,7 @@
     sidebar.addEventListener('click', function (e) { if (e.target.tagName === 'A') closeMenu(); });
   }
 
-  // Build the "On this page" rail from section headings.
-  var otp = document.getElementById('otp-nav');
-  if (otp) {
-    document.querySelectorAll('main h2[id]').forEach(function (h) {
-      var a = document.createElement('a');
-      a.href = '#' + h.id; a.textContent = h.textContent;
-      otp.appendChild(a);
-    });
-  }
-
-  // Scrollspy — highlight the active section in the sidebar and the rail.
+  // Scrollspy — highlight the active section in the sidebar.
   var headings = Array.prototype.slice.call(document.querySelectorAll('main h2[id]'));
   if (headings.length && 'IntersectionObserver' in window) {
     var visible = new Set();
@@ -37,8 +27,8 @@
       entries.forEach(function (e) { if (e.isIntersecting) visible.add(e.target.id); else visible.delete(e.target.id); });
       var top = headings.map(function (h) { return h.id; }).filter(function (id) { return visible.has(id); })[0];
       if (!top) return;
-      document.querySelectorAll('.sidebar a.active, #otp-nav a.active').forEach(function (a) { a.classList.remove('active'); });
-      document.querySelectorAll('.sidebar a[href="#' + top + '"], #otp-nav a[href="#' + top + '"]').forEach(function (a) { a.classList.add('active'); });
+      document.querySelectorAll('.sidebar a.active').forEach(function (a) { a.classList.remove('active'); });
+      document.querySelectorAll('.sidebar a[href="#' + top + '"]').forEach(function (a) { a.classList.add('active'); });
     }, { rootMargin: '-64px 0px -70% 0px', threshold: 0 });
     headings.forEach(function (h) { io.observe(h); });
   }
