@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacOn — Documentation</title>
 <meta name="description" content="MacOn documentation: install the CLI and app, macon doctor, macon.yml pipelines with a test matrix, remote control from the terminal (status, trigger, logs), Prometheus metrics, the iPhone/iPad companion, and running MacOn as a service.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f4f4f7">
 <link rel="canonical" href="https://macon.devopsinstitute.id/docs">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://macon.devopsinstitute.id/docs">
@@ -26,7 +26,7 @@
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
     var tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#14151c' : '#f4f4f7');
   })();
 </script>
 <link rel="stylesheet" href="css/base.css">
@@ -110,8 +110,12 @@
       <a href="#companion-manage">Manage pipelines</a>
       <a href="#companion-screen">Screen streaming</a>
       <a href="#companion-control">Remote control</a>
+      <a href="#companion-compact">CompactOS</a>
       <a href="#companion-deck">Shortcuts deck</a>
+      <a href="#companion-power">Wake &amp; unlock</a>
+      <a href="#companion-icloud">Always connected (iCloud)</a>
       <a href="#companion-privacy">Privacy screen</a>
+      <a href="#companion-themes">Themes</a>
     </div>
     <div class="side-group">
       <h4>Reference</h4>
@@ -123,7 +127,7 @@
   <main>
     <p class="crumb"><a href="/">MacOn</a> › Documentation</p>
     <h1>MacOn Documentation</h1>
-    <p class="subtitle">Everything to turn your Mac into a local iOS CI runner — the app and the <code>macon</code> CLI.</p>
+    <p class="subtitle">Everything for MacOn — the Mac app, the <code>macon</code> CLI, and the iPhone &amp; iPad companion.</p>
 
     <div class="callout gh">
       <span>Prefer the raw docs? The same reference lives on GitHub.</span>
@@ -131,13 +135,14 @@
     </div>
 
     <h2 id="overview">Overview</h2>
-    <p class="lead">MacOn is a local CI runner for iOS. It watches a Bitbucket or GitHub repository, checks out each new commit or pull request, runs the pipeline defined in your <code>macon.yml</code>, and reports the result back — all on a Mac you control.</p>
-    <p>It comes in two forms that share one engine:</p>
+    <p class="lead">MacOn is a local CI runner for iOS — and a remote for the Mac it runs on. It watches a Bitbucket or GitHub repository, checks out each new commit or pull request, runs the pipeline defined in your <code>macon.yml</code>, and reports the result back — all on a Mac you control. A companion app then lets you drive that Mac from your phone.</p>
+    <p>It comes in three parts that share one engine:</p>
     <ul>
-      <li><strong>The app</strong> — a menu-bar/desktop control panel to configure pipelines, secrets, and watch state.</li>
+      <li><strong>The Mac app</strong> — a desktop control panel to configure pipelines, secrets, watch state, screen sharing, and remote access.</li>
       <li><strong>The <code>macon</code> CLI</strong> — the same runner, headless, installable via Homebrew. Ideal for scripts, servers, and always-on machines.</li>
+      <li><strong>The iPhone &amp; iPad companion</strong> — monitors builds, streams and controls the Mac's screen, runs Mac apps phone-sized (CompactOS), and can wake and unlock the Mac. See <a href="#companion">Companion app</a>.</li>
     </ul>
-    <p>Anything you set up in the app can be exported and run by the CLI, and vice-versa.</p>
+    <p>Anything you set up in the app can be exported and run by the CLI, and vice-versa. The Mac app and companion share one soft 3D "clay world" look you can re-skin across a dozen themes.</p>
 
     <h2 id="install">Install</h2>
     <h3>CLI (Homebrew)</h3>
@@ -421,6 +426,16 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
       <li>Only paired devices (holding a valid token) can connect — but treat control access like handing someone your keyboard.</li>
     </ul>
 
+    <h2 id="companion-compact">CompactOS — Mac apps, phone-sized</h2>
+    <p><strong>CompactOS</strong> makes a Mac app usable from your phone as if it were a native one. Open the CompactOS tab and you get a grid of the Mac's installed apps and open windows. Tap one and the Mac launches or focuses it, <strong>resizes that window to your device's screen</strong> (a fullscreen app becomes windowed first), and streams just that window — so the text is big and readable instead of a shrunk-down whole desktop.</p>
+    <ul>
+      <li><strong>Direct touch</strong>: a tap is a click where you touch; a one-finger drag scrolls; long-press is right-click. The keyboard types straight into the app.</li>
+      <li><strong>Fits your orientation</strong>: rotate to portrait and the Mac window refits to fill it; raise the keyboard and the window shrinks so nothing hides underneath — the whole window always stays visible.</li>
+      <li><strong>Window switcher</strong>: jump between any of the Mac's open windows without leaving the session.</li>
+      <li><strong>Privacy by default</strong>: starting a CompactOS session raises the Mac's privacy curtain automatically, and the opened window is forced to the front so your taps always land on it.</li>
+    </ul>
+    <p>It needs <em>“Let paired devices control this Mac”</em> enabled on the Mac (Accessibility permission).</p>
+
     <h2 id="companion-deck">Shortcuts deck (Stream Deck)</h2>
     <p>The <strong>Shortcuts</strong> board turns the iPad into a Stream Deck for the Mac: a grid of Liquid Glass keys that <strong>launch Mac apps</strong> (with their real icons, fetched from the Mac), <strong>fire keyboard shortcuts</strong> (⌘⌥⌃⇧ + key), or run a <strong>sequence</strong> — a chain of steps like <em>open Chrome → wait → type a URL → Return</em>.</p>
     <ul>
@@ -429,15 +444,40 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
       <li>Requires <em>“Let paired devices control this Mac”</em> on the Mac — the same gate as remote control.</li>
     </ul>
 
+    <h2 id="companion-power">Wake &amp; unlock the Mac</h2>
+    <p>The companion can keep the Mac reachable and bring it back to life remotely. Everything here is <strong>off by default</strong> and toggled on the Mac in <strong>Settings → Power &amp; Access</strong>.</p>
+    <ul>
+      <li><strong>Stay awake</strong> — while the companion server runs, the Mac holds a power assertion so it never idle-sleeps, so a paired device can always reach it.</li>
+      <li><strong>Wake</strong> — from the phone's <em>Mac Power</em> section, wake the display on a running Mac, or send a <strong>Wake-on-LAN</strong> magic packet to wake it from sleep (needs “Wake for network access” in macOS energy settings, same Wi-Fi).</li>
+      <li><strong>Unlock</strong> — the Mac types a login password you store in its Keychain to dismiss the lock screen. Best-effort: macOS Secure Keyboard Entry can block synthetic typing, and it can't defeat a FileVault preboot screen. Requires Accessibility.</li>
+      <li><strong>Lock page</strong> — when the Mac reports a locked screen, the companion shows a themed 3D padlock with an <strong>Unlock</strong> button; unlocking plays a lock-open animation. An optional toggle raises the Mac's privacy curtain the instant it unlocks.</li>
+    </ul>
+    <p>No special entitlement is needed — Wake-on-LAN is a plain UDP broadcast, and the Mac app isn't sandboxed. On the phone, “Stay connected” keeps reconnecting (and fires a wake packet) whenever the Mac drops off.</p>
+
+    <h2 id="companion-icloud">Always connected — via iCloud</h2>
+    <p>Optional <strong>iCloud (CloudKit) sync</strong> makes the pairing self-healing. Turn it on in both apps (same Apple ID) and the Mac publishes its current address — including a freshly rotated Cloudflare tunnel URL — to your private iCloud database. The phone reads that beacon and <strong>re-points itself automatically</strong>, reconciling against the Mac's real address on every poll. Pair once and you never re-type an address again, no matter how the tunnel URL changes.</p>
+    <ul>
+      <li>It also carries wake/unlock/privacy commands, so they work even when the tunnel or LAN is down.</li>
+      <li>Requires a paid Apple Developer account, the iCloud capability on both apps, and both devices signed into the same Apple ID. Off (and dormant) otherwise — the app falls back to the manual address you paste.</li>
+      <li>Live screen streaming and control still ride the tunnel/LAN; iCloud keeps the phone pointed at the right place so they reconnect on their own.</li>
+    </ul>
+
     <h2 id="companion-privacy">Privacy screen</h2>
     <p>When you're driving the Mac remotely, the <strong>privacy screen</strong> covers its physical display with a “please don't touch” wall — so a passerby can't see what you're doing — while the companion keeps viewing and controlling the real desktop underneath. Raise it from <strong>Settings → Companion app</strong> or the menu-bar extra; dismiss it with the <strong>⌃⌥⌘U</strong> hot key.</p>
     <ul>
       <li><strong>Optional passcode</strong> to dismiss (stored hashed in the Keychain) — leave it off and the hot key drops the wall immediately.</li>
-      <li><strong>Customizable</strong>: pick a background (aurora, gradient, solid, pure black, stars, waves, orbs, rays, or your own image), an accent color, a symbol with animation, and the message — all with a live preview.</li>
+      <li><strong>Customizable</strong>: pick a background (aurora, gradient, solid, pure black, stars, waves, orbs, rays, your own image, or the <strong>3D world</strong> — the theme's clay model drifting across the screen), an accent color, a symbol with animation, and the message — all with a live preview.</li>
       <li><strong>Burn-in aware</strong>: a Motion option (gentle drift or a DVD-style bounce) keeps the bright content moving so it can't burn into an OLED display.</li>
       <li>It's a privacy curtain, not a security lock — it deters onlookers but isn't a login boundary.</li>
     </ul>
-    <p>The desktop app also has a <strong>theme picker</strong> (Settings → Appearance): choose a gradient or solid fill and one of six accent colors to restyle the whole app.</p>
+
+    <h2 id="companion-themes">Themes — the clay world</h2>
+    <p>Both the Mac app and the companion are dressed as a soft, tactile 3D <strong>clay world</strong> (rendered with SceneKit), and it's re-skinnable. Pick a world in <strong>Settings</strong> and the whole app repaints — backdrop, cards, and the floating 3D models on the home.</p>
+    <ul>
+      <li><strong>Paint boxes</strong> recolor everything: Pastel, Candy, Ocean, Sunset, Forest, Terracotta, Graphite, Neon.</li>
+      <li><strong>Model worlds</strong> swap the 3D pieces themselves: Monster (googly-eyed blobs), Cosmos (planets &amp; stars), Blocks (toy bricks), Balloon, Dessert, plus Holo (iridescent chrome), Puffy (candy clouds), Pop (pink prism), and Googly (a field of eyeballs) — each with its own take on the 3D headline type.</li>
+      <li>The picker shows a live-rendered 3D preview of each world, and always-dark worlds (Neon, Cosmos) render the whole UI dark.</li>
+    </ul>
 
     <div class="callout" style="margin-top:2.5rem">
       <span>That's the full picture. For the exhaustive flag-by-flag reference, see the <a href="https://github.com/alimusawa313/MacON/blob/main/MaconKit/CLI.md">CLI.md on GitHub ↗</a>.</span>
@@ -448,7 +488,7 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
 
 <footer>
   <div class="footer-inner">
-    <div>Mac<span style="color:var(--accent)">On</span> — a local iOS CI runner for macOS.</div>
+    <div>Mac<span style="color:var(--accent)">On</span> — local iOS CI for your Mac, with a phone in the loop.</div>
     <div style="display:flex;gap:1.4rem;flex-wrap:wrap;">
       <a href="/">Home</a>
       <a href="/about">About</a>

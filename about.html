@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacOn — About</title>
 <meta name="description" content="Why MacOn exists: turn the Mac on your desk into a fast, free, private iOS CI runner that sits alongside your hosted CI. An open-source project by Ali Haidar.">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f4f4f7">
 <link rel="canonical" href="https://macon.devopsinstitute.id/about">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://macon.devopsinstitute.id/about">
@@ -27,7 +27,7 @@
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
     var tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute('content', theme === 'dark' ? '#000000' : '#ffffff');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#14151c' : '#f4f4f7');
   })();
 </script>
 <link rel="stylesheet" href="css/base.css">
@@ -66,7 +66,7 @@
 <main>
   <p class="eyebrow">About</p>
   <h1>Your Mac was always enough.</h1>
-  <p class="lead">MacOn turns the Mac on your desk into a proper iOS CI runner — fast, free, and private — without giving up the hosted CI you rely on for releases.</p>
+  <p class="lead">MacOn turns the Mac on your desk into a proper iOS CI runner — fast, free, and private — and hands you the remote for it: a phone that monitors, streams, controls, wakes and unlocks it.</p>
 
   <hr class="rule">
 
@@ -82,8 +82,12 @@
   <p>MacOn watches a Bitbucket or GitHub repository — a branch or open pull requests, via polling or instant webhooks. On each new commit it checks out the code, runs the pipeline defined in your repo's <code>macon.yml</code>, and reports status back. It builds any Apple platform and ships to TestFlight through your fastlane lanes.</p>
   <p>It comes as a <strong>Mac app</strong> and a <strong>Homebrew CLI</strong> that share one core, so a pipeline runs identically whether you click a button or type <code>macon watch</code>. Set it up visually, export it, and run it headless on a server.</p>
 
+  <h2>Then the project grew a remote</h2>
+  <p>Watching builds from across the room turned into a full <strong>iPhone &amp; iPad companion</strong>. Pair it once and it manages pipelines, tails logs, and — with permission — streams the Mac's screen and drives it: cursor, keyboard, a virtual trackpad, and a Stream Deck-style board. <strong>CompactOS</strong> opens a single Mac app fitted to your device so it reads like a phone app. And it can keep the Mac reachable, <strong>wake it from sleep, and unlock it</strong> — following the Mac automatically over iCloud when its address changes.</p>
+  <p>The companion is dressed as a soft 3D <strong>clay world</strong> — playful, tactile, re-skinnable across a dozen themes — and the Mac app and this site now wear the same look. Useful shouldn't mean grey.</p>
+
   <h2>Open source</h2>
-  <p>MacOn is an open-source project by <strong><a href="https://www.linkedin.com/in/ali-haidar-8484b8208" target="_blank" rel="noopener">Ali Haidar</a></strong>, born from a DevOps challenge and a stubborn belief that a developer's own Mac is more than capable of being their CI. The code, releases, and Homebrew tap all live on GitHub.</p>
+  <p>MacOn is an open-source project by <strong><a href="https://www.linkedin.com/in/ali-haidar-8484b8208" target="_blank" rel="noopener">Ali Haidar</a></strong>, born from a DevOps challenge and a stubborn belief that a developer's own Mac is more than capable of being their CI — and a fun thing to hold in your hand. The code, releases, and Homebrew tap all live on GitHub.</p>
 
   <div class="ctas">
     <a href="/#cli" class="btn btn-primary">Install the CLI</a>
@@ -93,7 +97,7 @@
 
 <footer>
   <div class="footer-inner">
-    <div>Mac<span style="color:var(--accent)">On</span> — a local iOS CI runner for macOS.</div>
+    <div>Mac<span style="color:var(--accent)">On</span> — local iOS CI for your Mac, with a phone in the loop.</div>
     <div style="display:flex;gap:1.4rem;flex-wrap:wrap;">
       <a href="/">Home</a>
       <a href="/docs">Docs</a>
