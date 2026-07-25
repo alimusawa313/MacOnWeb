@@ -11,5 +11,6 @@ footer {
 }
 footer a { color: var(--text-2); }
 footer a:hover { color: var(--text); }
+.footer-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
 
 @media (max-width: 620px) { .footer-inner { flex-direction: column; } }

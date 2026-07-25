@@ -1,0 +1,78 @@
+/* tokens.css — the design tokens for the whole site (light + dark).
+   Single source of truth for the clay "world" look, lifted from the apps'
+   pastel WorldPalette (WorldStyle.swift): paper backdrop, ink text, and the
+   clay slots (primary / soft / warm / good / bad). Retheme the entire site —
+   including the Three.js hero — by editing this file only. */
+
+:root {
+  /* Type */
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --round: ui-rounded, "SF Pro Rounded", var(--sans);
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, monospace;
+
+  /* Paper + ink (app: paperLight / inkLight) */
+  --bg: #f5f5f7;
+  --bg-2: #ebecf2;
+  --text: #39406b;
+  --text-2: #6b7196;
+
+  /* Clay slots — exact app pastel palette */
+  --accent: #7d94f2;         /* primary   */
+  --accent-deep: #5c73d9;    /* primaryDeep — links, hover, small text */
+  --accent-hover: #6a82e8;
+  --soft: #e3e6f7;
+  --soft-shade: #bdc2e5;
+  --warm: #f5b777;
+  --warm-deep: #e09658;
+  --good: #85cca0;
+  --good-deep: #63ae82;
+  --bad: #ed8d9d;
+  --bad-deep: #d66b7d;
+  --slate: #4d5480;
+  --cloud: #f2f2fc;
+  --on-accent: #ffffff;
+
+  /* Surfaces */
+  --card: #ffffff;
+  --border: rgba(57, 64, 107, 0.10);
+  --card-shadow: 0 10px 30px rgba(60, 70, 130, 0.10);
+  --clay-shadow: 0 16px 38px rgba(60, 70, 130, 0.18);
+  --nav-bg: rgba(245, 245, 247, 0.72);
+  --code-bg: #21243a;
+  --code-text: #eef0fb;
+  --side-active: rgba(125, 148, 242, 0.14);
+  --radius: 22px;
+  --radius-sm: 14px;
+
+  /* Three.js world — read by js/world/clay.js at runtime */
+  --world-paper: #f5f5f7;
+  --world-ambient: 1;          /* ambient multiplier */
+  --world-shadow-opacity: 0.3; /* the fake shadow puddle */
+}
+
+[data-theme="dark"] {
+  /* Paper + ink (app: paperDark / inkDark) */
+  --bg: #1c1c24;
+  --bg-2: #0d0d12;
+  --text: #ececf2;
+  --text-2: #9ba0c0;
+
+  --accent: #8a9df5;
+  --accent-deep: #7d94f2;
+  --accent-hover: #9dabff;
+  --soft: #2a2c3d;
+  --soft-shade: #3d4059;
+  --on-accent: #10121c;
+
+  --card: #24242f;
+  --border: rgba(255, 255, 255, 0.12);
+  --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --clay-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --nav-bg: rgba(20, 20, 27, 0.72);
+  --code-bg: #14151f;
+  --side-active: rgba(138, 155, 255, 0.18);
+
+  --world-paper: #1c1c24;
+  --world-ambient: 0.82;
+  --world-shadow-opacity: 0.5;
+}

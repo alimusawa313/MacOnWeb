@@ -1,5 +1,12 @@
-/* menu.js — mobile hamburger toggles the nav-links dropdown (home & about) */
+/* nav.js — scroll shadow on the sticky nav + mobile hamburger dropdown (shared) */
 (function () {
+  var nav = document.querySelector('nav');
+  if (nav) {
+    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   var btn = document.getElementById('menu-btn');
   var links = document.querySelector('.nav-links');
   if (!btn || !links) return;

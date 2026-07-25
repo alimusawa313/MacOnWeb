@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacOn — Your Mac is the CI runner. Your phone is the remote.</title>
-<meta name="description" content="MacOn turns your Mac into a local iOS CI runner — watch Bitbucket or GitHub, build macon.yml pipelines, test across simulators, ship to TestFlight — and pairs it with an iPhone/iPad companion that monitors builds, streams and controls the screen, runs Mac apps phone-sized, and wakes or unlocks the Mac from anywhere. Free, fast, private.">
-<meta name="theme-color" content="#f4f4f7">
+<meta name="description" content="MacOn turns your Mac into a local iOS CI runner — watch Bitbucket or GitHub, build macon.yml pipelines, test across simulators, ship to TestFlight — and pairs it with an iPhone/iPad companion that monitors builds, streams and controls the screen, runs Mac apps phone-sized, automates with a shortcuts deck and visual flows, codes with real terminals and Xcode, talks to AI, and wakes or unlocks the Mac from anywhere. Free, fast, private.">
+<meta name="theme-color" content="#f5f5f7">
 <link rel="canonical" href="https://macon.devopsinstitute.id/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://macon.devopsinstitute.id/">
 <meta property="og:title" content="MacOn — Your Mac is the CI runner. Your phone is the remote.">
-<meta property="og:description" content="A local iOS CI runner for macOS, plus an iPhone/iPad companion that monitors, streams, controls, wakes and unlocks it — free, fast, and private.">
+<meta property="og:description" content="A local iOS CI runner for macOS, plus an iPhone/iPad companion that monitors, streams, controls, automates, codes, talks to AI, and wakes or unlocks it — free, fast, and private.">
 <meta property="og:image" content="https://macon.devopsinstitute.id/macon-icon.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacOn — Your Mac is CI. Your phone is the remote.">
-<meta name="twitter:description" content="A local iOS CI runner for macOS with an iPhone/iPad companion that streams, controls, wakes and unlocks it — free, fast, and private.">
+<meta name="twitter:description" content="A local iOS CI runner for macOS with an iPhone/iPad companion that streams, controls, automates, and wakes it — free, fast, and private.">
 <meta name="twitter:image" content="https://macon.devopsinstitute.id/macon-icon.png">
 <link rel="icon" type="image/png" href="macon-icon.png">
 <link rel="apple-touch-icon" href="macon-icon.png">
@@ -29,19 +29,24 @@
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
     var tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute('content', theme === 'dark' ? '#14151c' : '#f4f4f7');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#1c1c24' : '#f5f5f7');
   })();
 </script>
+<link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/nav.css">
-<link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/code.css">
+<link rel="stylesheet" href="css/cards.css">
 <link rel="stylesheet" href="css/home.css">
 <script defer src="js/theme.js"></script>
-<script defer src="js/menu.js"></script>
+<script defer src="js/nav.js"></script>
 <script defer src="js/code.js"></script>
+<script defer src="js/reveal.js"></script>
 <script defer src="js/home.js"></script>
+<!-- Three.js, vendored — no build step, no CDN. -->
+<script type="importmap">{ "imports": { "three": "./js/vendor/three.module.min.js" } }</script>
+<script type="module" src="js/world/hero.js"></script>
 </head>
 <body>
 
@@ -70,74 +75,95 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero center" id="top">
-  <!-- Floating clay pieces (pure CSS), echoing the apps' 3D world. -->
-  <div class="claylayer" aria-hidden="true">
-    <span class="clay orb c-peri s1"></span>
-    <span class="clay orb c-peach s2"></span>
-    <span class="clay blob c-sage s3"></span>
-    <span class="clay orb c-rose s4"></span>
-    <span class="clay ring c-peach s5"></span>
-  </div>
   <div class="wrap">
-    <div class="icon3d hero-anim" style="animation-delay:0s">
-      <div class="icon-float">
-        <img src="macon-icon.png" alt="MacOn app icon" class="hero-icon">
-      </div>
-    </div>
-    <p class="eyebrow hero-anim" style="animation-delay:.08s">Local iOS CI · with a phone in the loop</p>
-    <h1 class="hero-anim" style="animation-delay:.16s">Your Mac is CI.<br>Your phone is the remote.</h1>
-    <p class="lede hero-anim" style="animation-delay:.24s">MacOn turns the Mac on your desk into a full iOS pipeline — watch a repo, build, test across simulators, ship to TestFlight. Then a playful iPhone &amp; iPad companion lets you monitor it, stream and control its screen, and wake or unlock it from anywhere.</p>
-    <div class="hero-ctas hero-anim" style="animation-delay:.32s">
+    <p class="eyebrow hero-anim" style="animation-delay:0s">Local iOS CI · with a phone in the loop</p>
+    <h1 class="hero-anim" style="animation-delay:.08s">Your Mac is CI.<br>Your phone is the remote.</h1>
+    <p class="lede hero-anim" style="animation-delay:.16s">MacOn turns the Mac on your desk into a full iOS pipeline — watch a repo, build, test across simulators, ship to TestFlight. Then a playful iPhone &amp; iPad companion monitors it, streams and drives its screen, automates it with decks and flows, codes on it, talks to it — and wakes or unlocks it from anywhere.</p>
+    <div class="hero-ctas hero-anim" style="animation-delay:.24s">
       <a href="#cli" class="btn btn-primary">Install the CLI</a>
       <a href="https://github.com/alimusawa313/MacON/releases" class="btn btn-ghost">Download the app</a>
     </div>
-    <p class="hero-note hero-anim" style="animation-delay:.4s">macOS 14+ · iOS 17+ companion · Bitbucket &amp; GitHub · free &amp; open source</p>
+    <p class="hero-note hero-anim" style="animation-delay:.32s">macOS 14+ · iOS 17+ companion · Bitbucket &amp; GitHub · free &amp; open source</p>
+  </div>
 
-    <div class="term3d hero-anim" style="animation-delay:.5s">
-    <div class="terminal" role="img" aria-label="Terminal showing MacOn commands">
-      <div class="term-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>zsh — macon</span></div>
-<div class="term-body"><span class="p">$</span> brew install alimusawa313/macon/macon
-<span class="p">$</span> macon init            <span class="c"># check the toolchain</span>
-<span class="ok">  ✓ Xcode 26.6   ✓ fastlane   ✓ SwiftLint   ✓ Simulators</span>
-<span class="p">$</span> macon watch --workspace acme --repo app --branch main
-<span class="o">👀 Watching acme/app — branch main (every 30s).</span>
-<span class="o">🔔 New commit a1b2c3d on main.</span>
-<span class="o">──────── build a1b2c3d ────────</span>
-<span class="ok">✅ Build passed.</span>
-<span class="p">$</span> <span class="term-cursor"></span></div>
+  <!-- The live clay world: the Mac builds, the phone watches. Three.js. -->
+  <div class="stage hero-anim" id="hero-stage" style="animation-delay:.4s" role="img"
+       aria-label="An interactive 3D clay scene: a Mac running a build pipeline, connected by a string to the phone companion watching it.">
+    <canvas></canvas>
+    <p class="stage-hint">Drag to spin · tap the machines</p>
+    <div class="stage-fallback"><img src="macon-icon.png" alt="MacOn app icon"></div>
+  </div>
+</section>
+
+<!-- ================= TRUTHS ================= -->
+<section class="truths center">
+  <div class="wrap">
+    <div class="chips" data-reveal="children">
+      <span class="chip"><i class="dot"></i>No metered build minutes</span>
+      <span class="chip"><i class="dot d-warm"></i>No queue — warm caches</span>
+      <span class="chip"><i class="dot d-good"></i>Code never leaves your Mac</span>
+      <span class="chip"><i class="dot d-rose"></i>Every remote power off by default</span>
+      <span class="chip"><i class="dot"></i>Free &amp; open source</span>
     </div>
+  </div>
+</section>
+
+<!-- ================= SURFACES ================= -->
+<section id="surfaces">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">One engine, three surfaces</p>
+      <h2>App, CLI, companion — same brain.</h2>
+      <p>Set it up visually, run it headless, carry it in your pocket. Anything one surface configures, the others can run.</p>
+    </div>
+    <div class="grid" data-reveal="children">
+      <div class="card">
+        <span class="surface-num">1</span>
+        <h3>The Mac app</h3>
+        <p>A desktop control panel in a soft 3D clay world: pipelines, runners, secrets, screen sharing, flows, power &amp; access — plus a menu-bar switch for everything.</p>
+      </div>
+      <div class="card">
+        <span class="surface-num">2</span>
+        <h3>The <code>macon</code> CLI</h3>
+        <p>The same runner, headless, via Homebrew. For scripts, git hooks, always-on machines and cloud EC2 Macs — with <code>--json</code> everywhere.</p>
+      </div>
+      <div class="card">
+        <span class="surface-num">3</span>
+        <h3>The companion</h3>
+        <p>A free iPhone &amp; iPad app that reaches all the way into the Mac: builds, screen, deck, flows, code, AI, power. Pair once, it keeps finding your Mac.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ================= FEATURES: CI ================= -->
-<section id="features">
+<section id="features" class="alt">
   <div class="wrap">
-    <div class="section-head center">
+    <div class="section-head center" data-reveal>
       <p class="eyebrow">On the Mac</p>
       <h2>A CI server, without the server.</h2>
       <p>Everything a hosted CI does for iOS — running on hardware you already own.</p>
     </div>
-    <div class="grid">
+    <div class="grid" data-reveal="children">
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
         <h3>Your Mac, your runner</h3>
-        <p>No metered build minutes, no queue, no cloud VM spin-up. Warm caches make it the fastest CI for a single dev.</p>
+        <p>No metered build minutes, no queue, no cloud VM spin-up. Warm caches make it the fastest CI a single dev can have.</p>
       </div>
       <div class="card">
         <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3v12M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 6c0 5-6 4-6 9"/></svg></div>
         <h3>Bitbucket &amp; GitHub</h3>
-        <p>Watch a branch or open PRs. Poll on a timer, or receive webhooks for instant, push-based builds.</p>
+        <p>Watch a branch or open PRs. Poll on a timer, or take webhooks (with HMAC secrets) for instant push-based builds — and post the status back as a commit check.</p>
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4zM4 10h16v4H4zM4 16h16v4H4z"/></svg></div>
         <h3>macon.yml pipelines</h3>
-        <p>Bitrise-style workflows: <code>before_run</code> chains, triggers, env, <code>run_if</code>, and always-run steps — defined in your repo.</p>
+        <p>Bitrise-style workflows: <code>before_run</code>/<code>after_run</code> chains, triggers, env, <code>run_if</code> conditions and always-run steps — defined in your repo.</p>
       </div>
       <div class="card">
         <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
         <h3>Test matrix</h3>
-        <p>Fan a step out across device × OS combinations. UI-test on every simulator that matters, in one push.</p>
+        <p>Fan a step out across device × OS combinations. UI-test on every simulator that matters — iOS, watchOS, tvOS, visionOS — in one push.</p>
       </div>
       <div class="card">
         <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3.5L6 18.5 7.5 12.5 3 8.5 9 8z"/></svg></div>
@@ -145,66 +171,114 @@
         <p>fastlane with automatic signing and App Store Connect API keys. Merge to main, upload a build — done.</p>
       </div>
       <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
-        <h3>Script it from any terminal</h3>
-        <p><code>macon trigger app --follow</code> builds and exits by result. <code>status</code>, <code>logs</code>, <code>cancel</code>, <code>--json</code>, a launchd service, and a Prometheus <code>/metrics</code> endpoint make it a good citizen in bigger setups.</p>
+        <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
+        <h3>Two CI modes<span class="tag">also runners</span></h3>
+        <p>Run your own <code>macon.yml</code> pipelines — or host a pool of <strong>Bitbucket self-hosted runners</strong> and route steps to your Mac with <code>runs-on</code>. Same app, both worlds.</p>
+      </div>
+    </div>
+    <div class="belt" data-reveal>
+      <div class="chips">
+        <span class="chip"><i class="dot"></i>macon doctor &amp; init</span>
+        <span class="chip"><i class="dot d-warm"></i>Simulator manager</span>
+        <span class="chip"><i class="dot d-good"></i>launchd service</span>
+        <span class="chip"><i class="dot"></i>Prometheus /metrics</span>
+        <span class="chip"><i class="dot d-rose"></i>Secrets in Keychain</span>
+        <span class="chip"><i class="dot d-good"></i>Build history</span>
+        <span class="chip"><i class="dot d-warm"></i>Export ↔ import config</span>
+        <span class="chip"><i class="dot"></i>Build timeouts</span>
+        <span class="chip"><i class="dot d-good"></i>Cache cleanup</span>
+        <span class="chip"><i class="dot d-warm"></i>Menu-bar control</span>
+        <span class="chip"><i class="dot d-rose"></i>Push notifications</span>
+        <span class="chip"><i class="dot"></i>Shell completions</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= FEATURES: COMPANION ================= -->
-<section id="companion" class="alt">
+<!-- ================= PIPELINE ================= -->
+<section id="pipeline">
   <div class="wrap">
-    <div class="section-head center">
-      <p class="eyebrow">In your pocket</p>
-      <h2>The companion is more than a dashboard.</h2>
-      <p>A free iPhone &amp; iPad app — built like a toy, in a soft 3D clay world you can re-skin — that reaches all the way into the Mac.</p>
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">macon.yml</p>
+      <h2>Pipelines that live in your repo.</h2>
+      <p>Composable workflows, a test matrix, and trigger routing — the same file runs in the app or the CLI.</p>
     </div>
-    <div class="grid">
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v10H4zM2 20h20"/><path d="M9 10l2 2 4-4"/></svg></div>
-        <h3>Builds, live</h3>
-        <p>Every pipeline and run as a step-by-step timeline with streaming logs. Watch, run, re-run, cancel — even add and edit pipelines with repo &amp; branch pickers.</p>
+    <div data-reveal>
+      <div class="code-tabs" data-for="yml-panes" role="tablist">
+        <button class="code-tab active" data-tab="workflows" role="tab" aria-selected="true">Workflows</button>
+        <button class="code-tab" data-tab="matrix" role="tab" aria-selected="false">Test matrix</button>
+        <button class="code-tab" data-tab="triggers" role="tab" aria-selected="false">Triggers</button>
       </div>
-      <div class="card">
-        <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg></div>
-        <h3>Stream &amp; control the screen</h3>
-        <p>Hardware-decoded H.264 of the Mac's display, with — on permission — full control: cursor, keyboard, a virtual trackpad, Mac gestures, and a Touch Bar-style strip.</p>
-      </div>
-      <div class="card">
-        <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
-        <h3>CompactOS — Mac apps, phone-sized</h3>
-        <p>Tap a Mac app and it opens fitted to your device, streaming just that window with big readable text and direct touch. Your Mac's apps, like phone apps.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg></div>
-        <h3>Shortcuts deck</h3>
-        <p>A Stream Deck-style board of keys that launch apps, fire keyboard shortcuts, or run chains of steps on the Mac — one tap.</p>
-      </div>
-      <div class="card">
-        <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M20 4l-2 2M6 18l-2 2"/></svg></div>
-        <h3>Wake &amp; unlock, from anywhere</h3>
-        <p>Keep the Mac reachable, wake it with a Wake-on-LAN packet, and unlock the login screen with a stored password — with an optional privacy curtain the moment it opens.</p>
-      </div>
-      <div class="card">
-        <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6-1.5A4 4 0 0 0 6 19z"/></svg></div>
-        <h3>Always connected, via iCloud</h3>
-        <p>Optional CloudKit sync means a rotated tunnel URL re-points the phone on its own — pair once and it just keeps finding the Mac, no re-typing an address, ever.</p>
+      <div id="yml-panes">
+        <div class="code-pane active" data-pane="workflows">
+          <div class="codeblock"><button class="copy">Copy</button>name: PlanPal iOS CI
+
+workflows:
+  _setup:
+    steps:
+      - { name: Gems, script: bundle install }
+      - { name: SwiftLint, script: swiftlint lint --strict }
+  test:
+    before_run: [_setup]
+    steps:
+      - name: Unit Tests
+        script: bundle exec fastlane test
+      - name: Danger
+        run_if: '[ -n "$MACON_PR_ID" ]'   <span class="c"># only on PRs</span>
+        script: bundle exec danger
+  beta:
+    before_run: [test]
+    after_run: [_notify]
+    steps:
+      - { name: TestFlight, script: bundle exec fastlane beta }
+  _notify:
+    steps:
+      - { name: Slack, always_run: true, script: ./scripts/notify.sh }</div>
+        </div>
+        <div class="code-pane" data-pane="matrix">
+          <div class="codeblock"><button class="copy">Copy</button>  test:
+    steps:
+      - name: UI Tests
+        <span class="c"># fan out across devices × OS — 4 runs, one push</span>
+        matrix:
+          device: ["iPhone 17 Pro", "iPad Air 11-inch (M4)"]
+          os: ["26.4", "26.5"]
+        script: bundle exec fastlane test \
+          device:"$MACON_MATRIX_DEVICE" os:"$MACON_MATRIX_OS"
+
+<span class="c"># every step also gets MACON_COMMIT, MACON_BRANCH, MACON_REPO,</span>
+<span class="c"># MACON_WORKFLOW, MACON_BUILD_NUMBER, MACON_PR_* on PR builds —</span>
+<span class="c"># plus provider-native BITBUCKET_* / GITHUB_* so tools like Danger work.</span></div>
+        </div>
+        <div class="code-pane" data-pane="triggers">
+          <div class="codeblock"><button class="copy">Copy</button>triggers:
+  - { pull_request: "*",  workflow: test }   <span class="c"># any PR</span>
+  - { branch: main,       workflow: beta }
+  - { branch: "dev-*",    workflow: test }   <span class="c"># globs supported</span>
+
+<span class="c"># no workflow flag? MacOn matches the branch/PR here —</span>
+<span class="c"># the same routing in the app, the CLI, and the phone.</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= CLI ================= -->
-<section id="cli">
+<section id="cli" class="alt">
   <div class="wrap">
-    <div class="section-head center">
+    <div class="section-head center" data-reveal>
       <p class="eyebrow">Homebrew</p>
       <h2>Install the CLI.</h2>
       <p>One tap, one install. Then bootstrap the toolchain and start watching.</p>
     </div>
-    <div class="cli-cols">
+
+    <div class="terminal" data-reveal role="img" aria-label="Terminal showing MacOn commands typing themselves">
+      <div class="term-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>zsh — macon</span></div>
+      <div class="term-body" id="term-typer"></div>
+    </div>
+
+    <div class="cli-cols" data-reveal="children">
       <div>
         <p class="cmd-label">1 · Tap &amp; install</p>
         <div class="codeblock"><button class="copy">Copy</button><span class="c"># add the tap, then install</span>
@@ -233,52 +307,314 @@ macon trigger "My App" --follow   <span class="c"># build now, exit 0/1 by resul
   </div>
 </section>
 
-<!-- ================= PIPELINE ================= -->
-<section id="pipeline" class="alt">
+<!-- ================= COMPANION ================= -->
+<section id="companion">
   <div class="wrap">
-    <div class="section-head center">
-      <p class="eyebrow">macon.yml</p>
-      <h2>Pipelines that live in your repo.</h2>
-      <p>Composable workflows and a test matrix — the same file runs in the app or the CLI.</p>
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">In your pocket</p>
+      <h2>The companion is more than a dashboard.</h2>
+      <p>A free iPhone &amp; iPad app — built like a toy, in a soft 3D clay world — that reaches all the way into the Mac. Tap through what it does:</p>
     </div>
-    <div class="codeblock"><button class="copy">Copy</button>name: PlanPal iOS CI
 
-workflows:
-  _setup:
-    steps:
-      - { name: Gems, script: bundle install }
-      - { name: SwiftLint, script: swiftlint lint --strict }
-  test:
-    before_run: [_setup]
-    steps:
-      - name: UI Tests
-        <span class="c"># fan out across devices × OS</span>
-        matrix:
-          device: ["iPhone 17 Pro", "iPad Air 11-inch (M4)"]
-          os: ["26.4", "26.5"]
-        script: bundle exec fastlane test device:"$MACON_MATRIX_DEVICE" os:"$MACON_MATRIX_OS"
-  beta:
-    before_run: [test]
-    steps:
-      - { name: TestFlight, script: bundle exec fastlane beta }
+    <!-- Interactive phone mock -->
+    <div class="phone-stage" data-reveal>
+      <div class="phone-tabs" role="tablist">
+        <button class="ptab active" data-tab="builds" data-caption="Every pipeline as a live step timeline — watch, run, re-run, cancel, or edit it from the couch." role="tab" aria-selected="true">Builds</button>
+        <button class="ptab" data-tab="screen" data-caption="The Mac's screen, hardware-decoded H.264 up to 120 fps — with full cursor, keyboard and trackpad control." role="tab" aria-selected="false">Screen</button>
+        <button class="ptab" data-tab="deck" data-caption="A Stream Deck in your pocket: launch apps, fire shortcuts, run whole sequences with one tap." role="tab" aria-selected="false">Deck</button>
+        <button class="ptab" data-tab="flows" data-caption="Draw automations as clay blocks on swinging strings — the Mac runs them, you watch results live." role="tab" aria-selected="false">Flows</button>
+        <button class="ptab" data-tab="code" data-caption="A real dev setup: file explorer, editor tabs, zsh terminals and Xcode builds — from the phone." role="tab" aria-selected="false">Code</button>
+        <button class="ptab" data-tab="ai" data-caption="Chat with local models, or just speak — and let the agent drive the Mac, step by approved step." role="tab" aria-selected="false">AI</button>
+      </div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="pscreen active" data-screen="builds">
+            <div class="prow"><span class="pdot run"></span><div class="pgrow"><span class="pbar w1"></span><span class="pbar w2 pfill"></span></div></div>
+            <div class="prow"><span class="pdot ok"></span><div class="pgrow"><span class="pbar w3"></span><span class="pbar w2"></span></div></div>
+            <div class="prow"><span class="pdot ok"></span><div class="pgrow"><span class="pbar w1"></span></div></div>
+            <div class="prow"><span class="pdot bad"></span><div class="pgrow"><span class="pbar w2"></span></div></div>
+          </div>
+          <div class="pscreen" data-screen="screen">
+            <div class="pdesktop"><span class="pwindow pw1"></span><span class="pwindow pw2"></span><span class="pcursor"></span></div>
+            <div class="ptouchbar"><span>esc</span><span>⌘</span><span>⌥</span><span>▦</span><span>60fps</span></div>
+          </div>
+          <div class="pscreen" data-screen="deck">
+            <div class="pdeck">
+              <span class="pkey">🚀</span><span class="pkey k-warm">⌘K</span><span class="pkey k-good">🧪</span>
+              <span class="pkey k-rose">📦</span><span class="pkey">🖥️</span><span class="pkey k-warm">⏯️</span>
+              <span class="pkey k-good">🔨</span><span class="pkey k-rose">💬</span><span class="pkey">✨</span>
+            </div>
+          </div>
+          <div class="pscreen" data-screen="flows">
+            <div class="pflow">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path class="rope" d="M22 14 Q 30 42 44 44"/>
+                <path class="rope" d="M52 52 Q 38 74 26 78"/>
+                <path class="rope" d="M58 50 Q 76 60 80 68"/>
+              </svg>
+              <span class="pblock b1">Trigger</span>
+              <span class="pblock b2">AI</span>
+              <span class="pblock b3">Shell</span>
+              <span class="pblock b4">Notify</span>
+            </div>
+          </div>
+          <div class="pscreen" data-screen="code">
+            <div class="peditor">
+              <span class="pline l1"></span><span class="pline l2"></span><span class="pline l3"></span><span class="pline l4"></span><span class="pline l5"></span>
+            </div>
+            <div class="pterm"><span class="p">$</span> fastlane test
+<span class="ok">✓ 128 tests passed</span></div>
+          </div>
+          <div class="pscreen" data-screen="ai">
+            <div class="pchat">
+              <span class="pbubble me">Run the beta pipeline, then TestFlight it</span>
+              <span class="pbubble ai">Build passed ✅ — uploading to TestFlight…</span>
+              <span class="pbubble ai"><span class="tdots"><i></i><i></i><i></i></span></span>
+              <span class="pmic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="phone-caption">Every pipeline as a live step timeline — watch, run, re-run, cancel, or edit it from the couch.</p>
+    </div>
 
-triggers:
-  - { pull_request: "*", workflow: test }
-  - { branch: main,      workflow: beta }</div>
+    <!-- Cluster 1: monitor & manage -->
+    <div class="cluster" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Monitor &amp; manage</p>
+        <h3>Builds, live — and yours to command.</h3>
+        <p>Every run is a step-by-step timeline with streaming logs, durations, and the raw console one tap away.</p>
+        <ul class="cluster-points">
+          <li><strong>Watch, run, re-run, cancel</strong> any pipeline — long-press a run for the quick menu.</li>
+          <li><strong>Add and edit pipelines</strong> with searchable repo &amp; branch dropdowns; tokens never leave the Mac.</li>
+          <li><strong>Push notifications</strong> when builds start, pass, or fail.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v10H4zM2 20h20"/><path d="M9 10l2 2 4-4"/></svg></div>
+          <h3>Step timelines</h3>
+          <p>Logs parsed exactly like the desktop app: each step timed and expandable, live over WebSocket, deduped as it streams.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <h3>The full editor, phone-sized</h3>
+          <p>Provider, workspace, repo, branch, poll vs webhook, pipeline file, timeouts — the entire pipeline editor works from the device.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 2: screen & control -->
+    <div class="cluster flip" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">See &amp; drive</p>
+        <h3>The Mac's screen, in your hand.</h3>
+        <p>Hardware-encoded H.264 out of the Mac, hardware-decoded on the phone — so 60 fps doesn't stutter, and 120 fps is real on ProMotion.</p>
+        <ul class="cluster-points">
+          <li><strong>Resolution &amp; frame rate, live:</strong> 360p → full, 30/60/120 fps, adaptive bitrate for weak links.</li>
+          <li><strong>Touchscreen or virtual trackpad</strong> — tap-to-click or laptop-style relative moves, with adjustable size, opacity and sensitivity.</li>
+          <li><strong>A Sidecar-style Touch Bar:</strong> sticky ⌘⌥⌃⇧ modifiers, spaces, Mission Control, media keys, volume.</li>
+          <li><strong>CompactOS:</strong> tap a Mac app and it refits to your device — big readable text, direct touch, window switcher, keyboard-aware.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+          <h3>CompactOS — Mac apps, phone-sized</h3>
+          <p>Streams just one window, resized to your screen and orientation. Your Mac's apps behave like phone apps — Xcode included.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg></div>
+          <h3>Capture that respects you</h3>
+          <p>Runs only while someone is watching, gated by an explicit toggle on the Mac, and macOS Screen Recording permission.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 3: automate -->
+    <div class="cluster" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Automate</p>
+        <h3>A deck of keys and a canvas of flows.</h3>
+        <p>Turn the device into a Stream Deck — then go further and wire up whole automations as clay blocks on physically swinging strings.</p>
+        <ul class="cluster-points">
+          <li><strong>Deck keys</strong> launch Mac apps (with their real icons), fire ⌘⌥⌃⇧ shortcuts, or run sequences — open Chrome → wait → type → return.</li>
+          <li><strong>Flows</strong> chain shell, HTTP, JSON, files, PDF, clipboard, screenshots and AI blocks; the Mac executes, you watch per-block results live.</li>
+          <li><strong>Describe it instead:</strong> type or dictate “every morning, fetch HN, summarize, speak it” and the AI composer wires the blocks for you.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg></div>
+          <h3>Shortcuts deck</h3>
+          <p>Fully customizable keys — labels, emoji, colors — with drag-rearrange and a fill-screen grid. Liquid-glass pretty, one-tap fast.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="10" r="3"/><circle cx="9" cy="19" r="3"/><path d="M8.5 8 15 9.5M16 12.5l-5 4.5"/></svg></div>
+          <h3>Flows with real physics</h3>
+          <p>The canvas ropes sag and swing (verlet simulation). Off by default on the Mac — flows run shell commands, so you opt in explicitly.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 4: code -->
+    <div class="cluster flip" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Code</p>
+        <h3>A pocket dev environment.</h3>
+        <p>The workspace is a mini IDE pointed at your Mac: browse the repo, edit with tabs, run real terminals, build with Xcode.</p>
+        <ul class="cluster-points">
+          <li><strong>File explorer + tabbed editor</strong> — type locally with zero latency, save syncs back to the Mac.</li>
+          <li><strong>Real zsh terminals</strong>, multiple tabs, ANSI colors, a key row for Ctrl-C/Tab/arrows — scrollback survives closing the panel.</li>
+          <li><strong>Xcode in the loop:</strong> pick a scheme, build, test, clean — right from the device.</li>
+          <li><strong>Code assistant</strong> with the open file as context and @-mentions for more — Claude with your key, or local Ollama models.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
+          <h3>Tabbed terminals</h3>
+          <p>Independent PTYs at the workspace root. Tail a build, poke a simulator, commit a fix — like VS Code's panel, on a phone.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <h3>Fix the pipeline from bed</h3>
+          <p>Build broke on a YAML typo? Open <code>macon.yml</code> in the workspace, fix it, save, re-run — without standing up.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 5: AI -->
+    <div class="cluster" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Talk to it</p>
+        <h3>An AI copilot for the whole Mac.</h3>
+        <p>Chat with models running on your own hardware, or hand the Mac a task out loud and watch it work.</p>
+        <ul class="cluster-points">
+          <li><strong>Local AI chat</strong> via Ollama on the Mac — private, on-device, with image and PDF attachments.</li>
+          <li><strong>Voice chat</strong> that speaks back (a Piper voice on the Mac, if installed) — hands-free mode keeps the conversation going.</li>
+          <li><strong>Dictate-to-drive agent:</strong> it reads the screen and accessibility tree, plans steps, and drives the Mac — pausing for your approval in supervised mode.</li>
+          <li><strong>Web too:</strong> with Playwright installed, the agent automates a real browser alongside Mac apps.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
+          <h3>Voice agent, supervised</h3>
+          <p>Watch the live screen while the agent works underneath, approving each step — or let it run and barge in by talking over it.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4zM19 15l.9 2.3L22 18l-2.1.7L19 21l-.9-2.3L16 18l2.1-.7zM5 16l.7 1.8L7.5 18l-1.8.7L5 20.5l-.7-1.8L2.5 18l1.8-.2z"/></svg></div>
+          <h3>Bring your own AI</h3>
+          <p>Claude, OpenAI, Gemini, a local Ollama model, or any OpenAI-compatible endpoint. Keys live in the Mac's Keychain — never on the phone. All of it optional.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 6: power & presence -->
+    <div class="cluster flip" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Power &amp; presence</p>
+        <h3>Wake it, unlock it, never lose it.</h3>
+        <p>The companion keeps the Mac reachable and brings it back to life from anywhere — every power an explicit, opt-in toggle.</p>
+        <ul class="cluster-points">
+          <li><strong>Stay awake &amp; wake:</strong> a power assertion keeps it reachable; a Wake-on-LAN magic packet raises it from sleep.</li>
+          <li><strong>Unlock from the phone:</strong> a themed 3D padlock page that animates open — typing a password stored only in the Mac's Keychain.</li>
+          <li><strong>Privacy curtain:</strong> a customizable “please don't touch” wall over the physical screen while you drive remotely — burn-in aware, hotkey-dismissed.</li>
+          <li><strong>Always connected:</strong> optional iCloud beacon re-points the phone when a tunnel URL rotates. Pair once, never re-type an address.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M20 4l-2 2M6 18l-2 2"/></svg></div>
+          <h3>Wake &amp; unlock</h3>
+          <p>Works on the LAN or through a free Cloudflare tunnel — and over iCloud even when both are down. Honest about limits: FileVault preboot stays locked.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M10 9.5 6.5 15M14 9.5l3.5 5.5"/></svg></div>
+          <h3>Fleet map</h3>
+          <p>Your Mac at the center, every paired device hanging on a swinging string — live glow for the active ones, drag them around for fun.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECURITY ================= -->
+<section id="security" class="alt">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Trust model</p>
+      <h2>Off by default. Yours by design.</h2>
+      <p>MacOn is built for one team on machines they own — and treats every remote power as a privilege you grant, not a default.</p>
+    </div>
+    <div class="lockrow" data-reveal="children">
+      <div class="lock-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Pair once, explicitly</h3>
+        <p>Single-use codes with a 15-minute TTL, rate-limited, verified in constant time. Every device gets its own revocable token.</p>
+      </div>
+      <div class="lock-item">
+        <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="10" rx="5"/><circle cx="16" cy="12" r="3"/></svg></div>
+        <h3>Every power is a toggle</h3>
+        <p>Screen viewing, control, CompactOS, flows, wake, unlock — all off until you flip them on, per capability, on the Mac itself.</p>
+      </div>
+      <div class="lock-item">
+        <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Secrets stay in the Keychain</h3>
+        <p>Tokens, ASC keys, the unlock password — in the macOS Keychain, never in your repo or logs. Your code is only ever checked out on your machine.</p>
+      </div>
+      <div class="lock-item">
+        <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        <h3>A tunnel URL grants nothing</h3>
+        <p>Remote access rides HTTPS/WSS through Cloudflare, but the address alone is useless — pairing codes and bearer tokens are always required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THEMES ================= -->
+<section id="themes">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">The clay world</p>
+      <h2>One world. Seventeen skins.</h2>
+      <p>The Mac app and companion share a re-skinnable 3D clay world — paint-box palettes and full model swaps, with live 3D previews in the picker. This site wears Pastel; the hero above re-tints with your light/dark choice.</p>
+    </div>
+    <div class="worlds" data-reveal="children">
+      <span class="world"><i class="swatch" style="--w1:#7d94f2;--w2:#f5b777;--w3:#85cca0"></i>Pastel</span>
+      <span class="world"><i class="swatch" style="--w1:#f27ab0;--w2:#fdd171;--w3:#8dd4b7"></i>Candy</span>
+      <span class="world"><i class="swatch" style="--w1:#40a0b2;--w2:#edca87;--w3:#73caa7"></i>Ocean</span>
+      <span class="world"><i class="swatch" style="--w1:#f08d71;--w2:#f7c25a;--w3:#9ec48d"></i>Sunset</span>
+      <span class="world"><i class="swatch" style="--w1:#759b6e;--w2:#e5b560;--w3:#8dc586"></i>Forest</span>
+      <span class="world"><i class="swatch" style="--w1:#cd7a5b;--w2:#e3ae5d;--w3:#9db373"></i>Terracotta</span>
+      <span class="world"><i class="swatch" style="--w1:#737a7b;--w2:#9fa2a6;--w3:#99b8a3"></i>Graphite</span>
+      <span class="world"><i class="swatch" style="--w1:#9e78f7;--w2:#fdd94d;--w3:#59ecaa"></i>Neon</span>
+      <span class="world"><i class="swatch" style="--w1:#7fcc54;--w2:#a470f0;--w3:#f45ca5"></i>Monster</span>
+      <span class="world"><i class="swatch" style="--w1:#8d82f2;--w2:#fad1a6;--w3:#6de5b5"></i>Cosmos</span>
+      <span class="world"><i class="swatch" style="--w1:#e34d45;--w2:#fac633;--w3:#4db262"></i>Blocks</span>
+      <span class="world"><i class="swatch" style="--w1:#ed5b63;--w2:#fcc861;--w3:#78cc85"></i>Balloon</span>
+      <span class="world"><i class="swatch" style="--w1:#f18b9e;--w2:#d89b5c;--w3:#a8ca80"></i>Dessert</span>
+      <span class="world"><i class="swatch" style="--w1:#fb6dd1;--w2:#9d7aff;--w3:#5ae8db"></i>Holo</span>
+      <span class="world"><i class="swatch" style="--w1:#e65166;--w2:#f5ad39;--w3:#61c49d"></i>Puffy</span>
+      <span class="world"><i class="swatch" style="--w1:#f55599;--w2:#fb8d59;--w3:#73bf6b"></i>Pop</span>
+      <span class="world"><i class="swatch" style="--w1:#226ab8;--w2:#f7b832;--w3:#53b78d"></i>Googly</span>
+    </div>
   </div>
 </section>
 
 <!-- ================= DOCS ================= -->
-<section id="docs">
+<section id="docs" class="alt">
   <div class="wrap">
-    <div class="section-head center">
+    <div class="section-head center" data-reveal>
       <h2>Docs &amp; help.</h2>
       <p>Everything you need to set up, script, and run MacOn.</p>
     </div>
-    <div class="docs-grid">
+    <div class="docs-grid" data-reveal="children">
       <a class="doc-card" href="/docs">
         <h3>Documentation</h3>
-        <p>The full guide, right here — install, <code>macon init</code>, pipelines, the test matrix, providers, and TestFlight.</p>
+        <p>The full guide — install, <code>macon init</code>, pipelines, the test matrix, providers, TestFlight, and every companion feature.</p>
         <span class="arrow">Read the docs →</span>
       </a>
       <a class="doc-card" href="/docs#cli-overview">
@@ -292,50 +628,24 @@ triggers:
         <span class="arrow">Open on GitHub ↗</span>
       </a>
     </div>
-
-    <div class="center" style="margin-top:2.5rem">
-      <details style="max-width:760px;margin:0 auto;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;box-shadow:var(--card-shadow);">
-        <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;">Quick help — the commands at a glance</summary>
-        <div class="codeblock" style="margin-top:1rem;"><span class="c"># manage the machine</span>
-macon doctor [--json]                <span class="c"># toolchain, permissions, disk</span>
-macon init                           <span class="c"># …and install what's missing</span>
-macon sims install watchOS 11.2      <span class="c"># add a simulator runtime</span>
-
-<span class="c"># run CI</span>
-macon lint [macon.yml]               <span class="c"># validate a pipeline file</span>
-macon config init | validate         <span class="c"># scaffold / check the portable config</span>
-macon run --workflow beta [dir]      <span class="c"># run one workflow once</span>
-macon watch --config file.json       <span class="c"># watch exported pipelines</span>
-macon install-service [args]         <span class="c"># run as a launchd service</span>
-
-<span class="c"># drive a running runner</span>
-macon status [--json]                <span class="c"># pipelines + builds</span>
-macon trigger "My App" --follow      <span class="c"># build now, exit 0/1 by result</span>
-macon logs --follow                  <span class="c"># tail the live build</span>
-macon cancel                         <span class="c"># stop it</span>
-macon metrics                        <span class="c"># Prometheus exposition</span>
-
-macon help                           <span class="c"># full usage</span></div>
-      </details>
-    </div>
   </div>
 </section>
 
 <!-- ================= FAQ ================= -->
-<section id="faq" class="alt">
+<section id="faq">
   <div class="wrap">
-    <div class="section-head center">
+    <div class="section-head center" data-reveal>
       <h2>Questions &amp; answers.</h2>
       <p>The things people ask before turning their Mac into CI.</p>
     </div>
-    <div class="faq">
+    <div class="faq" data-reveal="children">
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is MacOn free?</button>
         <div class="faq-a"><div class="faq-a-inner"><p>Yes. It runs on hardware you already own, so there are no per-minute build charges — and it's open source.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Do I have to replace my current CI?</button>
-        <div class="faq-a"><div class="faq-a-inner"><p>No. MacOn is additive. A common setup is MacOn for fast PR and test builds, with a hosted CI (or an always-on MacOn service) handling release builds. Your existing Bitrise/Xcode Cloud setup keeps working untouched.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>No. MacOn is additive. A common setup is MacOn for fast PR and test builds, with a hosted CI (or an always-on MacOn service) handling release builds. Your existing Bitrise/Xcode Cloud setup keeps working untouched. There's even a second mode that turns the Mac into a pool of <strong>Bitbucket self-hosted runners</strong>, so <code>bitbucket-pipelines.yml</code> steps tagged <code>runs-on: [self.hosted, macos]</code> land on your machine.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Which platforms can it build?</button>
@@ -343,15 +653,27 @@ macon help                           <span class="c"># full usage</span></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Bitbucket or GitHub?</button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Both. Watch a branch or open pull requests, and choose polling or instant webhooks — per pipeline.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Both. Watch a branch or open pull requests, and choose polling or instant webhooks — per pipeline. Build status is posted back to the host as a commit check either way.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Does my Mac need to stay on?</button>
-        <div class="faq-a"><div class="faq-a-inner"><p>While it's watching, yes. For unattended use, install it as a <code>launchd</code> service (<code>macon service install</code>) on an always-on machine — even a cloud EC2 Mac — so it starts at login and restarts on crash.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>While it's watching, yes. For unattended use, install it as a <code>launchd</code> service (<code>macon install-service</code>) on an always-on machine — even a cloud EC2 Mac — so it starts at login and restarts on crash. The companion can also keep it awake and wake it on demand.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Can I watch and control the Mac from my phone?</button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Yes — that's half the point. The free <a href="https://github.com/alimusawa313/MacON_Companion">iPhone/iPad companion</a> pairs with a one-time code, then <strong>manages pipelines</strong> (watch, run, re-run, cancel — even add/edit with repo &amp; branch dropdowns), shows builds as step-by-step timelines with live logs, streams the Mac's screen (hardware H.264), and — with permission — controls it: cursor, keyboard, a virtual trackpad, Mac gestures, and a Stream Deck-style shortcuts board. <strong>CompactOS</strong> even opens a single Mac app fitted to your device so it reads like a phone app. It works on your LAN, or from anywhere through a free internet tunnel. Pairing codes and device tokens are always required.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes — that's half the point. The free <a href="https://github.com/alimusawa313/MacON_Companion">iPhone/iPad companion</a> pairs with a one-time code, then <strong>manages pipelines</strong> (watch, run, re-run, cancel — even add/edit with repo &amp; branch dropdowns), shows builds as step-by-step timelines with live logs, streams the Mac's screen (hardware H.264, up to 120 fps), and — with permission — controls it: cursor, keyboard, a virtual trackpad, Mac gestures, and a Stream Deck-style shortcuts board. <strong>CompactOS</strong> even opens a single Mac app fitted to your device so it reads like a phone app. It works on your LAN, or from anywhere through a free internet tunnel.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What are Flows?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Visual automations you draw as blocks wired together — shell scripts, HTTP calls, JSON, files, PDF text, clipboard, screenshots, and AI steps. Build them on the phone's canvas (the strings between blocks physically swing), run them on the Mac, and inspect every block's output and timing afterwards. Because flows execute real commands, they're gated behind an explicit “Allow Flows” toggle on the Mac.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Can I really code from the phone?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. The workspace gives you a file explorer, a tabbed editor that saves back to the Mac, real zsh terminals (multiple tabs, ANSI colors, persistent scrollback), and Xcode integration — pick a scheme, build, test, clean. A context-aware code assistant sits alongside, using Claude with your key or local Ollama models.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Which AI providers does it support?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Bring your own: Anthropic Claude, OpenAI, Google Gemini, any OpenAI-compatible endpoint — or fully local models through Ollama running on your Mac. Keys are stored in the Mac's Keychain and never sync to the phone. Every AI feature is optional; all the CI and remote-control features work without any of it.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Can it wake or unlock my Mac remotely?</button>
@@ -359,15 +681,19 @@ macon help                           <span class="c"># full usage</span></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is it secure?</button>
-        <div class="faq-a"><div class="faq-a-inner"><p>It uses a team-only trust model. Every remote power — screen control, CompactOS, wake, unlock — is off by default and gated behind an explicit toggle on the Mac. Secrets and the unlock password live in the macOS Keychain, never in your repo, and your code is only ever checked out on your own machine. A tunnel URL alone grants nothing; pairing codes and device tokens are always required.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>It uses a team-only trust model. Every remote power — screen viewing, control, CompactOS, flows, wake, unlock — is off by default and gated behind an explicit toggle on the Mac. Pairing codes are single-use and rate-limited, tokens are checked in constant time and revocable per device (<code>macon companion revoke</code>), secrets live in the macOS Keychain, and your code is only ever checked out on your own machine. A tunnel URL alone grants nothing.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Can it ship to TestFlight?</button>
         <div class="faq-a"><div class="faq-a-inner"><p>Yes — MacOn runs your fastlane lanes, so a <code>beta</code> lane with an App Store Connect API key uploads to TestFlight just like it would anywhere else.</p></div></div>
       </div>
       <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How many Macs and devices can I pair?</button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Several of each. Every paired iPhone/iPad (and the CLI itself) gets its own token, and the Fleet map shows them all hanging off the Mac on live, draggable strings — active devices glow. Manage or revoke pairings from the app or with <code>macon companion devices</code>.</p></div></div>
+      </div>
+      <div class="faq-item">
         <button class="faq-q" aria-expanded="false">What do I need to get started?</button>
-        <div class="faq-a"><div class="faq-a-inner"><p>macOS 14 or later and Xcode. Run <code>macon init</code> and it checks the rest of the toolchain (fastlane, SwiftLint, simulators…) and installs what's missing.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>macOS 14 or later and Xcode. Run <code>macon init</code> and it checks the rest of the toolchain (fastlane, SwiftLint, simulators, disk space, even TCC permissions) and installs what's missing.</p></div></div>
       </div>
     </div>
   </div>
@@ -375,7 +701,7 @@ macon help                           <span class="c"># full usage</span></div>
 
 <!-- ================= CTA ================= -->
 <section class="center">
-  <div class="wrap">
+  <div class="wrap" data-reveal>
     <div class="section-head center" style="margin-bottom:2rem">
       <h2>Your Mac, in your pocket.</h2>
       <p>Free to run, yours to control — from the desk or the couch.</p>
@@ -389,8 +715,8 @@ macon help                           <span class="c"># full usage</span></div>
 
 <footer>
   <div class="footer-inner">
-    <div>Mac<span style="color:var(--accent)">On</span> — local iOS CI for your Mac, with a phone in the loop.</div>
-    <div style="display:flex;gap:1.4rem;flex-wrap:wrap;">
+    <div>Mac<span style="color:var(--accent-deep)">On</span> — local iOS CI for your Mac, with a phone in the loop.</div>
+    <div class="footer-links">
       <a href="/about">About</a>
       <a href="/docs">Docs</a>
       <a href="#faq">FAQ</a>

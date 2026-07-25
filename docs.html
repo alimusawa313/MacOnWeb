@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MacOn — Documentation</title>
-<meta name="description" content="MacOn documentation: install the CLI and app, macon doctor, macon.yml pipelines with a test matrix, remote control from the terminal (status, trigger, logs), Prometheus metrics, the iPhone/iPad companion, and running MacOn as a service.">
-<meta name="theme-color" content="#f4f4f7">
+<meta name="description" content="MacOn documentation: install the CLI and app, macon doctor, macon.yml pipelines with a test matrix, Bitbucket self-hosted runner pools, remote control from the terminal, Prometheus metrics, the iPhone/iPad companion — screen streaming, CompactOS, shortcuts deck, flows, code workspace, AI — and running MacOn as a service.">
+<meta name="theme-color" content="#f5f5f7">
 <link rel="canonical" href="https://macon.devopsinstitute.id/docs">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://macon.devopsinstitute.id/docs">
 <meta property="og:title" content="MacOn — Documentation">
-<meta property="og:description" content="Install, macon init, macon.yml pipelines, the test matrix, providers, TestFlight, and running MacOn as a service.">
+<meta property="og:description" content="Install, macon init, macon.yml pipelines, runner pools, the test matrix, providers, TestFlight, the companion's remote powers, and running MacOn as a service.">
 <meta property="og:image" content="https://macon.devopsinstitute.id/macon-icon.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacOn — Documentation">
@@ -26,15 +26,17 @@
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
     var tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute('content', theme === 'dark' ? '#14151c' : '#f4f4f7');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#1c1c24' : '#f5f5f7');
   })();
 </script>
+<link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/code.css">
 <link rel="stylesheet" href="css/docs.css">
 <script defer src="js/theme.js"></script>
+<script defer src="js/nav.js"></script>
 <script defer src="js/code.js"></script>
 <script defer src="js/docs.js"></script>
 </head>
@@ -94,6 +96,7 @@
       <a href="#yml-matrix">Test matrix</a>
       <a href="#yml-triggers">Triggers</a>
       <a href="#yml-env">Built-in variables</a>
+      <a href="#runner-pool">Bitbucket runner pool</a>
     </div>
     <div class="side-group">
       <h4>Connect &amp; ship</h4>
@@ -112,6 +115,10 @@
       <a href="#companion-control">Remote control</a>
       <a href="#companion-compact">CompactOS</a>
       <a href="#companion-deck">Shortcuts deck</a>
+      <a href="#companion-flows">Flows</a>
+      <a href="#companion-code">Code workspace</a>
+      <a href="#companion-ai">AI features</a>
+      <a href="#companion-fleet">Fleet map</a>
       <a href="#companion-power">Wake &amp; unlock</a>
       <a href="#companion-icloud">Always connected (iCloud)</a>
       <a href="#companion-privacy">Privacy screen</a>
@@ -135,14 +142,14 @@
     </div>
 
     <h2 id="overview">Overview</h2>
-    <p class="lead">MacOn is a local CI runner for iOS — and a remote for the Mac it runs on. It watches a Bitbucket or GitHub repository, checks out each new commit or pull request, runs the pipeline defined in your <code>macon.yml</code>, and reports the result back — all on a Mac you control. A companion app then lets you drive that Mac from your phone.</p>
+    <p class="lead">MacOn is a local CI runner for iOS — and a remote for the Mac it runs on. It watches a Bitbucket or GitHub repository, checks out each new commit or pull request, runs the pipeline defined in your <code>macon.yml</code>, and reports the result back — all on a Mac you control. A companion app then lets you drive that Mac from your phone: builds, screen, shortcuts, flows, code, AI, and power.</p>
     <p>It comes in three parts that share one engine:</p>
     <ul>
-      <li><strong>The Mac app</strong> — a desktop control panel to configure pipelines, secrets, watch state, screen sharing, and remote access.</li>
+      <li><strong>The Mac app</strong> — a desktop control panel to configure pipelines, runners, secrets, watch state, screen sharing, flows, and power &amp; access.</li>
       <li><strong>The <code>macon</code> CLI</strong> — the same runner, headless, installable via Homebrew. Ideal for scripts, servers, and always-on machines.</li>
-      <li><strong>The iPhone &amp; iPad companion</strong> — monitors builds, streams and controls the Mac's screen, runs Mac apps phone-sized (CompactOS), and can wake and unlock the Mac. See <a href="#companion">Companion app</a>.</li>
+      <li><strong>The iPhone &amp; iPad companion</strong> — monitors builds, streams and controls the Mac's screen, runs Mac apps phone-sized (<a href="#companion-compact">CompactOS</a>), automates with a <a href="#companion-deck">deck</a> and <a href="#companion-flows">flows</a>, gives you a <a href="#companion-code">code workspace</a> with real terminals, talks to <a href="#companion-ai">AI</a>, and can <a href="#companion-power">wake and unlock</a> the Mac.</li>
     </ul>
-    <p>Anything you set up in the app can be exported and run by the CLI, and vice-versa. The Mac app and companion share one soft 3D "clay world" look you can re-skin across a dozen themes.</p>
+    <p>Anything you set up in the app can be exported and run by the CLI, and vice-versa. The Mac app and companion share one soft 3D "clay world" look you can re-skin across seventeen themes.</p>
 
     <h2 id="install">Install</h2>
     <h3>CLI (Homebrew)</h3>
@@ -335,6 +342,17 @@ triggers:
     </table></div>
     <p>Provider-native variables (<code>BITBUCKET_*</code> or <code>GITHUB_*</code>) are also injected so tools like Danger work.</p>
 
+    <h2 id="runner-pool">The second mode: a Bitbucket runner pool</h2>
+    <p>Prefer to keep your existing <code>bitbucket-pipelines.yml</code> and let Bitbucket stay the brain? MacOn's other CI mode hosts a pool of <strong>Bitbucket self-hosted runners</strong> on your Mac. Bitbucket parses the YAML, schedules jobs, shows logs and gates PRs — your Mac just does the building.</p>
+    <ul>
+      <li>Tag steps with <code>runs-on: [self.hosted, macos]</code> to route them to your machine.</li>
+      <li>Run <strong>multiple runners</strong> side by side; each gets its own working directory so checkouts never collide.</li>
+      <li>Per-runner live log and status, <strong>Start/Stop</strong> controls, and <strong>Start All / Stop All</strong> from Settings or the menu-bar icon.</li>
+      <li>Self-cleaning: stopping a runner empties its working directory; shared cache cleanup (DerivedData, SwiftPM, Archives, stale simulators) runs only when every runner is idle.</li>
+      <li>Runners poll <em>outbound</em> to Bitbucket — nothing inbound to expose, so it works behind any NAT.</li>
+    </ul>
+    <p>Both modes run happily at once: macon.yml pipelines for your own repos, a runner pool for the team's Bitbucket workspace.</p>
+
     <h2 id="providers">Bitbucket &amp; GitHub</h2>
     <p>A pipeline watches one host. Set credentials once (in the app's Settings, or via environment for the CLI).</p>
     <div class="table-wrap"><table>
@@ -367,18 +385,18 @@ macon service install --config macon-export.json  <span class="c"># …as a serv
     <p>Exported without secrets, the file is config-only and safe to commit; supply token/secret values via the environment. Exported with secrets, it's self-contained — keep it private. The app's <strong>Import…</strong> loads a file back, so it also moves a setup between machines.</p>
 
     <h2 id="companion">Companion app (iPhone &amp; iPad)</h2>
-    <p>The <a href="https://github.com/alimusawa313/MacON_Companion">MacOn companion app</a> turns your phone or iPad into a remote for the runner: a <strong>home hub</strong> with your pipelines, live build logs, screen streaming, remote control, and a Stream Deck-style shortcuts board — handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
+    <p>The <a href="https://github.com/alimusawa313/MacON_Companion">MacOn companion app</a> turns your phone or iPad into a remote for the runner: a <strong>home hub</strong> with your pipelines, live build logs, screen streaming, remote control, a Stream Deck-style shortcuts board, a flows canvas, a code workspace, and AI — handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
     <div class="codeblock"><button class="copy">Copy</button>macon watch --workspace acme --repo app --branch main --companion
 macon watch --config macon-export.json --companion    <span class="c"># with your app setup</span></div>
     <p>Builds show as a <strong>structured step timeline</strong> — each step with its own status, duration, and expandable output (parsed the same way the desktop app does it) — with the raw log one tap away. <strong>Re-run</strong> and <strong>Cancel</strong> sit right in the build view and on a long-press of any run.</p>
-    <p>Prefer the desktop app? Flip it on in <strong>Settings → Companion app</strong>, then <strong>Pair a device</strong> shows the address, code, and a QR. Pairings are shared with the CLI, so a device works with either. The app also matches the desktop's <strong>theme</strong> (gradient/solid × six colors) from its Settings.</p>
+    <p>Prefer the desktop app? Flip it on in <strong>Settings → Companion app</strong>, then <strong>Pair a device</strong> shows the address, code, and a QR to scan. Pairings are shared with the CLI, so a device works with either.</p>
     <div class="callout gh">
       <span>The app is a separate open-source project — pair it once and it reconnects on its own.</span>
       <a class="btn-sm" href="https://github.com/alimusawa313/MacON_Companion">Companion on GitHub ↗</a>
     </div>
 
     <h2 id="companion-pair">Pairing &amp; devices</h2>
-    <p>On start, the companion server prints a one-time <strong>address</strong> and <strong>code</strong>. In the app, tap <em>Add runner</em> and enter them — the code is exchanged for a long-lived device token stored in the iOS Keychain, so you only pair once. Codes are single-use, expire (15 min by default), and are rate-limited.</p>
+    <p>On start, the companion server prints a one-time <strong>address</strong> and <strong>code</strong>. In the app, tap <em>Add runner</em> and enter them (or scan the QR) — the code is exchanged for a long-lived device token stored in the iOS Keychain, so you only pair once. Codes are single-use, expire (15 min by default), and are rate-limited.</p>
     <div class="codeblock"><button class="copy">Copy</button>┌─ Pair the MacOn companion app ──────────────────────
 │  Address:  alis-mac.local:8899
 │  Code:     K7QP-2M9X-4RTD   ·  valid 15 min, one device
@@ -394,7 +412,7 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
     <p>By default the companion talks to the Mac over your <strong>local network</strong>. To reach it from cellular or another network, the desktop app can open a free <strong>internet tunnel</strong> for you: <strong>Settings → Companion app → Remote access</strong>. It runs <a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/"><code>cloudflared</code></a> (a one-time <code>brew install cloudflared</code>) and shows a public <code>https://…trycloudflare.com</code> address — paste that into the app instead of the LAN address.</p>
     <ul>
       <li><strong>Security is unchanged.</strong> The URL alone grants nothing: pairing still needs a one-time code, every other request a device token, and TLS is terminated by Cloudflare.</li>
-      <li><strong>The address rotates</strong> each time the tunnel restarts. On the device, <em>⋯ → Change Address</em> repoints it — your pairing stays valid, no re-pairing.</li>
+      <li><strong>The address rotates</strong> each time the tunnel restarts. On the device, <em>⋯ → Change Address</em> repoints it — your pairing stays valid, no re-pairing. Or turn on <a href="#companion-icloud">iCloud sync</a> and it follows automatically.</li>
       <li>On a headless/EC2 Mac, run the tunnel yourself and point the app at it: <code>cloudflared tunnel --url http://localhost:8899</code>.</li>
     </ul>
 
@@ -420,7 +438,7 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
       <li><strong>Touchscreen</strong> (default) — tap the screen where you want to click; drag to move, long-press to right-click, two fingers to scroll.</li>
       <li><strong>Virtual trackpad</strong> — a movable, translucent pad that moves the cursor <em>relatively</em>, like a laptop trackpad: drag to move, tap to click, two fingers to scroll or pinch-to-zoom. Adjustable opacity, sensitivity, and size.</li>
     </ul>
-    <p>A <strong>Sidecar-style Touch Bar</strong> sits under the screen; swipe it left/right between pages. Page one: <em>esc</em>, switch spaces (◂ ▸), Mission Control, right-click, trackpad, keyboard, plus the resolution and fps pickers. Page two: the sticky <strong>⌘ ⌥ ⌃ ⇧</strong> modifier keys plus Undo, Spotlight, App switch, and Dock. Page three: media keys and a volume slider. Tap a modifier to arm it, then tap or type — e.g. <strong>⌘</strong> then <em>C</em> sends ⌘C, or <strong>⌘</strong> then a tap sends a ⌘-click.</p>
+    <p>A <strong>Sidecar-style Touch Bar</strong> sits under the screen; swipe it left/right between pages. Page one: <em>esc</em>, switch spaces (◂ ▸), Mission Control, right-click, trackpad, keyboard, plus the resolution and fps pickers. Page two: the sticky <strong>⌘ ⌥ ⌃ ⇧</strong> modifier keys plus Undo, Spotlight, App switch, and Dock. Page three: media keys and a volume slider. Tap a modifier to arm it, then tap or type — e.g. <strong>⌘</strong> then <em>C</em> sends ⌘C, or <strong>⌘</strong> then a tap sends a ⌘-click. A hardware keyboard passes straight through.</p>
     <ul>
       <li>Off by default and gated on the Mac by <strong>“Let paired devices control this Mac”</strong> (Settings → Companion app). macOS also requires <strong>Accessibility</strong> permission before MacOn can move the cursor or type.</li>
       <li>Only paired devices (holding a valid token) can connect — but treat control access like handing someone your keyboard.</li>
@@ -441,8 +459,37 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
     <ul>
       <li>Keys are fully customizable: label, SF Symbol or <strong>emoji</strong>, preset or <strong>custom color</strong>.</li>
       <li><strong>Edit mode</strong> adds, edits, and <strong>drag-rearranges</strong> keys; a <strong>Fill screen</strong> option stretches them into an even grid (4 keys → a 2×2 board).</li>
+      <li><strong>Describe a key instead:</strong> the AI composer takes “open Xcode and run my tests” — typed or dictated — and generates the key (icon, label, color, action), validated against the Mac's real app list before it's added.</li>
       <li>Requires <em>“Let paired devices control this Mac”</em> on the Mac — the same gate as remote control.</li>
     </ul>
+
+    <h2 id="companion-flows">Flows — visual automations</h2>
+    <p><strong>Flows</strong> are block-graph automations you draw on the device and run on the Mac. Blocks snap onto a pannable, zoomable canvas and wire together with ropes that <em>physically sag and swing</em> (a verlet simulation); data flows along the wires from block to block.</p>
+    <ul>
+      <li><strong>Block catalog:</strong> triggers, shell scripts, text tools, files, JSON, HTTP requests, PDF text extraction, clipboard, screenshots, logic (if/else, loops, variables) — and AI blocks that call <a href="#companion-ai">your configured providers</a> or local Ollama models.</li>
+      <li><strong>Execution on the Mac:</strong> blocks run in dependency order; branches skip untaken paths; loops iterate their downstream. Watch each block light up live, then inspect its output, error, and duration in the <strong>run history</strong>.</li>
+      <li><strong>AI composer:</strong> describe an automation — typed or dictated — like “every morning at 8, fetch Hacker News, summarize it, speak it”, and the composer wires a validated graph for you to preview and save.</li>
+      <li><strong>Gated on the Mac:</strong> flows execute real commands, so they're off until you enable <strong>Settings → Companion app → Allow Flows</strong>.</li>
+    </ul>
+
+    <h2 id="companion-code">Code workspace — editor, terminals, Xcode</h2>
+    <p>The <strong>workspace</strong> is a mini IDE pointed at a folder on your Mac: a collapsible <strong>file explorer</strong>, a <strong>tabbed editor</strong> (type locally with zero latency; Save syncs the file back), and a side-by-side <strong>code assistant</strong> that reads the open file as context — @-mention other files to fold them in. Assistant models: Claude with your key, or local Ollama.</p>
+    <ul>
+      <li><strong>Real terminals:</strong> multiple tabs, each an independent zsh PTY at the workspace root — ANSI colors, a key row for Ctrl-C/Tab/arrows, and scrollback that survives closing the panel.</li>
+      <li><strong>Xcode integration:</strong> the workspace detects projects, lists schemes, and runs build / test / clean straight into a terminal tab.</li>
+      <li><strong>Fix-the-pipeline loop:</strong> open <code>macon.yml</code>, edit, save, re-run the build — without touching the Mac.</li>
+    </ul>
+
+    <h2 id="companion-ai">AI features — chat, voice, and the agent</h2>
+    <p>Every AI feature is optional and <strong>bring-your-own</strong>: Anthropic Claude, OpenAI, Google Gemini, any OpenAI-compatible endpoint, or fully local models via <strong>Ollama running on the Mac</strong>. Keys are stored in the Mac's Keychain and never sync to the phone.</p>
+    <ul>
+      <li><strong>AI chat:</strong> talk to the Mac's local Ollama models — private, on-device inference. Attach images (vision models) or PDFs/text files; conversations persist across launches.</li>
+      <li><strong>Voice chat:</strong> speak, and the AI answers out loud — with a natural Piper voice if installed on the Mac, or the device voice otherwise. Hands-free mode re-opens the mic after each reply; talking over the AI cancels it and listens again.</li>
+      <li><strong>The agent:</strong> give it a task and it drives the Mac — reading the accessibility tree and screen snapshots, planning steps, clicking, typing, and launching apps. A <strong>supervised mode</strong> pauses for your approval before each step, shown over the live screen so you watch it work. With Playwright installed (<code>macon init</code> offers it), it automates a real browser too.</li>
+    </ul>
+
+    <h2 id="companion-fleet">Fleet map</h2>
+    <p>The <strong>Fleet</strong> screen draws your setup as a little world: the Mac at the center with every paired device hanging off it on <strong>swinging, draggable strings</strong> (the same verlet ropes as the flows canvas). Devices that talked to the Mac recently <strong>glow</strong>; quiet ones fade. Tap a card for its pairing details — device model, last-seen time, token prefix — and revoke from there or with <code>macon companion devices</code>. The Mac app has the same map, so you can audit pairings from either end.</p>
 
     <h2 id="companion-power">Wake &amp; unlock the Mac</h2>
     <p>The companion can keep the Mac reachable and bring it back to life remotely. Everything here is <strong>off by default</strong> and toggled on the Mac in <strong>Settings → Power &amp; Access</strong>.</p>
@@ -476,7 +523,7 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
     <ul>
       <li><strong>Paint boxes</strong> recolor everything: Pastel, Candy, Ocean, Sunset, Forest, Terracotta, Graphite, Neon.</li>
       <li><strong>Model worlds</strong> swap the 3D pieces themselves: Monster (googly-eyed blobs), Cosmos (planets &amp; stars), Blocks (toy bricks), Balloon, Dessert, plus Holo (iridescent chrome), Puffy (candy clouds), Pop (pink prism), and Googly (a field of eyeballs) — each with its own take on the 3D headline type.</li>
-      <li>The picker shows a live-rendered 3D preview of each world, and always-dark worlds (Neon, Cosmos) render the whole UI dark.</li>
+      <li>The picker shows a live-rendered 3D preview of each world, and always-dark worlds (Neon, Cosmos, Holo) render the whole UI dark.</li>
     </ul>
 
     <div class="callout" style="margin-top:2.5rem">
@@ -488,8 +535,8 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
 
 <footer>
   <div class="footer-inner">
-    <div>Mac<span style="color:var(--accent)">On</span> — local iOS CI for your Mac, with a phone in the loop.</div>
-    <div style="display:flex;gap:1.4rem;flex-wrap:wrap;">
+    <div>Mac<span style="color:var(--accent-deep)">On</span> — local iOS CI for your Mac, with a phone in the loop.</div>
+    <div class="footer-links">
       <a href="/">Home</a>
       <a href="/about">About</a>
       <a href="https://github.com/alimusawa313/MacON">GitHub</a>

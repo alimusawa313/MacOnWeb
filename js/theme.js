@@ -1,4 +1,5 @@
-/* theme.js — dark/light toggle with a circular reveal + nav scroll shadow (shared) */
+/* theme.js — dark/light toggle with a circular reveal (shared).
+   The 3D hero listens for the "macon:theme" event to re-tint itself. */
 (function () {
   var root = document.documentElement;
 
@@ -6,7 +7,8 @@
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('macon-theme', next); } catch (e) {}
     var tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute('content', next === 'dark' ? '#000000' : '#ffffff');
+    if (tc) tc.setAttribute('content', next === 'dark' ? '#1c1c24' : '#f5f5f7');
+    window.dispatchEvent(new CustomEvent('macon:theme', { detail: { theme: next } }));
   }
 
   var btn = document.getElementById('theme-toggle');
@@ -40,12 +42,4 @@
     try { if (localStorage.getItem('macon-theme')) return; } catch (err) {}
     apply(e.matches ? 'dark' : 'light');
   });
-
-  // Nav gains a shadow once scrolled.
-  var nav = document.querySelector('nav');
-  if (nav) {
-    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
 })();

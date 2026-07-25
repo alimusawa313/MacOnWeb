@@ -1,57 +1,5 @@
-/* base.css — design tokens, reset, typography, buttons, theme reveal (shared)
-   The clay "world" look, matching the Mac + companion apps: soft pastel paper,
-   rounded-heavy display type, puffy cards and pill buttons with soft coloured
-   shadows. Light + dark. */
-
-:root {
-  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
-  --round: ui-rounded, "SF Pro Rounded", var(--sans);
-  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, monospace;
-
-  /* Pastel "world" palette (mirrors the apps' default theme). */
-  --bg: #f4f4f7;
-  --bg-2: #ebecf3;
-  --text: #2b3050;
-  --text-2: #6b7196;
-  --accent: #5a6ff0;          /* periwinkle primary */
-  --accent-deep: #4656d9;
-  --accent-hover: #4a5fe6;
-  --warm: #f2b25e;            /* peach */
-  --good: #57ca86;           /* sage */
-  --bad: #ef8d9c;            /* rose */
-  --on-accent: #ffffff;
-  --border: rgba(43, 48, 80, 0.10);
-  --card: #ffffff;
-  --card-shadow: 0 10px 30px rgba(60, 70, 130, 0.10);
-  --clay-shadow: 0 14px 34px rgba(60, 70, 130, 0.16);
-  --nav-bg: rgba(244, 244, 247, 0.72);
-  --code-bg: #21243a;
-  --code-text: #eef0fb;
-  --side-active: rgba(90, 111, 240, 0.12);
-  --radius: 22px;
-}
-
-[data-theme="dark"] {
-  --bg: #14151c;
-  --bg-2: #0c0d12;
-  --text: #edeef6;
-  --text-2: #9ba0c0;
-  --accent: #8a9bff;
-  --accent-deep: #6f80f0;
-  --accent-hover: #9dabff;
-  --warm: #f2b25e;
-  --good: #63d093;
-  --bad: #f0929f;
-  --on-accent: #10121c;
-  --border: rgba(255, 255, 255, 0.12);
-  --card: #1c1e29;
-  --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-  --clay-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
-  --nav-bg: rgba(18, 19, 26, 0.72);
-  --code-bg: #12131b;
-  --code-text: #eef0fb;
-  --side-active: rgba(138, 155, 255, 0.18);
-}
+/* base.css — reset, typography, buttons, layout scaffolding, motion utilities.
+   Tokens live in tokens.css; this file only consumes them. */
 
 * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
 
@@ -78,33 +26,38 @@ body {
   max-width: 100%;
 }
 
-a { color: var(--accent); text-decoration: none; }
+a { color: var(--accent-deep); text-decoration: none; }
 a:hover { text-decoration: underline; }
 img { max-width: 100%; }
 
 :not(pre) > code {
   font-family: var(--mono); font-size: .86em;
   background: color-mix(in srgb, var(--accent) 12%, transparent);
-  color: color-mix(in srgb, var(--accent) 70%, var(--text));
+  color: color-mix(in srgb, var(--accent-deep) 76%, var(--text));
   padding: .12em .45em; border-radius: 7px;
   border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
-section { padding: clamp(4rem, 10vw, 8rem) 1.5rem; }
-.wrap { max-width: 1080px; margin: 0 auto; width: 100%; }
+section { padding: clamp(4rem, 10vw, 7.5rem) 1.5rem; position: relative; }
+.wrap { max-width: 1120px; margin: 0 auto; width: 100%; }
 .center { text-align: center; }
 .alt { background: color-mix(in srgb, var(--accent) 5%, var(--bg-2)); }
 .muted { color: var(--text-2); }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: var(--round);
   letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; font-weight: 800;
 }
+
 .eyebrow {
   font-family: var(--mono); font-size: .8rem; font-weight: 600;
   letter-spacing: .12em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 1rem;
+  color: var(--accent-deep); margin-bottom: 1rem;
 }
+
+.section-head { max-width: 680px; margin: 0 auto clamp(2.5rem, 5vw, 4rem); }
+.section-head h2 { font-size: clamp(2.1rem, 5vw, 3.3rem); }
+.section-head p { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-2); margin-top: 1rem; }
 
 /* Buttons — puffy clay pills */
 .btn {
@@ -121,8 +74,24 @@ h1, h2, h3 {
   box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 42%, transparent);
 }
 .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 14px 30px color-mix(in srgb, var(--accent) 52%, transparent); }
-.btn-ghost { background: var(--card); color: var(--accent); border-color: var(--border); box-shadow: var(--card-shadow); }
+.btn-ghost { background: var(--card); color: var(--accent-deep); border-color: var(--border); box-shadow: var(--card-shadow); }
 .btn-ghost:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); }
+
+/* Clay chips — small pill facts (feature belts, hero notes) */
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
+.chip {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font: 600 .85rem var(--round); color: var(--text);
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 980px; padding: .48rem 1rem;
+  box-shadow: var(--card-shadow);
+  transition: transform .25s cubic-bezier(.2, .7, .2, 1), box-shadow .25s;
+}
+.chip:hover { transform: translateY(-3px) rotate(-1deg); box-shadow: var(--clay-shadow); }
+.chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; }
+.chip .dot.d-warm { background: var(--warm); }
+.chip .dot.d-good { background: var(--good); }
+.chip .dot.d-rose { background: var(--bad); }
 
 /* Circular theme reveal (View Transitions API) — JS animates the clip-path */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
@@ -135,7 +104,14 @@ h1, h2, h3 {
 @keyframes tt-out { to   { transform: rotate(-170deg) scale(.4); opacity: 0; } }
 @keyframes tt-in  { from { transform: rotate(170deg)  scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
 
+/* Scroll reveal — elements get .reveal from js/reveal.js, .in when visible */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); will-change: opacity, transform; }
+.js .reveal.in { opacity: 1; transform: none; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+.js .hero-anim { opacity: 0; animation: fadeUp .9s cubic-bezier(.2, .7, .2, 1) forwards; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
+  .js .reveal, .js .hero-anim { opacity: 1 !important; transform: none !important; }
 }
