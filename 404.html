@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MacOn — Page not found</title>
+<title>MacOn · Page not found</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f5f5f7">
 <link rel="icon" type="image/png" href="macon-icon.png">
 <script>
   (function () {
@@ -16,22 +16,28 @@
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
     var tc = document.querySelector('meta[name="theme-color"]');
-    if (tc) tc.setAttribute('content', theme === 'dark' ? '#14151c' : '#f4f4f7');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#1c1c24' : '#f5f5f7');
   })();
 </script>
+<link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/notfound.css">
+<script type="importmap">{ "imports": { "three": "./js/vendor/three.module.min.js" } }</script>
+<script type="module" src="js/world/notfound.js"></script>
 </head>
 <body class="nf">
   <div>
-    <a href="/"><img src="macon-icon.png" alt="MacOn" class="nf-logo"></a>
+    <div class="nf-stage" id="nf-stage" role="img" aria-label="A confused googly-eyed clay blob">
+      <canvas></canvas>
+      <a href="/"><img src="macon-icon.png" alt="MacOn" class="nf-logo"></a>
+    </div>
     <p class="nf-code">ERROR 404</p>
     <h1>This page went off the grid.</h1>
-    <p>The link may be broken or the page may have moved. Let's get you back to something that builds.</p>
+    <p>The link may be broken or the page may have moved. The blob doesn't know either, poke it. Then let's get you back to something that builds.</p>
     <a href="/" class="btn btn-primary">Back to home</a>
     <div class="nf-links">
-      <a href="/docs">Docs</a>
-      <a href="/about">About</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
       <a href="https://github.com/alimusawa313/MacON">GitHub</a>
     </div>
   </div>

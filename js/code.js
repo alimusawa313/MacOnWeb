@@ -1,4 +1,4 @@
-/* code.js — pin the copy button outside the scrolling code box, and copy to clipboard */
+/* code.js, pin the copy button outside the scrolling code box, and copy to clipboard */
 (function () {
   function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
