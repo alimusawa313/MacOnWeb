@@ -1,4 +1,4 @@
-/* models.js — clay model builders for the MacOn world.
+/* models.js, clay model builders for the MacOn world.
    Dimensions and proportions mirror the apps' SceneKit machines
    (WorldScene.swift): the monitor Mac, the companion phone, the gear,
    the status seal, and the floating garnish. Every builder returns the
@@ -12,7 +12,7 @@ function box(w, h, d, r, material) {
   return new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 4, r), material);
 }
 
-/* ---------- The Mac — a clay monitor with a live screen ---------- */
+/* ---------- The Mac, a clay monitor with a live screen ---------- */
 
 export function buildMac(palette, binder) {
   const g = new THREE.Group();
@@ -37,7 +37,7 @@ export function buildMac(palette, binder) {
   lamp.position.set(2.4, 1.2, 0.58);
   g.add(lamp);
 
-  // Pipeline bars on the screen — the fill bar animates with the build.
+  // Pipeline bars on the screen, the fill bar animates with the build.
   const bars = [];
   const rows = [
     { y: 0.45, w: 4.6, token: 'soft-shade' },
@@ -69,7 +69,7 @@ export function buildMac(palette, binder) {
   return { group: g, lamp, fill: fillPivot, screen };
 }
 
-/* ---------- The phone — the companion, mid-air ---------- */
+/* ---------- The phone, the companion, mid-air ---------- */
 
 export function buildPhone(palette, binder) {
   const g = new THREE.Group();
@@ -81,7 +81,7 @@ export function buildPhone(palette, binder) {
   screen.position.z = 0.28;
   g.add(screen);
 
-  // Status banner — mirrors the Mac's build state.
+  // Status banner, mirrors the Mac's build state.
   const band = box(2.1, 0.9, 0.1, 0.28, clay(palette.good));
   band.position.set(0, 1.85, 0.42);
   g.add(band);
@@ -107,7 +107,7 @@ export function buildPhone(palette, binder) {
   return { group: g, band };
 }
 
-/* ---------- Gear — spins while the world builds ---------- */
+/* ---------- Gear, spins while the world builds ---------- */
 
 export function buildGear(palette, binder) {
   const g = new THREE.Group();
@@ -134,7 +134,7 @@ export function buildGear(palette, binder) {
   return { group: g };
 }
 
-/* ---------- Seal — the starburst "build passed" badge ---------- */
+/* ---------- Seal, the starburst "build passed" badge ---------- */
 
 export function buildSeal(palette, binder) {
   const g = new THREE.Group();
@@ -160,7 +160,7 @@ export function buildSeal(palette, binder) {
   return { group: g };
 }
 
-/* ---------- Garnish — orbs, blobs, rings ---------- */
+/* ---------- Garnish, orbs, blobs, rings ---------- */
 
 export function buildOrb(palette, binder, token, radius = 0.5) {
   const orb = new THREE.Mesh(new THREE.SphereGeometry(radius, 32, 24),
@@ -174,7 +174,7 @@ export function buildRing(palette, binder, token, radius = 0.62) {
   return ring;
 }
 
-/** A googly-eyed clay blob — the 404 mascot (Monster world energy). */
+/** A googly-eyed clay blob, the 404 mascot (Monster world energy). */
 export function buildBlob(palette, binder, token = 'accent', radius = 1.4) {
   const g = new THREE.Group();
   const body = new THREE.Mesh(new THREE.SphereGeometry(radius, 40, 30),
@@ -198,7 +198,7 @@ export function buildBlob(palette, binder, token = 'accent', radius = 1.4) {
   return { group: g, eyes };
 }
 
-/* ---------- The data string — Mac → phone, with a traveling bead ---------- */
+/* ---------- The data string, Mac → phone, with a traveling bead ---------- */
 
 export function buildString(from, to, palette, binder) {
   const g = new THREE.Group();

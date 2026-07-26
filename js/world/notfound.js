@@ -1,4 +1,4 @@
-/* notfound.js — the 404 mascot: a googly-eyed clay blob (Monster world energy)
+/* notfound.js, the 404 mascot: a googly-eyed clay blob (Monster world energy)
    that bobs, follows the cursor with its pupils, and wobbles when poked.
    Reuses the shared clay kit; degrades to the plain icon without WebGL. */
 

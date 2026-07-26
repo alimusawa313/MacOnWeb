@@ -1,4 +1,4 @@
-/* cards.css — puffy clay cards: feature grids, icon tiles, doc links, FAQ (shared) */
+/* cards.css, puffy clay cards: feature grids, icon tiles, doc links, FAQ (shared) */
 
 /* Feature grid */
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
@@ -18,7 +18,7 @@
   border-radius: 6px; padding: .15em .5em; margin-left: .5rem; vertical-align: middle;
 }
 
-/* Icon tiles — soft clay squares with an inset highlight */
+/* Icon tiles, soft clay squares with an inset highlight */
 .ico {
   width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center;
   background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 26%, var(--card)), color-mix(in srgb, var(--accent) 12%, var(--card)));

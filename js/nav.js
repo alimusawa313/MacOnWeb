@@ -1,4 +1,4 @@
-/* nav.js — scroll shadow on the sticky nav + mobile hamburger dropdown (shared) */
+/* nav.js, scroll shadow on the sticky nav + mobile hamburger dropdown (shared) */
 (function () {
   var nav = document.querySelector('nav');
   if (nav) {

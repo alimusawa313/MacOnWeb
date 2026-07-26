@@ -1,4 +1,4 @@
-/* base.css — reset, typography, buttons, layout scaffolding, motion utilities.
+/* base.css, reset, typography, buttons, layout scaffolding, motion utilities.
    Tokens live in tokens.css; this file only consumes them. */
 
 * { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
@@ -59,7 +59,7 @@ h1, h2, h3, h4 {
 .section-head h2 { font-size: clamp(2.1rem, 5vw, 3.3rem); }
 .section-head p { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-2); margin-top: 1rem; }
 
-/* Buttons — puffy clay pills */
+/* Buttons, puffy clay pills */
 .btn {
   display: inline-flex; align-items: center; gap: .5rem;
   font-family: var(--round);
@@ -77,7 +77,7 @@ h1, h2, h3, h4 {
 .btn-ghost { background: var(--card); color: var(--accent-deep); border-color: var(--border); box-shadow: var(--card-shadow); }
 .btn-ghost:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); }
 
-/* Clay chips — small pill facts (feature belts, hero notes) */
+/* Clay chips, small pill facts (feature belts, hero notes) */
 .chips { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
 .chip {
   display: inline-flex; align-items: center; gap: .45rem;
@@ -93,7 +93,7 @@ h1, h2, h3, h4 {
 .chip .dot.d-good { background: var(--good); }
 .chip .dot.d-rose { background: var(--bad); }
 
-/* Circular theme reveal (View Transitions API) — JS animates the clip-path */
+/* Circular theme reveal (View Transitions API), JS animates the clip-path */
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 ::view-transition-old(root) { z-index: 1; }
 ::view-transition-new(root) { z-index: 9999; }
@@ -104,7 +104,7 @@ h1, h2, h3, h4 {
 @keyframes tt-out { to   { transform: rotate(-170deg) scale(.4); opacity: 0; } }
 @keyframes tt-in  { from { transform: rotate(170deg)  scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
 
-/* Scroll reveal — elements get .reveal from js/reveal.js, .in when visible */
+/* Scroll reveal, elements get .reveal from js/reveal.js, .in when visible */
 .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); will-change: opacity, transform; }
 .js .reveal.in { opacity: 1; transform: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }

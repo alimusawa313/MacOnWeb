@@ -1,9 +1,9 @@
-/* home.js — landing page interactions: FAQ accordion, macon.yml code tabs,
+/* home.js, landing page interactions: FAQ accordion, macon.yml code tabs,
    companion phone-mock tabs, and the self-typing hero terminal. */
 (function () {
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ----- FAQ — CSS grid-rows animates open/close; JS just toggles the class.
+  // ----- FAQ, CSS grid-rows animates open/close; JS just toggles the class.
   document.querySelectorAll('.faq-item').forEach(function (item) {
     var q = item.querySelector('.faq-q');
     q.addEventListener('click', function () {
@@ -47,10 +47,10 @@
     if (caption) caption.textContent = tab.getAttribute('data-caption') || '';
   });
 
-  // ----- Hero terminal — types its script forever.
+  // ----- Hero terminal, types its script forever.
   var typer = document.getElementById('term-typer');
   if (typer) {
-    // [text, cssClass, mode] — mode "type" animates per-char, "print" appears at once.
+    // [text, cssClass, mode], mode "type" animates per-char, "print" appears at once.
     var SCRIPT = [
       ['$ ', 'p', 'print'],
       ['brew install alimusawa313/macon/macon', '', 'type'],
@@ -61,7 +61,7 @@
       ['\n  ✓ Xcode 26.6   ✓ fastlane   ✓ SwiftLint   ✓ Simulators\n', 'ok', 'print'],
       ['$ ', 'p', 'print'],
       ['macon watch --workspace acme --repo app --branch main --companion', '', 'type'],
-      ['\n👀 Watching acme/app — branch main.\n📱 Companion ready — pair code K7QP-2M9X-4RTD\n🔔 New commit a1b2c3d on main.\n──────── build a1b2c3d ────────\n', 'o', 'print'],
+      ['\n👀 Watching acme/app, branch main.\n📱 Companion ready, pair code K7QP-2M9X-4RTD\n🔔 New commit a1b2c3d on main.\n──────── build a1b2c3d ────────\n', 'o', 'print'],
       ['✅ Build passed. TestFlight upload done.\n', 'ok', 'print'],
       ['$ ', 'p', 'print']
     ];

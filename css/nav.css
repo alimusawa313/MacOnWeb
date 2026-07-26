@@ -1,4 +1,4 @@
-/* nav.css — sticky top navigation + mobile hamburger dropdown (shared) */
+/* nav.css, sticky top navigation + mobile hamburger dropdown (shared) */
 
 nav {
   position: sticky; top: 0; z-index: 100;
@@ -48,7 +48,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 [data-theme="light"] .moon { display: block; } [data-theme="light"] .sun { display: none; }
 [data-theme="dark"] .moon { display: none; }  [data-theme="dark"] .sun { display: block; }
 
-/* Hamburger — hidden on desktop; morphs ☰ ⇄ ✕ */
+/* Hamburger, hidden on desktop; morphs ☰ ⇄ ✕ */
 #menu-btn { display: none; position: relative; }
 #menu-btn svg {
   position: absolute; top: 50%; left: 50%; width: 17px; height: 17px;
@@ -66,7 +66,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .nav-links {
     position: fixed; top: 54px; left: 0; right: 0; flex-direction: column; gap: 0;
     /* Nearly opaque: backdrop blur isn't guaranteed on every device, and the
-       hero renders right underneath — text must not bleed through. */
+       hero renders right underneath, text must not bleed through. */
     background: color-mix(in srgb, var(--bg) 97%, transparent);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);

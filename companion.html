@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Companion · MacOn</title>
+<meta name="description" content="The free iPhone and iPad companion for your Mac: see and drive the screen, wake and unlock, a shortcuts deck, visual flows, a pocket code environment, and an AI that operates the Mac for you.">
+<meta name="theme-color" content="#f5f5f7">
+<link rel="icon" type="image/png" href="macon-icon.png">
+<link rel="apple-touch-icon" href="macon-icon.png">
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    var theme = 'light';
+    try {
+      var saved = localStorage.getItem('macon-theme');
+      theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#1c1c24' : '#f5f5f7');
+  })();
+</script>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/code.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/shots.css">
+<link rel="stylesheet" href="css/home.css">
+<script defer src="js/theme.js"></script>
+<script defer src="js/nav.js"></script>
+<script defer src="js/code.js"></script>
+<script defer src="js/reveal.js"></script>
+<script defer src="js/home.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <button class="icon-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a href="/" class="brand"><img src="macon-icon.png" alt="" class="brand-logo"><span class="wordmark">Mac<span class="on">On</span></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="companion.html" class="active">Companion</a>
+      <a href="mac.html">Mac &amp; CI</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+      <a href="https://github.com/alimusawa313/MacON">GitHub</a>
+    </div>
+    <div class="nav-tools">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<section class="center" style="padding-bottom:1rem">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">In your pocket</p>
+      <h2>The companion is a whole Mac, one tap away.</h2>
+      <p>A free iPhone and iPad app, built like a toy in a soft 3D clay world, that reaches all the way into the Mac. Pair once with a single-use code, and it keeps finding your machine.</p>
+    </div>
+    <div class="showcase" data-reveal="children">
+      <figure class="device device-phone tilt-l">
+        <div class="device-screen"><img src="assets/shots/companion-home.png" alt="Companion home, alive in 3D" loading="lazy"></div>
+        <figcaption>Home, alive in 3D</figcaption>
+      </figure>
+      <figure class="device device-phone feature">
+        <div class="device-screen"><img src="assets/shots/companion-grid.png" alt="Every companion feature in one grid" loading="lazy"></div>
+        <figcaption>Every feature, one grid</figcaption>
+      </figure>
+      <figure class="device device-phone tilt-r">
+        <div class="device-screen"><img src="assets/shots/companion-pair.png" alt="Pairing the companion with a Mac" loading="lazy"></div>
+        <figcaption>Pair once, stays found</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<section id="companion">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">In your pocket</p>
+      <h2>The companion is more than a dashboard.</h2>
+      <p>A free iPhone &amp; iPad app, built like a toy, in a soft 3D clay world, that reaches all the way into the Mac. Tap through what it does:</p>
+    </div>
+
+    <!-- Interactive phone mock -->
+    <div class="phone-stage" data-reveal>
+      <div class="phone-tabs" role="tablist">
+        <button class="ptab active" data-tab="builds" data-caption="Every pipeline as a live step timeline, watch, run, re-run, cancel, or edit it from the couch." role="tab" aria-selected="true">Builds</button>
+        <button class="ptab" data-tab="screen" data-caption="The Mac's screen, hardware-decoded H.264 up to 120 fps, with full cursor, keyboard and trackpad control." role="tab" aria-selected="false">Screen</button>
+        <button class="ptab" data-tab="deck" data-caption="A Stream Deck in your pocket: launch apps, fire shortcuts, run whole sequences with one tap." role="tab" aria-selected="false">Deck</button>
+        <button class="ptab" data-tab="flows" data-caption="Draw automations as clay blocks on swinging strings, the Mac runs them, you watch results live." role="tab" aria-selected="false">Flows</button>
+        <button class="ptab" data-tab="code" data-caption="A real dev setup: file explorer, editor tabs, zsh terminals and Xcode builds, from the phone." role="tab" aria-selected="false">Code</button>
+        <button class="ptab" data-tab="ai" data-caption="Chat with local models, or just speak, and let the agent drive the Mac, step by approved step." role="tab" aria-selected="false">AI</button>
+      </div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="pscreen active" data-screen="builds">
+            <div class="prow"><span class="pdot run"></span><div class="pgrow"><span class="pbar w1"></span><span class="pbar w2 pfill"></span></div></div>
+            <div class="prow"><span class="pdot ok"></span><div class="pgrow"><span class="pbar w3"></span><span class="pbar w2"></span></div></div>
+            <div class="prow"><span class="pdot ok"></span><div class="pgrow"><span class="pbar w1"></span></div></div>
+            <div class="prow"><span class="pdot bad"></span><div class="pgrow"><span class="pbar w2"></span></div></div>
+          </div>
+          <div class="pscreen" data-screen="screen">
+            <div class="pdesktop"><span class="pwindow pw1"></span><span class="pwindow pw2"></span><span class="pcursor"></span></div>
+            <div class="ptouchbar"><span>esc</span><span>⌘</span><span>⌥</span><span>▦</span><span>60fps</span></div>
+          </div>
+          <div class="pscreen" data-screen="deck">
+            <div class="pdeck">
+              <span class="pkey">🚀</span><span class="pkey k-warm">⌘K</span><span class="pkey k-good">🧪</span>
+              <span class="pkey k-rose">📦</span><span class="pkey">🖥️</span><span class="pkey k-warm">⏯️</span>
+              <span class="pkey k-good">🔨</span><span class="pkey k-rose">💬</span><span class="pkey">✨</span>
+            </div>
+          </div>
+          <div class="pscreen" data-screen="flows">
+            <div class="pflow">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path class="rope" d="M22 14 Q 30 42 44 44"/>
+                <path class="rope" d="M52 52 Q 38 74 26 78"/>
+                <path class="rope" d="M58 50 Q 76 60 80 68"/>
+              </svg>
+              <span class="pblock b1">Trigger</span>
+              <span class="pblock b2">AI</span>
+              <span class="pblock b3">Shell</span>
+              <span class="pblock b4">Notify</span>
+            </div>
+          </div>
+          <div class="pscreen" data-screen="code">
+            <div class="peditor">
+              <span class="pline l1"></span><span class="pline l2"></span><span class="pline l3"></span><span class="pline l4"></span><span class="pline l5"></span>
+            </div>
+            <div class="pterm"><span class="p">$</span> fastlane test
+<span class="ok">✓ 128 tests passed</span></div>
+          </div>
+          <div class="pscreen" data-screen="ai">
+            <div class="pchat">
+              <span class="pbubble me">Run the beta pipeline, then TestFlight it</span>
+              <span class="pbubble ai">Build passed ✅, uploading to TestFlight…</span>
+              <span class="pbubble ai"><span class="tdots"><i></i><i></i><i></i></span></span>
+              <span class="pmic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="phone-caption">Every pipeline as a live step timeline, watch, run, re-run, cancel, or edit it from the couch.</p>
+    </div>
+
+    <!-- Cluster 1: monitor & manage -->
+    <div class="cluster" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Monitor &amp; manage</p>
+        <h3>Builds, live, and yours to command.</h3>
+        <p>Every run is a step-by-step timeline with streaming logs, durations, and the raw console one tap away.</p>
+        <ul class="cluster-points">
+          <li><strong>Watch, run, re-run, cancel</strong> any pipeline, long-press a run for the quick menu.</li>
+          <li><strong>Add and edit pipelines</strong> with searchable repo &amp; branch dropdowns; tokens never leave the Mac.</li>
+          <li><strong>Push notifications</strong> when builds start, pass, or fail.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v10H4zM2 20h20"/><path d="M9 10l2 2 4-4"/></svg></div>
+          <h3>Step timelines</h3>
+          <p>Logs parsed exactly like the desktop app: each step timed and expandable, live over WebSocket, deduped as it streams.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <h3>The full editor, phone-sized</h3>
+          <p>Provider, workspace, repo, branch, poll vs webhook, pipeline file, timeouts, the entire pipeline editor works from the device.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 2: screen & control -->
+    <div class="cluster flip" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">See &amp; drive</p>
+        <h3>The Mac's screen, in your hand.</h3>
+        <p>Hardware-encoded H.264 out of the Mac, hardware-decoded on the phone, so 60 fps doesn't stutter, and 120 fps is real on ProMotion.</p>
+        <ul class="cluster-points">
+          <li><strong>Resolution &amp; frame rate, live:</strong> 360p → full, 30/60/120 fps, adaptive bitrate for weak links.</li>
+          <li><strong>Touchscreen or virtual trackpad</strong>, tap-to-click or laptop-style relative moves, with adjustable size, opacity and sensitivity.</li>
+          <li><strong>A Sidecar-style Touch Bar:</strong> sticky ⌘⌥⌃⇧ modifiers, spaces, Mission Control, media keys, volume.</li>
+          <li><strong>CompactOS:</strong> tap a Mac app and it refits to your device, big readable text, direct touch, window switcher, keyboard-aware.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+          <h3>CompactOS, Mac apps, phone-sized</h3>
+          <p>Streams just one window, resized to your screen and orientation. Your Mac's apps behave like phone apps, Xcode included.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg></div>
+          <h3>Capture that respects you</h3>
+          <p>Runs only while someone is watching, gated by an explicit toggle on the Mac, and macOS Screen Recording permission.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 3: automate -->
+    <div class="cluster" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Automate</p>
+        <h3>A deck of keys and a canvas of flows.</h3>
+        <p>Turn the device into a Stream Deck, then go further and wire up whole automations as clay blocks on physically swinging strings.</p>
+        <ul class="cluster-points">
+          <li><strong>Deck keys</strong> launch Mac apps (with their real icons), fire ⌘⌥⌃⇧ shortcuts, or run sequences, open Chrome → wait → type → return.</li>
+          <li><strong>Flows</strong> chain shell, HTTP, JSON, files, PDF, clipboard, screenshots and AI blocks; the Mac executes, you watch per-block results live.</li>
+          <li><strong>Describe it instead:</strong> type or dictate “every morning, fetch HN, summarize, speak it” and the AI composer wires the blocks for you.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg></div>
+          <h3>Shortcuts deck</h3>
+          <p>Fully customizable keys, labels, emoji, colors, with drag-rearrange and a fill-screen grid. Liquid-glass pretty, one-tap fast.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="10" r="3"/><circle cx="9" cy="19" r="3"/><path d="M8.5 8 15 9.5M16 12.5l-5 4.5"/></svg></div>
+          <h3>Flows with real physics</h3>
+          <p>The canvas ropes sag and swing (verlet simulation). Off by default on the Mac, flows run shell commands, so you opt in explicitly.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 4: code -->
+    <div class="cluster flip" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Code</p>
+        <h3>A pocket dev environment.</h3>
+        <p>The workspace is a mini IDE pointed at your Mac: browse the repo, edit with tabs, run real terminals, build with Xcode.</p>
+        <ul class="cluster-points">
+          <li><strong>File explorer + tabbed editor</strong>, type locally with zero latency, save syncs back to the Mac.</li>
+          <li><strong>Real zsh terminals</strong>, multiple tabs, ANSI colors, a key row for Ctrl-C/Tab/arrows, scrollback survives closing the panel.</li>
+          <li><strong>Xcode in the loop:</strong> pick a scheme, build, test, clean, right from the device.</li>
+          <li><strong>Code assistant</strong> with the open file as context and @-mentions for more, Claude with your key, or local Ollama models.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
+          <h3>Tabbed terminals</h3>
+          <p>Independent PTYs at the workspace root. Tail a build, poke a simulator, commit a fix, like VS Code's panel, on a phone.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <h3>Fix the pipeline from bed</h3>
+          <p>Build broke on a YAML typo? Open <code>macon.yml</code> in the workspace, fix it, save, re-run, without standing up.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 5: AI -->
+    <div class="cluster" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Talk to it</p>
+        <h3>An AI copilot for the whole Mac.</h3>
+        <p>Chat with models running on your own hardware, or hand the Mac a task out loud and watch it work.</p>
+        <ul class="cluster-points">
+          <li><strong>Local AI chat</strong> via Ollama on the Mac, private, on-device, with image and PDF attachments.</li>
+          <li><strong>Voice chat</strong> that speaks back (a Piper voice on the Mac, if installed), hands-free mode keeps the conversation going.</li>
+          <li><strong>Dictate-to-drive agent:</strong> it reads the screen and accessibility tree, plans steps, and drives the Mac, pausing for your approval in supervised mode.</li>
+          <li><strong>Web too:</strong> with Playwright installed, the agent automates a real browser alongside Mac apps.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
+          <h3>Voice agent, supervised</h3>
+          <p>Watch the live screen while the agent works underneath, approving each step, or let it run and barge in by talking over it.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4zM19 15l.9 2.3L22 18l-2.1.7L19 21l-.9-2.3L16 18l2.1-.7zM5 16l.7 1.8L7.5 18l-1.8.7L5 20.5l-.7-1.8L2.5 18l1.8-.2z"/></svg></div>
+          <h3>Bring your own AI</h3>
+          <p>Claude, OpenAI, Gemini, a local Ollama model, or any OpenAI-compatible endpoint. Keys live in the Mac's Keychain, never on the phone. All of it optional.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster 6: power & presence -->
+    <div class="cluster flip" data-reveal>
+      <div class="cluster-copy">
+        <p class="eyebrow">Power &amp; presence</p>
+        <h3>Wake it, unlock it, never lose it.</h3>
+        <p>The companion keeps the Mac reachable and brings it back to life from anywhere, every power an explicit, opt-in toggle.</p>
+        <ul class="cluster-points">
+          <li><strong>Stay awake &amp; wake:</strong> a power assertion keeps it reachable; a Wake-on-LAN magic packet raises it from sleep.</li>
+          <li><strong>Unlock from the phone:</strong> a themed 3D padlock page that animates open, typing a password stored only in the Mac's Keychain.</li>
+          <li><strong>Privacy curtain:</strong> a customizable “please don't touch” wall over the physical screen while you drive remotely, burn-in aware, hotkey-dismissed.</li>
+          <li><strong>Always connected:</strong> optional iCloud beacon re-points the phone when a tunnel URL rotates. Pair once, never re-type an address.</li>
+        </ul>
+      </div>
+      <div class="cluster-cards">
+        <div class="card">
+          <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M20 4l-2 2M6 18l-2 2"/></svg></div>
+          <h3>Wake &amp; unlock</h3>
+          <p>Works on the LAN or through a free Cloudflare tunnel, and over iCloud even when both are down. Honest about limits: FileVault preboot stays locked.</p>
+        </div>
+        <div class="card">
+          <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3.5"/><circle cx="5" cy="17" r="2.5"/><circle cx="19" cy="17" r="2.5"/><path d="M10 9.5 6.5 15M14 9.5l3.5 5.5"/></svg></div>
+          <h3>Fleet map</h3>
+          <p>Your Mac at the center, every paired device hanging on a swinging string, live glow for the active ones, drag them around for fun.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div>Mac<span style="color:var(--accent-deep)">On</span>, your Mac in your pocket.</div>
+    <div class="footer-links">
+      <a href="companion.html">Companion</a>
+      <a href="mac.html">Mac &amp; CI</a>
+      <a href="docs.html">Docs</a>
+      <a href="about.html">About</a>
+      <a href="https://github.com/alimusawa313/MacON">GitHub</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,8 +1,8 @@
-/* clay.js — the shared clay kit for the Three.js world.
+/* clay.js, the shared clay kit for the Three.js world.
    Reads the palette from the CSS design tokens (tokens.css) so the 3D scene
    re-tints itself with the site theme, builds the soft "studio" light rig and
    the matte clay materials that match the apps' SceneKit look
-   (Blinn, specular 0.85, low shininess — see WorldScene.swift). */
+   (Blinn, specular 0.85, low shininess, see WorldScene.swift). */
 
 import * as THREE from 'three';
 
@@ -22,7 +22,7 @@ export function readPalette() {
   return p;
 }
 
-/** Matte clay — the default material for everything in the world. */
+/** Matte clay, the default material for everything in the world. */
 export function clay(color) {
   return new THREE.MeshPhongMaterial({
     color: new THREE.Color(color),
@@ -31,7 +31,7 @@ export function clay(color) {
   });
 }
 
-/** Constant-lit surface (screens, indicator content) — unaffected by lights. */
+/** Constant-lit surface (screens, indicator content), unaffected by lights. */
 export function flat(color) {
   return new THREE.MeshBasicMaterial({ color: new THREE.Color(color) });
 }

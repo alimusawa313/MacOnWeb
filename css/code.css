@@ -1,4 +1,4 @@
-/* code.css — code blocks, copy buttons, and the animated terminal (shared) */
+/* code.css, code blocks, copy buttons, and the animated terminal (shared) */
 
 .code-wrap { position: relative; }
 .codeblock {
@@ -25,7 +25,7 @@
 
 .cmd-label { font: 600 .8rem var(--sans); color: var(--text-2); margin: 0 0 .5rem; }
 
-/* Terminal — a fake macOS window; home.js types into .term-typer */
+/* Terminal, a fake macOS window; home.js types into .term-typer */
 .terminal {
   max-width: 720px; margin: 0 auto;
   background: var(--code-bg); border-radius: 18px; overflow: hidden;

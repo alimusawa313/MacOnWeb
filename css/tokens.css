@@ -1,8 +1,8 @@
-/* tokens.css — the design tokens for the whole site (light + dark).
+/* tokens.css, the design tokens for the whole site (light + dark).
    Single source of truth for the clay "world" look, lifted from the apps'
    pastel WorldPalette (WorldStyle.swift): paper backdrop, ink text, and the
-   clay slots (primary / soft / warm / good / bad). Retheme the entire site —
-   including the Three.js hero — by editing this file only. */
+   clay slots (primary / soft / warm / good / bad). Retheme the entire site, 
+   including the Three.js hero, by editing this file only. */
 
 :root {
   /* Type */
@@ -16,9 +16,9 @@
   --text: #39406b;
   --text-2: #6b7196;
 
-  /* Clay slots — exact app pastel palette */
+  /* Clay slots, exact app pastel palette */
   --accent: #7d94f2;         /* primary   */
-  --accent-deep: #5c73d9;    /* primaryDeep — links, hover, small text */
+  --accent-deep: #5c73d9;    /* primaryDeep, links, hover, small text */
   --accent-hover: #6a82e8;
   --soft: #e3e6f7;
   --soft-shade: #bdc2e5;
@@ -44,7 +44,7 @@
   --radius: 22px;
   --radius-sm: 14px;
 
-  /* Three.js world — read by js/world/clay.js at runtime */
+  /* Three.js world, read by js/world/clay.js at runtime */
   --world-paper: #f5f5f7;
   --world-ambient: 1;          /* ambient multiplier */
   --world-shadow-opacity: 0.3; /* the fake shadow puddle */

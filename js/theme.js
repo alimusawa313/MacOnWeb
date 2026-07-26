@@ -1,4 +1,4 @@
-/* theme.js — dark/light toggle with a circular reveal (shared).
+/* theme.js, dark/light toggle with a circular reveal (shared).
    The 3D hero listens for the "macon:theme" event to re-tint itself. */
 (function () {
   var root = document.documentElement;

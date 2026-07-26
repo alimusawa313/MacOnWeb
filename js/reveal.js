@@ -1,4 +1,4 @@
-/* reveal.js — fade content up as it enters the viewport (shared).
+/* reveal.js, fade content up as it enters the viewport (shared).
    Anything with [data-reveal] gets revealed; add data-reveal to a container
    with value "children" to stagger its direct children instead. */
 (function () {

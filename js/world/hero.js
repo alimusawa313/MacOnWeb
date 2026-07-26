@@ -1,8 +1,8 @@
-/* hero.js — the landing hero: a live clay world where the Mac builds and the
+/* hero.js, the landing hero: a live clay world where the Mac builds and the
    phone watches. Composition, the build state machine, drag-to-spin, pointer
    parallax, click wobble, theme re-tinting, and responsive layout.
 
-   Progressive enhancement: no WebGL (or reduced motion) degrades gracefully —
+   Progressive enhancement: no WebGL (or reduced motion) degrades gracefully, 
    the .stage gets .no3d and the CSS fallback shows instead. */
 
 import * as THREE from 'three';
@@ -27,6 +27,7 @@ function init(stage) {
   const hint = stage.querySelector('.stage-hint');
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  stage.classList.add('ready');   // tells the fallback timer the 3D world booted
   let running = false, visible = true; // render-loop state (used by renderOnce during setup)
 
   const scene = new THREE.Scene();
