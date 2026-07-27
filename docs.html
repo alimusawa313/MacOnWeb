@@ -389,14 +389,14 @@ macon service install --config macon-export.json  <span class="c"># …as a serv
     <p>Exported without secrets, the file is config-only and safe to commit; supply token/secret values via the environment. Exported with secrets, it's self-contained, keep it private. The app's <strong>Import…</strong> loads a file back, so it also moves a setup between machines.</p>
 
     <h2 id="companion">Companion app (iPhone &amp; iPad)</h2>
-    <p>The <a href="https://github.com/alimusawa313/MacON_Companion">MacOn companion app</a> turns your phone or iPad into a remote for the runner: a <strong>home hub</strong> with your pipelines, live build logs, screen streaming, remote control, a Stream Deck-style shortcuts board, a flows canvas, a code workspace, and AI, handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
+    <p>The <a href="/companion">MacOn companion app</a> turns your phone or iPad into a remote for the runner: a <strong>home hub</strong> with your pipelines, live build logs, screen streaming, remote control, a Stream Deck-style shortcuts board, a flows canvas, a code workspace, and AI, handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
     <div class="codeblock"><button class="copy">Copy</button>macon watch --workspace acme --repo app --branch main --companion
 macon watch --config macon-export.json --companion    <span class="c"># with your app setup</span></div>
     <p>Builds show as a <strong>structured step timeline</strong>, each step with its own status, duration, and expandable output (parsed the same way the desktop app does it), with the raw log one tap away. <strong>Re-run</strong> and <strong>Cancel</strong> sit right in the build view and on a long-press of any run.</p>
     <p>Prefer the desktop app? Flip it on in <strong>Settings → Companion app</strong>, then <strong>Pair a device</strong> shows the address, code, and a QR to scan. Pairings are shared with the CLI, so a device works with either.</p>
     <div class="callout gh">
       <span>The app is a separate open-source project, pair it once and it reconnects on its own.</span>
-      <a class="btn-sm" href="https://github.com/alimusawa313/MacON_Companion">Companion on GitHub ↗</a>
+      <a class="btn-sm" href="https://testflight.apple.com/join/PgHKv8WC">Get the companion (TestFlight) ↗</a>
     </div>
 
     <h2 id="companion-pair">Pairing &amp; devices</h2>
