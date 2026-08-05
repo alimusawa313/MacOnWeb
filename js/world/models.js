@@ -223,3 +223,93 @@ export function buildString(from, to, palette, binder) {
 
   return { group: g, curve, bead };
 }
+
+/* ---------- Pricing: the house you're free in, the globe you pay for ---------- */
+
+/**
+ * A clay house with a lit window and a chimney — "free on your own network".
+ * The window is a flat material so it reads as glowing from inside; `windows`
+ * comes back so a poke can flash it.
+ */
+export function buildHouse(palette, binder) {
+  const g = new THREE.Group();
+
+  const walls = box(3.4, 2.5, 2.6, 0.28, binder.bind(clay(palette.accent), 'accent'));
+  walls.position.y = -0.25;
+  g.add(walls);
+
+  // Roof: a four-sided pyramid, which a cone with 4 radial segments gives for
+  // free — and it stays smooth-shaded like the rest of the clay.
+  const roof = new THREE.Mesh(
+    new THREE.ConeGeometry(2.7, 1.5, 4),
+    binder.bind(clay(palette['accent-deep']), 'accent-deep'));
+  roof.position.y = 1.75;
+  roof.rotation.y = Math.PI / 4;
+  g.add(roof);
+
+  const chimney = box(0.5, 1.1, 0.5, 0.12, binder.bind(clay(palette.slate), 'slate'));
+  chimney.position.set(1.0, 2.15, 0.1);
+  g.add(chimney);
+
+  // Two lit windows and a door on the front face.
+  const windows = [];
+  [[-0.75, 0.15], [0.75, 0.15]].forEach(([x, y]) => {
+    const w = box(0.82, 0.82, 0.12, 0.14, flat(palette.warm));
+    w.position.set(x, y, 1.34);
+    g.add(w);
+    windows.push(w);
+  });
+  const door = box(0.72, 1.15, 0.12, 0.16, binder.bind(clay(palette.slate), 'slate'));
+  door.position.set(0, -0.85, 1.34);
+  g.add(door);
+
+  return { group: g, windows };
+}
+
+/**
+ * A clay globe with a tilted ring and a little companion in orbit — "reaching
+ * it from anywhere". `orbit` spins; `land` are the continents, so a poke can
+ * bounce them.
+ */
+export function buildGlobe(palette, binder) {
+  const g = new THREE.Group();
+
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(1.55, 40, 30),
+    binder.bind(clay(palette.good), 'good'));
+  g.add(ball);
+
+  // Continents: a few flattened blobs sitting just proud of the surface, placed
+  // by angle so they wrap the ball instead of floating in front of it.
+  const land = [];
+  [[0.5, 0.35, 0.62], [-0.7, -0.2, 0.5], [0.1, -0.75, 0.44], [-0.3, 0.8, 0.4]]
+    .forEach(([az, el, size]) => {
+      const patch = new THREE.Mesh(new THREE.SphereGeometry(size, 22, 16),
+        binder.bind(clay(palette['good-deep']), 'good-deep'));
+      patch.scale.z = 0.35;
+      const r = 1.5;
+      patch.position.set(
+        Math.cos(el) * Math.sin(az) * r,
+        Math.sin(el) * r,
+        Math.cos(el) * Math.cos(az) * r);
+      patch.lookAt(0, 0, 0);
+      g.add(patch);
+      land.push(patch);
+    });
+
+  // The ring it sits in — tilted, so it reads as orbit rather than a halo.
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(2.25, 0.07, 14, 60),
+    binder.bind(clay(palette['soft-shade']), 'soft-shade'));
+  ring.rotation.set(Math.PI / 2.35, 0, 0.32);
+  g.add(ring);
+
+  // A companion riding that ring.
+  const orbit = new THREE.Group();
+  orbit.rotation.copy(ring.rotation);
+  const sat = box(0.42, 0.78, 0.14, 0.14, binder.bind(clay(palette.accent), 'accent'));
+  sat.position.set(2.25, 0, 0);
+  sat.rotation.z = Math.PI / 2;
+  orbit.add(sat);
+  g.add(orbit);
+
+  return { group: g, orbit, land };
+}

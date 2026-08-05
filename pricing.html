@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacOn · Pricing</title>
+<meta name="description" content="The macon CLI is free and open source. The Mac app is free. The iPhone and iPad companion is a free download: unlimited on your home network, 40 minutes a day of remote, and MacOn Pro for everything else.">
+<meta name="theme-color" content="#f5f5f7">
+<link rel="canonical" href="https://macon.devopsinstitute.id/pricing">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://macon.devopsinstitute.id/pricing">
+<meta property="og:title" content="MacOn · Pricing">
+<meta property="og:description" content="Free and unlimited on your home network. Away from home, 40 minutes a day free. MacOn Pro from $1.99, or $69.99 once.">
+<meta property="og:image" content="https://macon.devopsinstitute.id/macon-icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacOn · Pricing">
+<meta name="twitter:image" content="https://macon.devopsinstitute.id/macon-icon.png">
+<link rel="icon" type="image/png" href="macon-icon.png">
+<link rel="apple-touch-icon" href="macon-icon.png">
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    var theme = 'light';
+    try {
+      var saved = localStorage.getItem('macon-theme');
+      theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#1c1c24' : '#f5f5f7');
+  })();
+</script>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/pricing.css">
+<script type="importmap">{ "imports": { "three": "./js/vendor/three.module.min.js" } }</script>
+<script defer src="js/theme.js"></script>
+<script defer src="js/nav.js"></script>
+<script type="module" src="js/world/pricing.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <button class="icon-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a href="/" class="brand"><img src="macon-icon.png" alt="" class="brand-logo"><span>Mac<span class="on">On</span></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/companion">Companion</a>
+      <a href="/mac">Mac &amp; CI</a>
+      <a href="/pricing" class="active">Pricing</a>
+      <a href="/docs">Docs</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/alimusawa313/MaconKit">GitHub</a>
+    </div>
+    <div class="nav-tools">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <p class="eyebrow">Pricing</p>
+  <h1>Free where you live. Paid where you roam.</h1>
+  <p class="lead">The <code>macon</code> CLI is free and open source. The Mac app is free. The iPhone and iPad companion is a free download, and it only asks for money when you're away from your own network.</p>
+
+  <div class="pricing-stage" id="pricing-stage" role="img"
+       aria-label="A clay house beside a clay globe, with beads of light hopping from one to the other">
+    <canvas></canvas>
+  </div>
+
+  <div class="free-first">
+    <h2>What costs nothing, forever</h2>
+    <p>On your home Wi-Fi: the screen, control and CompactOS, unlimited. From anywhere at all: build monitoring, live logs, run and cancel, and push notifications. Two Flows, six Deck keys, three worlds, local AI chat, basic voice, and browsing your Mac's files. No account, no trial clock.</p>
+  </div>
+
+  <hr class="rule">
+
+  <h2>MacOn Pro</h2>
+  <p>Unlimited remote, the remote unlock, the AI agent that drives the Mac, the full code workspace, unlimited automations, and every world. One purchase covers your iPhone and your iPad.</p>
+
+  <div class="plans">
+    <div class="plan featured">
+      <span class="plan-badge">7-day free trial</span>
+      <p class="plan-name">Yearly</p>
+      <div class="plan-price"><b>$39.99</b><span class="plan-unit">per year</span></div>
+      <p class="plan-note">Works out at $3.33 a month. Cancel any time; if you cancel inside the trial you pay nothing.</p>
+    </div>
+    <div class="plan best">
+      <span class="plan-badge">Best value</span>
+      <p class="plan-name">Lifetime</p>
+      <div class="plan-price"><b>$69.99</b><s>$99.99</s></div>
+      <p class="plan-note">One payment, yours for good, every future feature included. The $69.99 is a launch price.</p>
+    </div>
+  </div>
+
+  <div class="plans-more">
+    <div class="plan-slim">
+      <h3>Monthly</h3>
+      <span class="amt">$4.99</span>
+      <p>Month to month.</p>
+    </div>
+    <div class="plan-slim">
+      <h3>Weekly</h3>
+      <span class="amt">$1.99</span>
+      <p>For one busy week away from the desk.</p>
+    </div>
+    <div class="plan-slim">
+      <h3>Day Pass</h3>
+      <span class="amt">$0.99</span>
+      <p>24 hours. No subscription, nothing to cancel.</p>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <h2>Free vs Pro, line by line</h2>
+  <div class="tablewrap">
+    <table class="compare">
+      <colgroup><col><col><col class="pro"></colgroup>
+      <thead>
+        <tr><th>What you get</th><th>Free</th><th>Pro</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Builds, live logs, run &amp; cancel, push</th><td class="yes">Unlimited, anywhere</td><td class="yes">Unlimited</td></tr>
+        <tr><th>Screen, control &amp; CompactOS on your Wi-Fi</th><td class="yes">Unlimited</td><td class="yes">Unlimited</td></tr>
+        <tr><th>Reaching your Mac from anywhere else</th><td class="cap">40 min / day</td><td class="yes">Unlimited</td></tr>
+        <tr><th>Stream quality</th><td>1080p · 60fps</td><td class="yes">Full res · 120fps</td></tr>
+        <tr><th>Unlock the Mac &amp; privacy curtain</th><td>—</td><td class="yes">Yes</td></tr>
+        <tr><th>The AI agent that drives your Mac</th><td>—</td><td class="yes">Yes</td></tr>
+        <tr><th>Local AI chat &amp; basic voice</th><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><th>Code workspace — edit, save, terminals, Xcode</th><td>Browse only</td><td class="yes">Full</td></tr>
+        <tr><th>Shortcuts Deck</th><td class="cap">6 keys</td><td class="yes">Unlimited + AI composer</td></tr>
+        <tr><th>Flows</th><td class="cap">2 flows</td><td class="yes">Unlimited + AI composer</td></tr>
+        <tr><th>Worlds (themes)</th><td class="cap">3 of 17</td><td class="yes">All 17</td></tr>
+        <tr><th>Paired Macs</th><td class="cap">1</td><td class="yes">Unlimited</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="rule">
+
+  <h2>Questions</h2>
+  <div class="faq">
+    <details>
+      <summary>Why is remote the thing you charge for?</summary>
+      <p>Because it's the honest line. On your own network your Mac and your phone talk directly and it costs us nothing, so it stays unlimited and free. Reaching your Mac from a café is the part with real work behind it, and it's the part worth paying for.</p>
+    </details>
+    <details>
+      <summary>What happens when the 40 minutes run out?</summary>
+      <p>The session ends cleanly, with a warning at five minutes and one minute left, never a frame cut mid-action. It comes back at midnight. Your Mac keeps the count, not your phone, so it's the same 40 minutes across every device you've paired.</p>
+    </details>
+    <details>
+      <summary>Is the Mac app or the CLI ever paid?</summary>
+      <p>No. The <code>macon</code> CLI is MIT-licensed and open source. The Mac app is free — it hosts the server your phone connects to and it's where you grant permissions, so putting it behind a price would make no sense.</p>
+    </details>
+    <details>
+      <summary>Does Pro cover both my iPhone and my iPad?</summary>
+      <p>Yes. It's one purchase on your Apple Account, and Restore Purchases brings it to any device signed into the same account.</p>
+    </details>
+    <details>
+      <summary>Can I buy it without the App Store?</summary>
+      <p>Yes — the checkout on this site is handled by Paddle, and your receipt carries a code that unlocks Pro in the app. Restoring a purchase you already own works either way.</p>
+    </details>
+  </div>
+
+  <div class="ctas">
+    <a href="https://testflight.apple.com/join/PgHKv8WC" class="btn btn-primary">Get the companion beta</a>
+    <a href="/downloads/MacOn.dmg" class="btn btn-ghost">Download the Mac app</a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>Mac<span style="color:var(--accent-deep)">On</span>, your Mac in your pocket.</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/companion">Companion</a>
+      <a href="/mac">Mac &amp; CI</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/docs">Docs</a>
+      <a href="https://github.com/alimusawa313/MaconKit">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

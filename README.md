@@ -1,6 +1,6 @@
 # maconweb
 
-The marketing + docs site for **[MacOn](https://github.com/alimusawa313/MacON)**, 
+The marketing + docs site for **[MacOn](https://github.com/alimusawa313/MaconKit)**, 
 local iOS CI for your Mac, with an iPhone/iPad companion that monitors, streams,
 controls, automates, codes, talks to AI, and wakes or unlocks it.
 
