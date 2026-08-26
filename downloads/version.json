@@ -1,5 +1,5 @@
 {
-  "version": "1.3.1",
+  "version": "1.3.2",
   "url": "https://macon.devopsinstitute.id/downloads/MacOn.dmg",
-  "notes": "Updates now finish on your terms: the new version installs quietly and waits behind a Restart button, instead of closing the app while you're in the middle of using it."
+  "notes": "A new version now tells you it's there, with what changed and a badge in Settings, instead of hiding in a corner. Appearance moved out of General into its own pane, so the worlds are somewhere you'd think to look."
 }
