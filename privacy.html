@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacOn · Privacy Policy</title>
+<meta name="description" content="MacOn has no account and no server. Your phone talks to your Mac directly, screen frames and keystrokes never reach us, and there is no analytics or tracking SDK in the app at all. Here is exactly where every piece of data goes.">
+<meta name="theme-color" content="#f5f5f7">
+<link rel="canonical" href="https://macon.devopsinstitute.id/privacy">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://macon.devopsinstitute.id/privacy">
+<meta property="og:title" content="MacOn · Privacy Policy">
+<meta property="og:description" content="No account, no server, no analytics. Your phone talks to your Mac directly. Here is where every piece of data actually goes.">
+<meta property="og:image" content="https://macon.devopsinstitute.id/macon-icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacOn · Privacy Policy">
+<meta name="twitter:image" content="https://macon.devopsinstitute.id/macon-icon.png">
+<link rel="icon" type="image/png" href="/macon-icon.png">
+<link rel="apple-touch-icon" href="/macon-icon.png">
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    var theme = 'light';
+    try {
+      var saved = localStorage.getItem('macon-theme');
+      theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#1c1c24' : '#f5f5f7');
+  })();
+</script>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/legal.css">
+<script defer src="/js/theme.js"></script>
+<script defer src="/js/nav.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <button class="icon-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a href="/" class="brand"><img src="/macon-icon.png" alt="" class="brand-logo"><span>Mac<span class="on">On</span></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/companion">Companion</a>
+      <a href="/mac">Mac &amp; CI</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/docs">Docs</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/alimusawa313/MaconKit">GitHub</a>
+    </div>
+    <div class="nav-tools">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <p class="eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="lead">MacOn is a remote control for your own Mac, so it handles some of the most private data there is: your screen, your keystrokes, your files. Here is exactly where all of it goes, which is mostly nowhere.</p>
+  <p class="updated">Last updated 28 August 2026</p>
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <p><strong>There is no MacOn account and no MacOn server.</strong> You never give us an email address, and there is nothing for you to sign into.</p>
+    <p>Your phone talks to your Mac <strong>directly</strong>. Screen frames, keystrokes, cursor moves, clipboard contents, files, terminal output and build logs travel between your two devices and stop there. They never reach us, because there is no "us" in the middle to reach.</p>
+    <p>The app contains <strong>no analytics, no crash reporting, no advertising and no tracking SDK of any kind</strong>. Not a disabled one, not a "we only collect anonymous usage" one. None.</p>
+    <p>The only outside parties involved are Apple and RevenueCat, for handling the purchase, plus whichever optional services you switch on yourself.</p>
+  </div>
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#collect">What we collect</a></li>
+      <li><a href="#where">Where each thing lives</a></li>
+      <li><a href="#connection">The connection to your Mac</a></li>
+      <li><a href="#icloud">iCloud, if you turn it on</a></li>
+      <li><a href="#push">Notifications</a></li>
+      <li><a href="#ai">AI, and what leaves your Mac</a></li>
+      <li><a href="#purchases">Purchases</a></li>
+      <li><a href="#tracking">Tracking and analytics</a></li>
+      <li><a href="#site">This website</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <hr class="rule">
+
+  <h2 id="collect">1. What we collect</h2>
+  <p>Nothing, on any server we operate, because we do not operate one. To be specific, MacOn never sends us your name, your email address, your phone number, your location, your contacts, your photos, your device identifier, or a log of what you did in the app. There is no sign up step because there is no account.</p>
+  <p>The one exception is the purchase, and even that is anonymous. When you buy MacOn Pro, our payments provider RevenueCat records that <em>an anonymous customer</em> bought a product. We use it to check whether the app should unlock, and to see how many people bought which plan. It carries no name and no email from us. Details in <a href="#purchases">section 7</a>.</p>
+  <div class="aside">
+    <p>MacOn is designed this way for a practical reason, not just a principled one. A remote control for your Mac is a terrible thing to trust to somebody else's server, so we built it not to need one. It also means we cannot leak, sell, or be subpoenaed for data we never had.</p>
+  </div>
+
+  <h2 id="where">2. Where each thing lives</h2>
+  <p>Every piece of data MacOn touches, and who can actually see it:</p>
+  <div class="tablewrap">
+    <table class="data">
+      <thead><tr><th>Data</th><th>Where it lives</th><th>Who can see it</th></tr></thead>
+      <tbody>
+        <tr><th>Screen frames, cursor, keystrokes, clipboard</th><td>In flight between your phone and your Mac only. Never written to a server, never stored by us</td><td class="never">You only</td></tr>
+        <tr><th>Files you browse, edit and save</th><td>On your Mac, where they already were</td><td class="never">You only</td></tr>
+        <tr><th>Terminal input and output</th><td>In flight between the two devices</td><td class="never">You only</td></tr>
+        <tr><th>Build logs and pipeline config</th><td>Your Mac, and your own repository</td><td class="never">You only</td></tr>
+        <tr><th>Pairing code, device token</th><td>Keychain on your phone, config file on your Mac</td><td class="never">You only</td></tr>
+        <tr><th>Repository credentials, AI keys, push key</th><td>Keychain on your Mac</td><td class="never">You only</td></tr>
+        <tr><th>Settings, themes, Deck, Flows, the daily meter count</th><td>On the device, in standard app storage</td><td class="never">You only</td></tr>
+        <tr><th>Reach beacon: tunnel URL, LAN address, port, status, power state</th><td>Your own private iCloud database, and only if you turn iCloud on</td><td>You, through your Apple&nbsp;ID</td></tr>
+        <tr><th>Push device token</th><td>Your phone, then your Mac, then Apple's push service</td><td>You and Apple</td></tr>
+        <tr><th>AI prompts, and agent screenshots</th><td>Your Mac if the model is local. Otherwise the provider you chose</td><td>You, and that provider</td></tr>
+        <tr><th>Purchase record and anonymous customer id</th><td>Apple, and RevenueCat</td><td>Apple, RevenueCat, and us as a total</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="connection">3. The connection to your Mac</h2>
+  <p>On your own network, the companion connects straight to the Mac app over your local Wi-Fi. Nothing leaves your home or office, and no third party is involved at any point.</p>
+  <p>From outside your network, MacOn's built in option is a <strong>Cloudflare quick tunnel</strong>: your Mac asks Cloudflare for a temporary public address, and your phone reaches the Mac through it over TLS. That means your traffic passes through Cloudflare's network in transit, and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's privacy policy</a> applies to that leg. We do not run the tunnel, we cannot read it, and we never see the address.</p>
+  <p>The address alone grants nothing. Pairing requires a one time code shown on the Mac, and every request after that requires a device token. Tokens are stored in the Keychain and you can revoke a device from the Mac at any time.</p>
+  <div class="aside">
+    <p>If you would rather not involve Cloudflare, you do not have to. Point the companion at any address your Mac is reachable on, such as a VPN, Tailscale, or a port you forward yourself, and the tunnel feature stays off.</p>
+  </div>
+
+  <h2 id="icloud">4. iCloud, if you turn it on</h2>
+  <p>Off by default. When you switch it on, the Mac publishes a small <strong>beacon</strong> record to <em>your own private iCloud database</em> in the container <code>iCloud.com.karar.MacON</code>. The beacon says how to reach the Mac (its current tunnel URL, its local address and port), plus a compact status and whether the Mac is awake. A paired device signed into the same Apple ID reads it and re points itself, which is what lets your phone find the Mac again after a tunnel address rotates. The device can also write a small command record, which is how wake and unlock can arrive over iCloud instead of over the local network.</p>
+  <p>This is a private CloudKit database belonging to your Apple ID. We have no access to it. That is Apple's architecture rather than a promise we are making about our own conduct, which is the strongest kind. Turning the toggle off stops the publishing, and the records go away with the container if you delete the app's iCloud data in your Apple ID settings.</p>
+
+  <h2 id="push">5. Notifications</h2>
+  <p>Build notifications are unusual in that <strong>your own Mac is the push provider</strong>. There is no notification server of ours in the middle, because you supply your own Apple push key and the Mac app talks to Apple directly.</p>
+  <p>Your phone gets a push token from Apple and registers it with your Mac. Your Mac keeps that token locally and uses it to send alerts through Apple's Push Notification service when a build starts, passes or fails. The token never reaches us. The notification content is a build name and a status.</p>
+
+  <h2 id="ai">6. AI, and what leaves your Mac</h2>
+  <p>This is the section to read if you use the AI features on a Mac with anything sensitive on screen.</p>
+  <ul>
+    <li><strong>Local models, through Ollama.</strong> The model runs on your Mac. Your prompts, your code and your screen never leave the machine. This is the default and the private option.</li>
+    <li><strong>Cloud models, with your own key.</strong> If you add a key for Anthropic, OpenAI, Google, or any OpenAI compatible endpoint, the call is made <em>from your Mac</em> straight to that provider. Your key is stored in your Mac's Keychain and never sent to us. What you send is covered by that provider's privacy policy, not this one, and we have no visibility into it.</li>
+    <li><strong>The agent that drives your Mac</strong> works by looking at the screen. That means screenshots of your Mac, whatever happens to be on it, are sent to the model you selected. If your screen has client data, credentials or anything else you would not paste into a chat box, use a local model for the agent.</li>
+    <li><strong>Voice.</strong> Speech to text and the spoken replies use on device or local components, and the same rule applies to whatever model handles the conversation.</li>
+  </ul>
+
+  <h2 id="purchases">7. Purchases</h2>
+  <p>Payment is handled entirely by <strong>Apple</strong> when you buy in the app. We never see, receive or store a card number or a billing address.</p>
+  <p>We use <strong>RevenueCat</strong> to check what you bought and whether it is still valid, which is what makes Restore Purchases work across your devices. RevenueCat records a purchase against an anonymous customer id that the app generates, together with the receipt from Apple and basic technical facts such as country, app version and platform. It does not receive your name or email address from us. Their policy is at <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.</p>
+  <p>If you buy on this website instead, <strong>Paddle</strong> acts as the merchant of record. They collect what a seller has to collect to take a payment and issue an invoice, including your email and billing country, under <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">their privacy policy</a>. The receipt carries a link code, which is the anonymous customer id, and pasting it into the app is what moves the entitlement onto your device. The code identifies a purchase, not a person.</p>
+  <p>We can see totals: how many trials started, how many people are on the yearly plan, how much came in this month. We cannot see who you are.</p>
+
+  <h2 id="tracking">8. Tracking and analytics</h2>
+  <p>None. There is no analytics SDK, no crash reporter, no advertising framework and no attribution framework in the app. We do not build a profile of you, we do not track you across apps or websites, we have nothing to share with data brokers, and MacOn never asks for permission to track because it has no use for it.</p>
+  <p>The App Store privacy label reflects this: purchase history and an anonymous identifier, used only to make the app work, and no data used to track you.</p>
+
+  <h2 id="site">9. This website</h2>
+  <p>The site is static files served by GitHub Pages. We set no cookies and run no analytics. There is no CDN request either: the 3D world's Three.js library is committed into this repository rather than loaded from someone else's server, and the type is your own system font, so visiting a page does not tell any third party you were here.</p>
+  <p>The only thing the site stores in your browser is your light or dark preference, under the key <code>macon-theme</code> in localStorage. Clear your site data and it is gone. GitHub, as the host, processes server request logs including IP addresses under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">their privacy statement</a>.</p>
+  <p>If web checkout is live, the checkout page loads Paddle's script so it can take a payment. That page is the only place on this site where a third party script runs, and it is only there because a card form has to be.</p>
+
+  <h2 id="children">10. Children</h2>
+  <p>MacOn is a developer tool. It is not directed at children, and we do not knowingly collect anything from anyone, of any age, because we do not collect anything at all.</p>
+
+  <h2 id="rights">11. Your rights</h2>
+  <p>Depending on where you live you may have the right to see, correct, export or delete the personal data a company holds about you, and to object to its processing. This is where our answer is unusual: <strong>we hold nothing that identifies you</strong>, so in almost every case there is nothing to hand over and nothing to delete.</p>
+  <p>The exceptions, and what to do about them:</p>
+  <ul>
+    <li><strong>Everything on your devices</strong> is yours already. Delete the app, or delete its data, and it is gone. Revoke a paired device from the Mac to cut its access.</li>
+    <li><strong>The iCloud beacon</strong> is in your own iCloud account. Turn the feature off, or remove the app's iCloud data from your Apple ID settings.</li>
+    <li><strong>The RevenueCat purchase record.</strong> Email us the link code from the app and we will ask RevenueCat to delete it. Be aware this is the record that proves you paid, so deleting it means Restore Purchases will no longer bring Pro back to a new device.</li>
+    <li><strong>Apple's and Paddle's records</strong> of the transaction are theirs, kept for tax and accounting reasons, and you would need to ask them.</li>
+  </ul>
+  <p>No request costs anything and we do not need to verify your identity, since we have no identity on file to verify against.</p>
+
+  <h2 id="changes">12. Changes</h2>
+  <p>If this policy changes, the new version goes up on this page with a new date at the top, and a change that materially affects you will be called out in the app's release notes. If we ever did add something that collects data, it would be described here first, and it would be off until you turned it on.</p>
+
+  <h2 id="contact">13. Contact</h2>
+  <p>MacOn is made by <strong>Ali Haidar</strong>, an independent developer, who is the data controller for the little that exists.</p>
+  <ul>
+    <li>Email: <a href="mailto:musawahaidar123@gmail.com">musawahaidar123@gmail.com</a></li>
+    <li>GitHub: <a href="https://github.com/alimusawa313/MaconKit/issues">github.com/alimusawa313/MaconKit/issues</a></li>
+    <li>LinkedIn: <a href="https://www.linkedin.com/in/ali-haidar-8484b8208" target="_blank" rel="noopener">Ali Haidar</a></li>
+  </ul>
+
+  <div class="ctas">
+    <a href="/terms" class="btn btn-primary">Read the terms of use</a>
+    <a href="/docs" class="btn btn-ghost">How the security model works</a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>Mac<span style="color:var(--accent-deep)">On</span>, your Mac in your pocket.</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/companion">Companion</a>
+      <a href="/mac">Mac &amp; CI</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/docs">Docs</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://github.com/alimusawa313/MaconKit">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

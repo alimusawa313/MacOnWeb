@@ -1,0 +1,111 @@
+/* legal.css, the Terms / Privacy / Pro article pages.
+   Same 720px column as about.css and pricing.css so every article page starts
+   and ends in the same place. Nothing here declares a colour of its own; it all
+   comes from tokens.css. */
+
+main { max-width: 720px; margin: 0 auto; padding: clamp(3rem, 8vw, 5.5rem) 1.5rem 5rem; }
+main h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.06; }
+main h2 {
+  font-size: clamp(1.25rem, 3vw, 1.6rem); letter-spacing: -0.015em;
+  margin: 2.6rem 0 .7rem; scroll-margin-top: 4.5rem;
+}
+main h3 { font-size: 1.06rem; margin: 1.5rem 0 .4rem; }
+main p, main li { color: color-mix(in srgb, var(--text) 82%, var(--text-2)); font-size: 1.02rem; }
+main p { margin: 0 0 .95rem; }
+main p strong, main li strong { color: var(--text); font-weight: 600; }
+main ul, main ol { margin: 0 0 1rem; padding-left: 1.3rem; }
+main li { margin-bottom: .45rem; line-height: 1.6; }
+
+.lead { font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--text-2); margin-top: 1.2rem; max-width: 54ch; }
+.rule { height: 1px; background: var(--border); border: 0; margin: 2.8rem 0; }
+.ctas { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
+
+/* "Last updated", under the lead. */
+.updated { font: 600 .8rem var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--text-2); margin-top: 1.1rem; }
+
+/* The plain-language box at the top. Every legal page opens with one, because
+   nobody reads clause 12 and the honest summary is the part that matters. */
+.summary {
+  margin: 1.8rem 0 .4rem; padding: 1.2rem 1.35rem;
+  background: color-mix(in srgb, var(--good) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--good) 32%, transparent);
+  border-radius: var(--radius);
+}
+.summary h2 { margin: 0 0 .5rem; font-size: 1.1rem; }
+.summary p { margin: 0 0 .6rem; color: var(--text-2); font-size: .97rem; }
+.summary p:last-child { margin-bottom: 0; }
+
+/* A quieter variant for asides mid-document. */
+.aside {
+  margin: 1.3rem 0; padding: 1rem 1.2rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
+  border-radius: var(--radius-sm);
+}
+.aside p { margin: 0; color: var(--text-2); font-size: .95rem; }
+.aside p + p { margin-top: .6rem; }
+
+/* Warm variant, for the bits with real consequences. */
+.aside.warn { border-left-color: var(--warm-deep); }
+
+/* Contents, one column of links to the h2s. */
+.toc {
+  margin: 1.6rem 0 0; padding: 1.1rem 1.3rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--card-shadow);
+}
+.toc h2 { margin: 0 0 .6rem; font: 600 .78rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); }
+.toc ol { margin: 0; padding-left: 1.15rem; columns: 2; column-gap: 1.6rem; }
+.toc li { margin-bottom: .3rem; font-size: .93rem; }
+.toc a { color: var(--accent-deep); }
+
+/* Data tables. Scroll inside themselves rather than widening the page. */
+.tablewrap { overflow-x: auto; margin: 1.3rem 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+table.data { width: 100%; border-collapse: collapse; min-width: 34rem; }
+table.data th, table.data td { padding: .75rem .95rem; text-align: left; border-bottom: 1px solid var(--border); font-size: .92rem; vertical-align: top; }
+table.data thead th { font: 600 .74rem var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--text-2); }
+table.data tbody tr:last-child th, table.data tbody tr:last-child td { border-bottom: 0; }
+table.data tbody th { font-weight: 600; color: var(--text); }
+table.data td { color: var(--text-2); }
+table.data .never { color: var(--good-deep); font-weight: 600; }
+
+/* Definition rows, for the billing facts. */
+.facts { margin: 1.2rem 0; display: grid; gap: .55rem; }
+.fact {
+  display: grid; grid-template-columns: 9.5rem 1fr; gap: .2rem 1rem;
+  padding: .8rem 1rem; background: var(--card);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+}
+.fact dt { font: 600 .82rem var(--mono); letter-spacing: .03em; text-transform: uppercase; color: var(--accent-deep); padding-top: .1rem; }
+.fact dd { margin: 0; color: var(--text-2); font-size: .95rem; }
+
+@media (max-width: 620px) {
+  .toc ol { columns: 1; }
+  .fact { grid-template-columns: 1fr; }
+  .fact dt { padding-top: 0; }
+}
+
+/* The link code on /pro: the RevenueCat customer id the app hands the checkout,
+   which is also what a web buyer pastes back into "Bought on the web?".
+   Hidden until the URL actually carries one. */
+.linkcode { margin: 1.3rem 0; }
+.linkcode[hidden] { display: none; }
+.linkcode-row {
+  display: flex; gap: .6rem; align-items: stretch; flex-wrap: wrap;
+  margin-top: .5rem;
+}
+.linkcode code {
+  flex: 1 1 16rem; min-width: 0;
+  font-family: var(--mono); font-size: .88rem;
+  background: var(--code-bg); color: var(--code-text);
+  border: 0; padding: .7rem .9rem; border-radius: var(--radius-sm);
+  overflow-x: auto; white-space: nowrap; display: block;
+}
+.linkcode button { flex: 0 0 auto; }
+
+/* The plan the app asked us to preselect gets the accent ring. */
+.plan.chosen, .plan-slim.chosen {
+  border-color: color-mix(in srgb, var(--accent) 62%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent), var(--card-shadow);
+}
+.plan-slim.chosen { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
