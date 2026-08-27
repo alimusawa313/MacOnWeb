@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacOn · Terms of Use</title>
+<meta name="description" content="The terms for using MacOn: the free CLI and Mac app, the free companion download, and the optional MacOn Pro unlock. Plain language first, then the detail.">
+<meta name="theme-color" content="#f5f5f7">
+<link rel="canonical" href="https://macon.devopsinstitute.id/terms">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://macon.devopsinstitute.id/terms">
+<meta property="og:title" content="MacOn · Terms of Use">
+<meta property="og:description" content="The rules for using MacOn, including how MacOn Pro is billed, renewed and cancelled.">
+<meta property="og:image" content="https://macon.devopsinstitute.id/macon-icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MacOn · Terms of Use">
+<meta name="twitter:image" content="https://macon.devopsinstitute.id/macon-icon.png">
+<link rel="icon" type="image/png" href="/macon-icon.png">
+<link rel="apple-touch-icon" href="/macon-icon.png">
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    var theme = 'light';
+    try {
+      var saved = localStorage.getItem('macon-theme');
+      theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', theme === 'dark' ? '#1c1c24' : '#f5f5f7');
+  })();
+</script>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/legal.css">
+<script defer src="/js/theme.js"></script>
+<script defer src="/js/nav.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <button class="icon-btn" id="menu-btn" aria-label="Menu" aria-expanded="false">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a href="/" class="brand"><img src="/macon-icon.png" alt="" class="brand-logo"><span>Mac<span class="on">On</span></span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/companion">Companion</a>
+      <a href="/mac">Mac &amp; CI</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/docs">Docs</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/alimusawa313/MaconKit">GitHub</a>
+    </div>
+    <div class="nav-tools">
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <p class="eyebrow">Legal</p>
+  <h1>Terms of Use</h1>
+  <p class="lead">The rules for using MacOn. This doubles as the end user licence agreement for the apps, so it is longer than it is exciting. The short version is right below.</p>
+  <p class="updated">Last updated 28 August 2026</p>
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <p>The <code>macon</code> CLI is free and open source under the MIT licence. The Mac app is free. The iPhone and iPad companion is a free download with an optional paid unlock called <strong>MacOn Pro</strong>.</p>
+    <p>Subscriptions renew until you cancel them, and you cancel them in the App Store, not with us. Lifetime and the Day Pass are one off purchases with nothing to cancel.</p>
+    <p>MacOn drives <em>your own</em> Mac. It can type, click, run terminal commands, save files and unlock the machine, so you are responsible for what you point it at and for what you approve it to do.</p>
+    <p>We run no server and hold no account for you. There is nothing for us to lose, leak, or sell.</p>
+  </div>
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#who">Who this is with</a></li>
+      <li><a href="#what">What MacOn is</a></li>
+      <li><a href="#licence">Your licence</a></li>
+      <li><a href="#responsible">What you are responsible for</a></li>
+      <li><a href="#permissions">Permissions on your Mac</a></li>
+      <li><a href="#free-pro">Free, Pro, and the limits</a></li>
+      <li><a href="#billing">Prices, billing and renewal</a></li>
+      <li><a href="#refunds">Refunds</a></li>
+      <li><a href="#third-party">Services you may switch on</a></li>
+      <li><a href="#support">Support and updates</a></li>
+      <li><a href="#warranty">No warranty</a></li>
+      <li><a href="#liability">Limits on liability</a></li>
+      <li><a href="#breach">If you break these terms</a></li>
+      <li><a href="#changes">Changes to these terms</a></li>
+      <li><a href="#export">Legal compliance</a></li>
+      <li><a href="#law">Governing law</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <hr class="rule">
+
+  <h2 id="who">1. Who this is with</h2>
+  <p>MacOn is made by <strong>Ali Haidar</strong>, an independent developer. In this document "we" and "us" mean that one person, and "you" means whoever is using MacOn.</p>
+  <p>This agreement is between you and us. <strong>It is not with Apple.</strong> Apple is not a party to it, has no obligation to support MacOn, and is not responsible for MacOn or for any claim you might have about it. Apple and its subsidiaries are third party beneficiaries of these terms and may enforce them against you.</p>
+  <p>By downloading or using MacOn you accept these terms. If you do not accept them, do not use it.</p>
+
+  <h2 id="what">2. What MacOn is</h2>
+  <p>MacOn comes in three parts, and they are not all licensed the same way:</p>
+  <ul>
+    <li>The <strong><code>macon</code> CLI and MaconKit</strong>. Free and open source under the MIT licence. That licence governs them, and nothing in this document takes away a right the MIT licence gives you.</li>
+    <li>The <strong>Mac app</strong>. Free to download and use. It runs the local CI, and it hosts the server the companion connects to.</li>
+    <li>The <strong>iPhone and iPad companion</strong>. Free to download, with an optional in app purchase called MacOn Pro. This is the only part that ever asks for money.</li>
+  </ul>
+  <p>What it does: it watches a Git repository and runs build pipelines on your Mac, and it lets a paired phone or iPad monitor those builds, see and control the Mac's screen, wake and unlock the Mac, run automations, edit code, and talk to AI models you choose.</p>
+
+  <h2 id="licence">3. Your licence</h2>
+  <p>For the Mac app and the companion we give you a personal, non exclusive, non transferable licence to install and use them on devices you own or control, as allowed by the Apple Media Services usage rules. Where Family Sharing is enabled for a purchase, the people in your family group are covered by it too.</p>
+  <p>You may not sell, rent, sublicense or redistribute the Mac app or the companion, and you may not work around the Pro unlock and hand the result to other people. You may not use them to build a competing product out of decompiled parts. Ordinary personal inspection, and anything the law in your country allows regardless of a contract, is fine.</p>
+  <p>We keep all rights we do not explicitly grant here, including the MacOn name, the icon, and the clay artwork.</p>
+
+  <h2 id="responsible">4. What you are responsible for</h2>
+  <p>This is the part worth reading twice, because MacOn is unusually powerful for a phone app.</p>
+  <p>Once paired, the companion can see your Mac's screen, move the cursor, type, open applications, run shell commands in a real terminal, read and write files, run build pipelines, and, with your permission, wake the Mac and enter your login password to unlock it.</p>
+  <ul>
+    <li>Keep your <strong>pairing codes and device tokens private</strong>. Anyone holding a valid device token can reach your Mac the same way you can.</li>
+    <li>Only point MacOn at <strong>Macs and repositories you are entitled to use</strong>. If the Mac belongs to an employer or a client, get their permission first.</li>
+    <li>You are responsible for <strong>everything that runs</strong>, including commands in your own pipelines and flows, and including any step you approve an AI agent to take. The agent asks before it acts; approving is your decision, and the outcome is yours.</li>
+    <li>Do not use MacOn to break the law, to get into a machine you do not have permission to use, or to breach someone else's terms.</li>
+    <li>Back up anything you care about. A remote session that saves the wrong file is still a save.</li>
+  </ul>
+
+  <h2 id="permissions">5. Permissions on your Mac</h2>
+  <p>The Mac app asks for macOS permissions such as Screen Recording, Accessibility and Automation, and it needs them for the screen, control and automation features to work at all. You grant those yourself in System Settings, and you can take them back in System Settings at any time. We cannot grant them for you and we cannot use them for anything beyond the features they power.</p>
+
+  <h2 id="free-pro">6. Free, Pro, and the limits</h2>
+  <p>MacOn's free tier is generous on purpose. On your own network the screen, control and CompactOS are unlimited, and build monitoring, live logs, running and cancelling builds and push notifications are unlimited from anywhere.</p>
+  <p>Reaching your Mac from outside your own network is metered on the free tier at <strong>40 minutes a day</strong>, which resets at midnight. When it runs out the session ends cleanly, with a warning at five minutes and one minute remaining. Time spent on your own network never counts against it, and build monitoring never counts against it anywhere.</p>
+  <p>MacOn Pro removes that limit and adds the remote unlock, the privacy curtain, higher stream quality, the AI agent that drives the Mac, the full code workspace, unlimited Deck keys and Flows, every theme, and unlimited paired Macs. <a href="/pricing">The pricing page</a> lists the current split line by line.</p>
+  <p>We may change what the free tier includes in future versions of the app, and we may change prices. We will not take away a feature you have already paid for. A price change never applies to a purchase you have already made, and for a subscription Apple asks for your consent before charging a higher renewal.</p>
+
+  <h2 id="billing">7. Prices, billing and renewal</h2>
+  <p>MacOn Pro is sold through the App Store as five options, all of which unlock exactly the same features:</p>
+  <div class="tablewrap">
+    <table class="data">
+      <thead><tr><th>Option</th><th>Price</th><th>What it is</th></tr></thead>
+      <tbody>
+        <tr><th>Yearly</th><td>$39.99 / year</td><td>Auto renewing subscription, with a 7 day free trial</td></tr>
+        <tr><th>Monthly</th><td>$4.99 / month</td><td>Auto renewing subscription</td></tr>
+        <tr><th>Weekly</th><td>$1.99 / week</td><td>Auto renewing subscription</td></tr>
+        <tr><th>Lifetime</th><td>$99.99 once</td><td>One off purchase, no renewal. A launch price of $69.99 applies for a limited window</td></tr>
+        <tr><th>Day Pass</th><td>$0.99 once</td><td>One off purchase, 24 hours of Pro, no renewal</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Prices above are in US dollars. The app always shows the price your own App Store gives it in your own currency, including tax where Apple adds it, so the number you see on the paywall is the number you pay. If the two ever disagree, the App Store is right.</p>
+
+  <h3>Auto renewing subscriptions</h3>
+  <div class="facts">
+    <dl class="fact"><dt>Renewal</dt><dd>Your subscription renews automatically at the same price for the same length until you cancel it. Apple charges your Apple Account within 24 hours before each renewal.</dd></dl>
+    <dl class="fact"><dt>Cancelling</dt><dd>Cancel at least 24 hours before the current period ends, in Settings on your device under your name then Subscriptions, or at <a href="https://apps.apple.com/account/subscriptions">apps.apple.com/account/subscriptions</a>. We cannot cancel it for you.</dd></dl>
+    <dl class="fact"><dt>After cancelling</dt><dd>You keep Pro until the end of the period you already paid for, then the app returns to the free tier. Nothing is deleted. A Pro theme falls back to Pastel and your settings stay where they are.</dd></dl>
+    <dl class="fact"><dt>Deleting the app</dt><dd>Does not cancel anything. A subscription lives on your Apple Account, not in the app.</dd></dl>
+    <dl class="fact"><dt>Free trial</dt><dd>7 days, on the Yearly option only, one per Apple Account. Cancel before it ends and you pay nothing. If you buy a subscription while a trial is running, the unused part of the trial is forfeited, which is Apple's rule for every app.</dd></dl>
+    <dl class="fact"><dt>Changing plan</dt><dd>Upgrading to Yearly takes effect immediately with a pro rated credit from Apple. Moving to a shorter plan takes effect at your next renewal.</dd></dl>
+  </div>
+
+  <h3>Lifetime</h3>
+  <p>A one off purchase. It is not a subscription, it does not renew, and there is nothing to cancel. It covers every future MacOn Pro feature on the platforms the companion supports. If MacOn stops being developed, a lifetime purchase keeps working on the versions you already have, which is as much as anyone can honestly promise about software.</p>
+
+  <h3>Day Pass</h3>
+  <p>A one off purchase that gives 24 hours of Pro starting at the moment you buy it. It does not renew and there is nothing to cancel. It cannot be paused, and buying a second one while the first is still running <strong>restarts</strong> the 24 hours from the new purchase rather than adding a second day. If you know you want more than a day, one of the other options is better value.</p>
+
+  <h3>Across your devices</h3>
+  <p>One purchase covers every device signed into the same Apple Account, so an iPhone and an iPad share it. Use <strong>Restore Purchases</strong>, on the paywall or in Settings under MacOn Pro, to bring an existing purchase to a new device or after a reinstall.</p>
+
+  <h3>Buying on this site instead</h3>
+  <p>Where web checkout is available, <strong>Paddle.com Market Limited</strong> acts as the merchant of record: they take the payment, they issue the invoice, and their terms cover the transaction itself. A web purchase unlocks the same Pro in the app, and you manage or cancel it through the portal link on your Paddle receipt rather than through Apple. See <a href="/pro/manage">managing your subscription</a>.</p>
+
+  <h2 id="refunds">8. Refunds</h2>
+  <p>For anything bought through the App Store, <strong>Apple handles the money and Apple decides refunds</strong>. Ask at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. We have no access to your payment and genuinely cannot refund an App Store purchase ourselves, however much we might want to.</p>
+  <p>For a purchase made on this site through Paddle, get in touch and we will sort it out with them. Statutory rights to a refund in your own country apply on top of all of this and are not affected by anything here.</p>
+
+  <h2 id="third-party">9. Services you may switch on</h2>
+  <p>MacOn works with several outside services. Each one is optional, each one is off until you turn it on, and each one has its own terms and its own privacy policy that apply to your use of it:</p>
+  <ul>
+    <li><strong>Cloudflare quick tunnel</strong>, if you use MacOn's built in way to reach your Mac from outside your network. Your traffic passes through Cloudflare's network on the way.</li>
+    <li><strong>iCloud</strong>, if you let the Mac publish a beacon so your devices can find it again after its address changes.</li>
+    <li><strong>AI providers</strong>. Local models through Ollama never leave your Mac. If you add your own key for Anthropic, OpenAI, Google or any OpenAI compatible endpoint, your prompts and, for the agent, screenshots of your Mac go to that provider under their policy, not ours.</li>
+    <li><strong>Bitbucket or GitHub</strong>, for the repositories you ask MacOn to watch, using credentials you supply.</li>
+    <li><strong>Apple Push Notification service</strong>, using a push key you supply, with your own Mac acting as the provider.</li>
+  </ul>
+  <p>We do not control these services and we are not responsible for them. If one of them changes or goes away, the MacOn feature that depends on it may stop working.</p>
+
+  <h2 id="support">10. Support and updates</h2>
+  <p>MacOn is built by one person, so support is best effort and honestly described as such. The fastest route is a GitHub issue. We may release updates, and we may stop releasing them, and we do not promise a fix or a new version on any timetable.</p>
+  <p>Apple has no obligation whatsoever to provide any maintenance or support for MacOn.</p>
+
+  <h2 id="warranty">11. No warranty</h2>
+  <p>MacOn is provided <strong>as is</strong>. It runs commands and drives a real machine, and a bug in it could cost you work, so keep backups and do not put it in the critical path of something you cannot redo.</p>
+  <p>To the fullest extent the law allows, we disclaim all warranties, express or implied, including any implied warranty of merchantability, fitness for a particular purpose, or non infringement. We do not warrant that MacOn will be uninterrupted, error free, secure against every attack, or compatible with every future version of macOS, iOS or Xcode. Some countries do not allow disclaimers like this, and where that is the case this paragraph applies only as far as it legally can.</p>
+  <p>If the companion turns out to be faulty, you may tell Apple and Apple will refund the purchase price if that is the applicable remedy. Beyond that refund, and to the maximum extent the law allows, Apple has no other warranty obligation at all for the app.</p>
+
+  <h2 id="liability">12. Limits on liability</h2>
+  <p>To the fullest extent the law allows, we are not liable for indirect, incidental, special or consequential damages, or for lost profits, lost revenue, lost data, or work you have to redo, arising out of your use of MacOn.</p>
+  <p>Our total liability to you for any claim connected to MacOn is limited to the greater of the amount you paid us for MacOn Pro in the twelve months before the claim, or fifty US dollars.</p>
+  <p>Nothing here limits liability that cannot legally be limited, including for death or personal injury caused by negligence, or for fraud. If your country gives you rights that this section would cut into, your rights win.</p>
+  <p>Any claim about the companion is ours to answer, not Apple's. That includes product liability, a claim that the app fails to conform to a legal requirement, a consumer protection claim, and a claim that the app infringes someone's intellectual property. Apple is not responsible for investigating, defending, settling or discharging any of it.</p>
+
+  <h2 id="breach">13. If you break these terms</h2>
+  <p>If you use MacOn in a way these terms forbid, your licence ends and we may stop your access to the paid features. Since MacOn keeps no account, in practice this means the Pro entitlement, and we would rather talk to you first.</p>
+
+  <h2 id="changes">14. Changes to these terms</h2>
+  <p>We may update these terms. When we do, the new version goes up on this page with a new date at the top, and if a change materially affects you we will say so in the app's release notes. Continuing to use MacOn after that means you accept the new version. If you do not, stop using it and cancel any subscription.</p>
+
+  <h2 id="export">15. Legal compliance</h2>
+  <p>You confirm that you are not located in a country subject to a US Government embargo or designated as supporting terrorism, and that you are not on any US Government list of prohibited or restricted parties. You will use MacOn only in ways US and your own local law allow, including export rules.</p>
+
+  <h2 id="law">16. Governing law</h2>
+  <p>These terms are governed by the law of the Republic of Indonesia, and the courts of Indonesia have jurisdiction, except that Apple's usage rules govern your licence to use the app where they conflict. If you are a consumer somewhere else, this does not take away the protection of your own country's consumer law or your right to bring a claim where you live.</p>
+
+  <h2 id="contact">17. Contact</h2>
+  <p>Questions about these terms, a refund, a bug, or anything else:</p>
+  <ul>
+    <li>Email: <a href="mailto:musawahaidar123@gmail.com">musawahaidar123@gmail.com</a></li>
+    <li>GitHub: <a href="https://github.com/alimusawa313/MaconKit/issues">github.com/alimusawa313/MaconKit/issues</a></li>
+    <li>LinkedIn: <a href="https://www.linkedin.com/in/ali-haidar-8484b8208" target="_blank" rel="noopener">Ali Haidar</a></li>
+  </ul>
+
+  <div class="ctas">
+    <a href="/privacy" class="btn btn-primary">Read the privacy policy</a>
+    <a href="/pricing" class="btn btn-ghost">See what Pro costs</a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>Mac<span style="color:var(--accent-deep)">On</span>, your Mac in your pocket.</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/companion">Companion</a>
+      <a href="/mac">Mac &amp; CI</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/docs">Docs</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://github.com/alimusawa313/MaconKit">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
