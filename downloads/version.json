@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.4.1",
   "url": "https://macon.devopsinstitute.id/downloads/MacOn.dmg",
-  "notes": "Your Mac can now report itself to the companion's new Deck: CPU, memory, battery and thermals as live tiles, a volume slider that opens where the dial really is, screen brightness, and switching speakers to AirPods in one tap."
+  "notes": "Your Mac keeps its iCloud beacon fresh again, so when the tunnel address changes your devices follow it on their own instead of waiting for you to type the new one in."
 }
