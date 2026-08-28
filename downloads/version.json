@@ -1,5 +1,5 @@
 {
-  "version": "1.4.1",
+  "version": "1.4.2",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Your Mac keeps its iCloud beacon fresh again, so when the tunnel address changes your devices follow it on their own instead of waiting for you to type the new one in."
+  "notes": "MacOn has moved to macon.id, and this update teaches the app to look there for future updates. Nothing else changes."
 }
