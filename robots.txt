@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /pro
+Disallow: /pro/
+
+Sitemap: https://macon.id/sitemap.xml
