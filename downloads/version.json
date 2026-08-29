@@ -1,5 +1,5 @@
 {
-  "version": "1.4.2",
+  "version": "1.4.3",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "MacOn has moved to macon.id, and this update teaches the app to look there for future updates. Nothing else changes."
+  "notes": "Security update: the direct local-network connection is now encrypted with a pinned certificate, device tokens are stored hashed and expire when idle, and iCloud commands are checked for freshness. Update the companion too to keep the direct local connection."
 }
