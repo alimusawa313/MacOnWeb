@@ -14,7 +14,7 @@ GitHub Pages (`CNAME` + `.nojekyll`). **Three.js is vendored** into
 `js/vendor/` and wired with an import map, so deploys stay a plain `git push`.
 
 ```
-index.html      landing, 3D hero, CI features, companion clusters, phone mock, security, themes, FAQ
+index.html      landing, 3D hero, station reel (real recordings), features, film, security, theme fan
 docs.html       full documentation (sidebar + filter): CLI ⇄ app ⇄ companion, flows, AI, workspace
 about.html      the story
 404.html        not-found, with a pokeable clay mascot
@@ -23,11 +23,13 @@ css/
   base.css      reset, typography, buttons, chips, reveal utilities
   nav.css       sticky nav + mobile menu     footer.css   site footer
   code.css      code blocks, terminal, tabs  cards.css    clay cards, icon tiles, FAQ
+  media.css     videos in frames: reel, film bands, iPad frame, theme fan, cluster phones
   home.css      landing sections             docs.css / about.css / notfound.css
 js/
   theme.js      dark mode (circular reveal; fires "macon:theme" for the 3D world)
   nav.js        scroll shadow + hamburger    reveal.js    scroll-reveal ([data-reveal])
   code.js       copy buttons                 home.js      FAQ, tabs, typing terminal
+  media.js      lazy <video data-src>: plays in view, pauses out of view, tab-driven live phone, play-with-sound button
   docs.js       sidebar, search, scrollspy
   world/        the Three.js clay world (ES modules)
     clay.js     palette from CSS vars, clay materials, studio lights, theme binder
@@ -36,7 +38,19 @@ js/
     notfound.js the 404 blob
   vendor/       three.module.min.js + three.core.min.js + RoundedBoxGeometry.js (r185, MIT)
 macon-icon.png  app icon
+assets/
+  og-macon.jpg  the 1200x630 social card (a frame of the desk spot)
+  shots/        real screenshots as webp: iphone/ (660 px wide) and ipad/ (1032 px wide)
+  video/        the web cuts: macon-film (the "desk" spot, silent), macon-mac-loop (its first
+                four bars, the MacBook working), macon-in-action (the Laserpack spot, with sound)
+                and stations/ (one 5 to 12 s loop per companion station, 540 px wide, plus posters)
 ```
+
+All of `assets/shots` and `assets/video` are cut from `AppStore-Screenshots/`
+(raw simulator screenshots, the `raw/video` station recordings and the `social/`
+spots) with ffmpeg and cwebp; re-cut them there when the app changes. The desk
+spot ships silent on purpose: its track ("Down") is not cleared for the web.
+"Laserpack" (Kevin MacLeod, CC BY 4.0) is credited under the in-action player.
 
 ## Design
 

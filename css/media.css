@@ -1,0 +1,132 @@
+/* media.css, the real app in motion (shared). Framed phone videos, the
+   station reel, the film bands, iPad frames, the theme fan and the cluster
+   phones. Frames come from shots.css (.device / .device-screen); this file
+   only adds what moves. Videos load lazily via js/media.js. */
+
+/* A phone frame can hold a <video> exactly like an <img>. */
+.device-phone .device-screen video {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  border-radius: 32px; background: #0b0b10;
+}
+
+/* ---------- Station reel: a snap-scrolling row of live phones ---------- */
+.reel {
+  display: flex; align-items: flex-start; gap: clamp(1rem, 2.4vw, 1.8rem);
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-padding-inline: max(1.5rem, calc((100vw - 1120px) / 2));
+  padding: 1.4rem max(1.5rem, calc((100vw - 1120px) / 2)) 1.8rem;
+  margin: 0 -1.5rem; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.reel::-webkit-scrollbar { display: none; }
+.reel .device { flex: none; scroll-snap-align: start; }
+.reel .device-screen { width: clamp(200px, 54vw, 244px); }
+.reel .device:hover .device-screen { transform: translateY(-6px); }
+.reel figcaption { display: flex; flex-direction: column; gap: .15rem; max-width: 244px; }
+.reel figcaption strong { color: var(--text); font: 800 1rem var(--round); }
+.reel figcaption span { font: 500 .85rem var(--sans); color: var(--text-2); }
+.reel-hint { text-align: center; font: 600 .8rem var(--round); color: var(--text-2); margin-top: .2rem; }
+.reel-hint .reel-dots { display: inline-flex; gap: .3rem; vertical-align: middle; margin-left: .5rem; }
+.reel-hint .reel-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--soft-shade); }
+.reel-hint .reel-dots i:first-child { background: var(--accent); }
+
+/* ---------- Film band: the dark spot, edge to edge ---------- */
+.film-band {
+  background:
+    radial-gradient(120% 80% at 50% 0%, #1b1f38 0%, #0e1020 60%, #0a0b16 100%);
+  color: #ececf2;
+}
+.film-band .eyebrow { color: #a3b1ff; }
+.film-band .section-head p { color: #b7bcd8; }
+.film-band .section-head { margin-bottom: 2.2rem; }
+.film {
+  position: relative; aspect-ratio: 16 / 9; max-width: 1040px; margin: 0 auto;
+  border-radius: var(--radius); overflow: hidden; background: #0b0d1a;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 30px 80px rgba(0,0,0,.6);
+}
+.film video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film-note { text-align: center; font-size: .88rem; color: #9ba0c0; margin-top: 1.2rem; }
+.film-note a { color: #c3ccff; }
+.film-credit { text-align: center; font-size: .78rem; color: var(--text-2); margin-top: .9rem; }
+
+/* The same frame on a light section (Mac page, companion film). */
+.film.on-paper { box-shadow: var(--clay-shadow), 0 0 0 1px var(--border); }
+
+/* A play button for videos that carry sound (never autoplayed). */
+.film .film-play {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, rgba(10,11,22,0) 40%, rgba(10,11,22,.55) 100%);
+  display: grid; place-items: center; color: #fff; padding: 0;
+  transition: opacity .3s;
+}
+.film .film-play span {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font: 700 1rem var(--round); padding: .8rem 1.4rem .8rem 1.1rem; border-radius: 980px;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  transition: transform .2s, background .2s;
+}
+.film .film-play:hover span { transform: scale(1.04); background: rgba(255,255,255,.22); }
+.film .film-play svg { width: 22px; height: 22px; fill: currentColor; }
+.film.playing .film-play { opacity: 0; pointer-events: none; }
+
+/* ---------- iPad frame ---------- */
+.device-pad .device-screen {
+  position: relative; width: clamp(240px, 78vw, 340px); aspect-ratio: 2064 / 2752;
+  background: #0b0b10; border-radius: 26px; padding: 9px;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--text) 14%, transparent), var(--clay-shadow);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1);
+}
+.device-pad .device-screen img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+.device-pad:hover .device-screen { transform: translateY(-6px); }
+.pads { display: flex; justify-content: center; align-items: flex-start; gap: clamp(1rem, 3vw, 2.4rem); flex-wrap: wrap; margin-top: 2.4rem; }
+.pads .device figcaption { max-width: 300px; }
+
+/* ---------- Theme fan: the home screen in six worlds ---------- */
+.theme-fan { display: flex; justify-content: center; align-items: flex-end; flex-wrap: wrap; gap: .4rem; margin: 0 auto 2.4rem; padding: 1rem 0 1.4rem; }
+.theme-fan .device { --i: 0; }
+.theme-fan .device-screen {
+  width: clamp(104px, 13vw, 156px); border-radius: 24px; padding: 5px;
+  transform: rotate(calc((var(--i) - 2.5) * 4deg)) translateY(calc(var(--lift, 0) * 1px));
+}
+.theme-fan .device-screen img { border-radius: 19px; }
+.theme-fan .device:hover .device-screen { transform: rotate(0deg) translateY(-10px) scale(1.06); }
+.theme-fan figcaption { font-size: .8rem; }
+
+/* ---------- Companion: the live phone driven by tabs ---------- */
+.live-phone .device-screen { width: clamp(230px, 70vw, 300px); }
+.live-phone .device-screen video {
+  position: absolute; inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px);
+  opacity: 0; transition: opacity .35s ease;
+}
+.live-phone .device-screen video.active { opacity: 1; }
+.live-phone .device-screen::after {
+  /* keeps the slab's height when every video is absolutely positioned */
+  content: ""; display: block; width: 100%; height: 100%;
+}
+
+/* ---------- Companion clusters: a phone next to the two cards ---------- */
+.cluster-media { display: grid; grid-template-columns: minmax(0, 190px) minmax(0, 1fr); gap: 1.2rem; align-items: center; }
+.cluster-media .device-screen { width: 100%; }
+.cluster-media .device:hover .device-screen { transform: translateY(-6px) rotate(-1.5deg); }
+.cluster.flip .cluster-media { grid-template-columns: minmax(0, 1fr) minmax(0, 190px); }
+.cluster.flip .cluster-media .device { order: 2; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .cluster.flip .cluster-media { grid-template-columns: minmax(0, 190px) minmax(0, 1fr); }
+  .cluster.flip .cluster-media .device { order: 0; }
+}
+@media (max-width: 620px) {
+  .reel { margin: 0 -1.2rem; padding-left: 1.2rem; padding-right: 1.2rem; scroll-padding-inline: 1.2rem; }
+  .cluster-media, .cluster.flip .cluster-media { grid-template-columns: 1fr; }
+  .cluster-media .device { justify-self: center; }
+  .cluster-media .device-screen { width: clamp(200px, 60vw, 240px); }
+  .cluster.flip .cluster-media .device { order: 0; }
+  .theme-fan { gap: .6rem; }
+  .theme-fan .device-screen { width: clamp(96px, 27vw, 120px); transform: none; }
+  .film { border-radius: var(--radius-sm); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel .device-screen, .device-pad .device-screen, .theme-fan .device-screen, .live-phone .device-screen video { transition: none; }
+}

@@ -11,11 +11,13 @@
 <meta property="og:url" content="https://macon.id/">
 <meta property="og:title" content="MacOn · Your Mac, in your pocket.">
 <meta property="og:description" content="See, control, wake, unlock, automate and code your Mac from an iPhone or iPad, with an AI that can drive it for you. It runs your iOS builds too. Open-source CLI, free Mac app, free companion download.">
-<meta property="og:image" content="https://macon.id/macon-icon.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://macon.id/assets/og-macon.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MacOn · Your Mac, in your pocket.">
 <meta name="twitter:description" content="Control your Mac from your phone, anywhere, 24/7. See it, drive it, wake it, unlock it, automate it, or let an AI operate it. Open-source CLI, free Mac app, free companion download.">
-<meta name="twitter:image" content="https://macon.id/macon-icon.png">
+<meta name="twitter:image" content="https://macon.id/assets/og-macon.jpg">
 <link rel="icon" type="image/png" href="macon-icon.png">
 <link rel="apple-touch-icon" href="macon-icon.png">
 <!-- Set theme before paint to avoid a flash. -->
@@ -39,6 +41,7 @@
 <link rel="stylesheet" href="css/code.css">
 <link rel="stylesheet" href="css/cards.css">
 <link rel="stylesheet" href="css/shots.css">
+<link rel="stylesheet" href="css/media.css">
 <link rel="stylesheet" href="css/home.css">
 <!-- If the 3D hero module never boots (opened from file://, or no WebGL), show the icon fallback so the stage is never blank. -->
 <script>
@@ -53,10 +56,11 @@
 <script defer src="js/nav.js"></script>
 <script defer src="js/reveal.js"></script>
 <script defer src="js/home.js"></script>
+<script defer src="js/media.js"></script>
 <!-- Three.js, vendored, no build step, no CDN. -->
 <script type="importmap">{ "imports": { "three": "./js/vendor/three.module.min.js" } }</script>
 <script type="module" src="js/world/hero.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://macon.id/#website","url":"https://macon.id/","name":"MacOn","alternateName":["macon.id","MacOn app","macon"],"inLanguage":"en","description":"MacOn puts your Mac in your pocket: see and drive it from an iPhone or iPad, wake and unlock it, automate it, code on it, let an AI operate it, and run your iOS builds on it.","publisher":{"@id":"https://macon.id/#author"}},{"@type":"Person","@id":"https://macon.id/#author","name":"Ali Haidar","url":"https://macon.id/about","sameAs":["https://github.com/alimusawa313","https://www.linkedin.com/in/ali-haidar-8484b8208"]},{"@type":"SoftwareApplication","@id":"https://macon.id/#app","name":"MacOn","url":"https://macon.id/","image":"https://macon.id/macon-icon.png","description":"Remote control for your Mac from iPhone and iPad, with wake and unlock, automation, a code workspace, an AI operator, and a local iOS CI runner. Free Mac app and open-source CLI; the companion is a free download with an optional Pro upgrade.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 14 or later; iOS 17 or later; iPadOS 17 or later","softwareVersion":"1.4.4","downloadUrl":"https://macon.id/downloads/MacOn.dmg","installUrl":"https://testflight.apple.com/join/PgHKv8WC","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://macon.id/#author"},"sameAs":["https://github.com/alimusawa313/MaconKit"]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://macon.id/#website","url":"https://macon.id/","name":"MacOn","alternateName":["macon.id","MacOn app","macon"],"inLanguage":"en","description":"MacOn puts your Mac in your pocket: see and drive it from an iPhone or iPad, wake and unlock it, automate it, code on it, let an AI operate it, and run your iOS builds on it.","publisher":{"@id":"https://macon.id/#author"}},{"@type":"Person","@id":"https://macon.id/#author","name":"Ali Haidar","url":"https://macon.id/about","sameAs":["https://github.com/alimusawa313","https://www.linkedin.com/in/ali-haidar-8484b8208"]},{"@type":"SoftwareApplication","@id":"https://macon.id/#app","name":"MacOn","url":"https://macon.id/","image":"https://macon.id/assets/og-macon.jpg","screenshot":["https://macon.id/assets/shots/iphone/home.webp","https://macon.id/assets/shots/iphone/screen.webp","https://macon.id/assets/shots/iphone/build-detail.webp","https://macon.id/assets/shots/ipad/screen.webp"],"description":"Remote control for your Mac from iPhone and iPad, with wake and unlock, automation, a code workspace, an AI operator, and a local iOS CI runner. Free Mac app and open-source CLI; the companion is a free download with an optional Pro upgrade.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 14 or later; iOS 17 or later; iPadOS 17 or later","softwareVersion":"1.4.4","downloadUrl":"https://macon.id/downloads/MacOn.dmg","installUrl":"https://testflight.apple.com/join/PgHKv8WC","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://macon.id/#author"},"sameAs":["https://github.com/alimusawa313/MaconKit"]}]}</script>
 </head>
 <body>
 
@@ -120,29 +124,78 @@
   </div>
 </section>
 
-<!-- ================= SHOWCASE (real screenshots) ================= -->
+<!-- ================= REEL (real recordings of the companion) ================= -->
 <section id="showcase" class="alt">
   <div class="wrap">
     <div class="section-head center" data-reveal>
-      <p class="eyebrow">The companion</p>
+      <p class="eyebrow">The companion, for real</p>
       <h2>A whole Mac, one tap away.</h2>
-      <p>Pair once with a single-use code, and the app becomes a home screen for your Mac: builds, screen, apps, deck, fleet, AI, code and flows.</p>
-    </div>
-    <div class="showcase" data-reveal="children">
-      <figure class="device device-phone tilt-l">
-        <div class="device-screen"><img src="assets/shots/companion-home.png" alt="The companion home in MacOn, showing the Builds station with a live 3D scene" loading="lazy"></div>
-        <figcaption>Home, alive in 3D</figcaption>
-      </figure>
-      <figure class="device device-phone feature">
-        <div class="device-screen"><img src="assets/shots/companion-grid.png" alt="The companion feature grid: Builds, Screen, Compact, Deck, Fleet, Assistant, Code and Flows" loading="lazy"></div>
-        <figcaption>Every feature, one grid</figcaption>
-      </figure>
-      <figure class="device device-phone tilt-r">
-        <div class="device-screen"><img src="assets/shots/companion-pair.png" alt="Pairing the companion with a Mac using a QR code or a single-use pairing code" loading="lazy"></div>
-        <figcaption>Pair once, stays found</figcaption>
-      </figure>
+      <p>These are recordings of the actual app. Pair once with a single-use code and swipe between the stations: screen, builds, deck, flows, code, AI, the lock, and the worlds it comes in.</p>
     </div>
   </div>
+  <div class="reel" data-reveal="children" aria-label="Recordings of each companion station">
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/home-poster.webp" data-src="assets/video/stations/home.mp4" aria-label="The companion home: a 3D clay carousel of stations, swiping from Screen to Builds"></video>
+      </div>
+      <figcaption><strong>Home</strong><span>Spin the world, tap a station.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/screen-poster.webp" data-src="assets/video/stations/screen.mp4" aria-label="The Screen station streaming a Mac desktop with Xcode, Terminal and Finder open"></video>
+      </div>
+      <figcaption><strong>Screen</strong><span>The Mac desktop, live, hardware decoded.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/compact-poster.webp" data-src="assets/video/stations/compact.mp4" aria-label="CompactOS: picking Xcode from the Mac app list and getting it refitted to the phone"></video>
+      </div>
+      <figcaption><strong>Compact</strong><span>Xcode, fitted to your phone.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/builds-poster.webp" data-src="assets/video/stations/builds.mp4" aria-label="A build opening into its step timeline, then the live log"></video>
+      </div>
+      <figcaption><strong>Builds</strong><span>Steps, logs, re-run, from anywhere.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/deck-poster.webp" data-src="assets/video/stations/deck.mp4" aria-label="The Deck: volume slider, media keys, app keys and a live CPU, memory and battery tile"></video>
+      </div>
+      <figcaption><strong>Deck</strong><span>A Stream Deck with live tiles.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/flows-poster.webp" data-src="assets/video/stations/flows.mp4" aria-label="A flow canvas: dragging an HTTP block and running the flow"></video>
+      </div>
+      <figcaption><strong>Flows</strong><span>Blocks on strings that actually run.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/code-poster.webp" data-src="assets/video/stations/code.mp4" aria-label="The code workspace scrolling through HomeView.swift with the terminal, assistant and Xcode buttons below"></video>
+      </div>
+      <figcaption><strong>Code</strong><span>A real editor on the Mac's files.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/assistant-poster.webp" data-src="assets/video/stations/assistant.mp4" aria-label="The Assistant station opening into a chat with a local llama model answering a question about battery use"></video>
+      </div>
+      <figcaption><strong>Assistant</strong><span>Ask the Mac about itself.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/lock-poster.webp" data-src="assets/video/stations/lock.mp4" aria-label="The 3D padlock page locking and unlocking the Mac"></video>
+      </div>
+      <figcaption><strong>Lock</strong><span>Lock and unlock from the couch.</span></figcaption>
+    </figure>
+    <figure class="device device-phone">
+      <div class="device-screen">
+        <video muted loop playsinline preload="none" poster="assets/video/stations/worlds-poster.webp" data-src="assets/video/stations/worlds.mp4" aria-label="The Settings worlds grid, switching the app to the Candy theme"></video>
+      </div>
+      <figcaption><strong>Worlds</strong><span>Seventeen themes, one tap to switch.</span></figcaption>
+    </figure>
+  </div>
+  <p class="reel-hint">Scroll sideways for the rest <span class="reel-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></p>
 </section>
 
 <!-- ================= FEATURES ================= -->
@@ -185,6 +238,21 @@
         <p>The same Mac is a local iOS runner: watch a repo, build, test across simulators, ship to TestFlight, all on hardware you own.</p>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ================= FILM (the dark spot, silent) ================= -->
+<section id="film" class="film-band">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Watch</p>
+      <h2>The whole idea in fifty seconds.</h2>
+      <p>Your Mac is on your desk. You're not. So bring it with you.</p>
+    </div>
+    <div class="film" data-reveal>
+      <video muted loop playsinline preload="none" poster="assets/video/macon-film-poster.webp" data-src="assets/video/macon-film.mp4" aria-label="A short film: a MacBook builds, runs shortcuts and a terminal, then a phone and an iPad show the same Mac from anywhere, station by station."></video>
+    </div>
+    <p class="film-note">Plays silent. The 37-second spot with sound is on the <a href="/companion#film">companion page</a>.</p>
   </div>
 </section>
 
@@ -255,7 +323,33 @@
     <div class="section-head center" data-reveal>
       <p class="eyebrow">The clay world</p>
       <h2>One world. Seventeen skins.</h2>
-      <p>The Mac app and companion share a re-skinnable 3D clay world, with paint-box palettes and full model swaps previewed live in the picker. This site wears Pastel, and the hero above re-tints with your light or dark choice.</p>
+      <p>The Mac app and companion share a re-skinnable 3D clay world, with paint-box palettes and full model swaps previewed live in the picker. This site wears Pastel, and the hero above re-tints with your light or dark choice. Here is the home screen in six of them.</p>
+    </div>
+    <div class="theme-fan" data-reveal="children">
+      <figure class="device device-phone" style="--i:0;--lift:-6">
+        <div class="device-screen"><img src="assets/shots/iphone/home-candy.webp" alt="The companion home screen in the Candy world" loading="lazy" width="660" height="1434"></div>
+        <figcaption>Candy</figcaption>
+      </figure>
+      <figure class="device device-phone" style="--i:1;--lift:2">
+        <div class="device-screen"><img src="assets/shots/iphone/home-ocean.webp" alt="The companion home screen in the Ocean world" loading="lazy" width="660" height="1434"></div>
+        <figcaption>Ocean</figcaption>
+      </figure>
+      <figure class="device device-phone" style="--i:2;--lift:6">
+        <div class="device-screen"><img src="assets/shots/iphone/home-sunset.webp" alt="The companion home screen in the Sunset world" loading="lazy" width="660" height="1434"></div>
+        <figcaption>Sunset</figcaption>
+      </figure>
+      <figure class="device device-phone" style="--i:3;--lift:6">
+        <div class="device-screen"><img src="assets/shots/iphone/home-forest.webp" alt="The companion home screen in the Forest world" loading="lazy" width="660" height="1434"></div>
+        <figcaption>Forest</figcaption>
+      </figure>
+      <figure class="device device-phone" style="--i:4;--lift:2">
+        <div class="device-screen"><img src="assets/shots/iphone/home-neon.webp" alt="The companion home screen in the Neon world" loading="lazy" width="660" height="1434"></div>
+        <figcaption>Neon</figcaption>
+      </figure>
+      <figure class="device device-phone" style="--i:5;--lift:-6">
+        <div class="device-screen"><img src="assets/shots/iphone/home-cosmos.webp" alt="The companion home screen in the Cosmos world" loading="lazy" width="660" height="1434"></div>
+        <figcaption>Cosmos</figcaption>
+      </figure>
     </div>
     <div class="worlds" data-reveal="children">
       <span class="world"><i class="swatch" style="--w1:#7d94f2;--w2:#f5b777;--w3:#85cca0"></i>Pastel</span>

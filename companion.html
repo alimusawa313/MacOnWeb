@@ -10,11 +10,13 @@
 <meta property="og:url" content="https://macon.id/companion">
 <meta property="og:title" content="Companion · MacOn">
 <meta property="og:description" content="The free iPhone and iPad companion for your Mac: see and drive the screen, wake and unlock it, run shortcuts and flows, code on it, and let an AI operate it for you.">
-<meta property="og:image" content="https://macon.id/macon-icon.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://macon.id/assets/og-macon.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Companion · MacOn">
 <meta name="twitter:description" content="The free iPhone and iPad companion for your Mac: see and drive the screen, wake and unlock it, run shortcuts and flows, code on it, and let an AI operate it for you.">
-<meta name="twitter:image" content="https://macon.id/macon-icon.png">
+<meta name="twitter:image" content="https://macon.id/assets/og-macon.jpg">
 <meta name="theme-color" content="#f5f5f7">
 <link rel="icon" type="image/png" href="macon-icon.png">
 <link rel="apple-touch-icon" href="macon-icon.png">
@@ -38,12 +40,14 @@
 <link rel="stylesheet" href="css/code.css">
 <link rel="stylesheet" href="css/cards.css">
 <link rel="stylesheet" href="css/shots.css">
+<link rel="stylesheet" href="css/media.css">
 <link rel="stylesheet" href="css/home.css">
 <script defer src="js/theme.js"></script>
 <script defer src="js/nav.js"></script>
 <script defer src="js/code.js"></script>
 <script defer src="js/reveal.js"></script>
 <script defer src="js/home.js"></script>
+<script defer src="js/media.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MacOn","item":"https://macon.id/"},{"@type":"ListItem","position":2,"name":"Companion","item":"https://macon.id/companion"}]}</script>
 </head>
 <body>
@@ -80,16 +84,16 @@
     </div>
     <div class="showcase" data-reveal="children">
       <figure class="device device-phone tilt-l">
-        <div class="device-screen"><img src="assets/shots/companion-home.png" alt="Companion home, alive in 3D" loading="lazy"></div>
-        <figcaption>Home, alive in 3D</figcaption>
+        <div class="device-screen"><img src="assets/shots/iphone/deck.webp" alt="The Deck station: a volume slider, media keys, Safari, Xcode, Finder and Terminal keys, and a live tile with the Mac's CPU, memory and battery" loading="lazy" width="660" height="1434"></div>
+        <figcaption>A Stream Deck in your pocket</figcaption>
       </figure>
       <figure class="device device-phone feature">
-        <div class="device-screen"><img src="assets/shots/companion-grid.png" alt="Every companion feature in one grid" loading="lazy"></div>
-        <figcaption>Every feature, one grid</figcaption>
+        <div class="device-screen"><img src="assets/shots/iphone/home.webp" alt="The companion home: a 3D clay Builds station with a gear and a number one, on a carousel of stations" width="660" height="1434"></div>
+        <figcaption>Home, alive in 3D</figcaption>
       </figure>
       <figure class="device device-phone tilt-r">
-        <div class="device-screen"><img src="assets/shots/companion-pair.png" alt="Pairing the companion with a Mac" loading="lazy"></div>
-        <figcaption>Pair once, stays found</figcaption>
+        <div class="device-screen"><img src="assets/shots/iphone/grid.webp" alt="The station grid: Screen, Compact, Code, Deck, Builds, Assistant, Flows and Fleet" loading="lazy" width="660" height="1434"></div>
+        <figcaption>Every station, one grid</figcaption>
       </figure>
     </div>
   </div>
@@ -99,7 +103,7 @@
     <div class="section-head center" data-reveal>
       <p class="eyebrow">In your pocket</p>
       <h2>The companion is more than a dashboard.</h2>
-      <p>A free iPhone &amp; iPad download, built like a toy, in a soft 3D clay world, that reaches all the way into the Mac. Tap through what it does:</p>
+      <p>Real recordings, not mockups. Tap a station to see it work:</p>
     </div>
 
     <!-- Interactive phone mock -->
@@ -112,56 +116,16 @@
         <button class="ptab" data-tab="code" data-caption="A real dev setup: file explorer, editor tabs, zsh terminals and Xcode builds, from the phone." role="tab" aria-selected="false">Code</button>
         <button class="ptab" data-tab="ai" data-caption="Chat with local models, or just speak, and let the agent drive the Mac, step by approved step." role="tab" aria-selected="false">AI</button>
       </div>
-      <div class="phone">
-        <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <div class="pscreen active" data-screen="builds">
-            <div class="prow"><span class="pdot run"></span><div class="pgrow"><span class="pbar w1"></span><span class="pbar w2 pfill"></span></div></div>
-            <div class="prow"><span class="pdot ok"></span><div class="pgrow"><span class="pbar w3"></span><span class="pbar w2"></span></div></div>
-            <div class="prow"><span class="pdot ok"></span><div class="pgrow"><span class="pbar w1"></span></div></div>
-            <div class="prow"><span class="pdot bad"></span><div class="pgrow"><span class="pbar w2"></span></div></div>
-          </div>
-          <div class="pscreen" data-screen="screen">
-            <div class="pdesktop"><span class="pwindow pw1"></span><span class="pwindow pw2"></span><span class="pcursor"></span></div>
-            <div class="ptouchbar"><span>esc</span><span>⌘</span><span>⌥</span><span>▦</span><span>60fps</span></div>
-          </div>
-          <div class="pscreen" data-screen="deck">
-            <div class="pdeck">
-              <span class="pkey">🚀</span><span class="pkey k-warm">⌘K</span><span class="pkey k-good">🧪</span>
-              <span class="pkey k-rose">📦</span><span class="pkey">🖥️</span><span class="pkey k-warm">⏯️</span>
-              <span class="pkey k-good">🔨</span><span class="pkey k-rose">💬</span><span class="pkey">✨</span>
-            </div>
-          </div>
-          <div class="pscreen" data-screen="flows">
-            <div class="pflow">
-              <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path class="rope" d="M22 14 Q 30 42 44 44"/>
-                <path class="rope" d="M52 52 Q 38 74 26 78"/>
-                <path class="rope" d="M58 50 Q 76 60 80 68"/>
-              </svg>
-              <span class="pblock b1">Trigger</span>
-              <span class="pblock b2">AI</span>
-              <span class="pblock b3">Shell</span>
-              <span class="pblock b4">Notify</span>
-            </div>
-          </div>
-          <div class="pscreen" data-screen="code">
-            <div class="peditor">
-              <span class="pline l1"></span><span class="pline l2"></span><span class="pline l3"></span><span class="pline l4"></span><span class="pline l5"></span>
-            </div>
-            <div class="pterm"><span class="p">$</span> fastlane test
-<span class="ok">✓ 128 tests passed</span></div>
-          </div>
-          <div class="pscreen" data-screen="ai">
-            <div class="pchat">
-              <span class="pbubble me">Run the beta pipeline, then TestFlight it</span>
-              <span class="pbubble ai">Build passed ✅, uploading to TestFlight…</span>
-              <span class="pbubble ai"><span class="tdots"><i></i><i></i><i></i></span></span>
-              <span class="pmic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg></span>
-            </div>
-          </div>
+      <figure class="device device-phone live-phone">
+        <div class="device-screen">
+          <video class="active pvideo" data-screen="builds" muted loop playsinline preload="metadata" poster="assets/video/stations/builds-poster.webp" data-src="assets/video/stations/builds.mp4" aria-label="A build opening into its step timeline, then the live log"></video>
+          <video class="pvideo" data-screen="screen" muted loop playsinline preload="none" poster="assets/video/stations/screen-poster.webp" data-src="assets/video/stations/screen.mp4" aria-label="The Screen station streaming a Mac desktop"></video>
+          <video class="pvideo" data-screen="deck" muted loop playsinline preload="none" poster="assets/video/stations/deck-poster.webp" data-src="assets/video/stations/deck.mp4" aria-label="The Deck with live tiles, then scrolling to more keys"></video>
+          <video class="pvideo" data-screen="flows" muted loop playsinline preload="none" poster="assets/video/stations/flows-poster.webp" data-src="assets/video/stations/flows.mp4" aria-label="A flow canvas: dragging a block and running the flow"></video>
+          <video class="pvideo" data-screen="code" muted loop playsinline preload="none" poster="assets/video/stations/code-poster.webp" data-src="assets/video/stations/code.mp4" aria-label="The code workspace scrolling through a Swift file"></video>
+          <video class="pvideo" data-screen="ai" muted loop playsinline preload="none" poster="assets/video/stations/assistant-poster.webp" data-src="assets/video/stations/assistant.mp4" aria-label="The Assistant answering a question about the Mac"></video>
         </div>
-      </div>
+      </figure>
       <p class="phone-caption">Every pipeline as a live step timeline, watch, run, re-run, cancel, or edit it from the couch.</p>
     </div>
 
@@ -177,7 +141,11 @@
           <li><strong>Push notifications</strong> when builds start, pass, or fail.</li>
         </ul>
       </div>
-      <div class="cluster-cards">
+      <div class="cluster-media">
+        <figure class="device device-phone">
+          <div class="device-screen"><img src="assets/shots/iphone/build-detail.webp" alt="A running build: the commit, branch and timer, Re-run and Cancel buttons, and the step timeline with a streaming xcodebuild log" loading="lazy" width="660" height="1434"></div>
+        </figure>
+        <div class="cluster-cards">
         <div class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v10H4zM2 20h20"/><path d="M9 10l2 2 4-4"/></svg></div>
           <h3>Step timelines</h3>
@@ -187,6 +155,7 @@
           <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
           <h3>The full editor, phone-sized</h3>
           <p>Provider, workspace, repo, branch, poll vs webhook, pipeline file, timeouts, the entire pipeline editor works from the device.</p>
+        </div>
         </div>
       </div>
     </div>
@@ -204,7 +173,11 @@
           <li><strong>CompactOS:</strong> tap a Mac app and it refits to your device, big readable text, direct touch, window switcher, keyboard-aware.</li>
         </ul>
       </div>
-      <div class="cluster-cards">
+      <div class="cluster-media">
+        <figure class="device device-phone">
+          <div class="device-screen"><img src="assets/shots/iphone/screen.webp" alt="The Mac desktop streamed to the phone, Xcode, Terminal and Finder open, with the control bar showing 1440p at 60 fps" loading="lazy" width="660" height="1434"></div>
+        </figure>
+        <div class="cluster-cards">
         <div class="card">
           <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
           <h3>CompactOS, Mac apps, phone-sized</h3>
@@ -214,6 +187,7 @@
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg></div>
           <h3>Capture that respects you</h3>
           <p>Runs only while someone is watching, gated by an explicit toggle on the Mac, and macOS Screen Recording permission.</p>
+        </div>
         </div>
       </div>
     </div>
@@ -230,7 +204,11 @@
           <li><strong>Describe it instead:</strong> type or dictate “every morning, fetch HN, summarize, speak it” and the AI composer wires the blocks for you.</li>
         </ul>
       </div>
-      <div class="cluster-cards">
+      <div class="cluster-media">
+        <figure class="device device-phone">
+          <div class="device-screen"><img src="assets/shots/iphone/flow-canvas.webp" alt="An Uptime check flow: Schedule, HTTP GET, If, Compose and Notification blocks joined by strings" loading="lazy" width="660" height="1434"></div>
+        </figure>
+        <div class="cluster-cards">
         <div class="card">
           <div class="ico i-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg></div>
           <h3>Shortcuts deck</h3>
@@ -240,6 +218,7 @@
           <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="10" r="3"/><circle cx="9" cy="19" r="3"/><path d="M8.5 8 15 9.5M16 12.5l-5 4.5"/></svg></div>
           <h3>Flows with real physics</h3>
           <p>The canvas ropes sag and swing (verlet simulation). Off by default on the Mac, flows run shell commands, so you opt in explicitly.</p>
+        </div>
         </div>
       </div>
     </div>
@@ -257,7 +236,11 @@
           <li><strong>Code assistant</strong> with the open file as context and @-mentions for more, Claude with your key, or local Ollama models.</li>
         </ul>
       </div>
-      <div class="cluster-cards">
+      <div class="cluster-media">
+        <figure class="device device-phone">
+          <div class="device-screen"><img src="assets/shots/iphone/terminal.webp" alt="A zsh terminal on the Mac running xcodebuild, Build Succeeded, with the key row and keyboard" loading="lazy" width="660" height="1434"></div>
+        </figure>
+        <div class="cluster-cards">
         <div class="card">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
           <h3>Tabbed terminals</h3>
@@ -267,6 +250,7 @@
           <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
           <h3>Fix the pipeline from bed</h3>
           <p>Build broke on a YAML typo? Open <code>macon.yml</code> in the workspace, fix it, save, re-run, without standing up.</p>
+        </div>
         </div>
       </div>
     </div>
@@ -284,7 +268,11 @@
           <li><strong>Web too:</strong> with Playwright installed, the agent automates a real browser alongside Mac apps.</li>
         </ul>
       </div>
-      <div class="cluster-cards">
+      <div class="cluster-media">
+        <figure class="device device-phone">
+          <div class="device-screen"><img src="assets/shots/iphone/assistant.webp" alt="A chat with llama3.2 on the Mac explaining what is using the battery and offering to set up a flow" loading="lazy" width="660" height="1434"></div>
+        </figure>
+        <div class="cluster-cards">
         <div class="card">
           <div class="ico i-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></svg></div>
           <h3>Voice agent, supervised</h3>
@@ -294,6 +282,7 @@
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4zM19 15l.9 2.3L22 18l-2.1.7L19 21l-.9-2.3L16 18l2.1-.7zM5 16l.7 1.8L7.5 18l-1.8.7L5 20.5l-.7-1.8L2.5 18l1.8-.2z"/></svg></div>
           <h3>Bring your own AI</h3>
           <p>Claude, OpenAI, Gemini, a local Ollama model, or any OpenAI-compatible endpoint. Keys live in the Mac's Keychain, never on the phone. All of it optional.</p>
+        </div>
         </div>
       </div>
     </div>
@@ -311,7 +300,11 @@
           <li><strong>Always connected:</strong> optional iCloud beacon re-points the phone when a tunnel URL rotates. Pair once, never re-type an address.</li>
         </ul>
       </div>
-      <div class="cluster-cards">
+      <div class="cluster-media">
+        <figure class="device device-phone">
+          <div class="device-screen"><img src="assets/shots/iphone/lock.webp" alt="The lock page: a 3D padlock, Ali's MacBook Pro is locked, a privacy screen switch and an Unlock button" loading="lazy" width="660" height="1434"></div>
+        </figure>
+        <div class="cluster-cards">
         <div class="card">
           <div class="ico i-warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M20 4l-2 2M6 18l-2 2"/></svg></div>
           <h3>Wake &amp; unlock</h3>
@@ -322,8 +315,46 @@
           <h3>Fleet map</h3>
           <p>Your Mac at the center, every paired device hanging on a swinging string, live glow for the active ones, drag them around for fun.</p>
         </div>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+<section id="ipad" class="alt">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Bigger on iPad</p>
+      <h2>The same app, with room to spare.</h2>
+      <p>Everything above runs on iPad too, side by side with your other apps. The flow canvas and the code workspace are where the extra screen really pays off.</p>
+    </div>
+    <div class="pads" data-reveal="children">
+      <figure class="device device-pad">
+        <div class="device-screen"><img src="assets/shots/ipad/screen.webp" alt="The Mac desktop streamed to an iPad, Xcode, Terminal and Finder nearly full size" loading="lazy" width="1032" height="1376"></div>
+        <figcaption>The Mac, nearly full size</figcaption>
+      </figure>
+      <figure class="device device-pad">
+        <div class="device-screen"><img src="assets/shots/ipad/flow-canvas.webp" alt="An Uptime check flow on the iPad canvas: Schedule, HTTP GET, If, Compose and Notification blocks" loading="lazy" width="1032" height="1376"></div>
+        <figcaption>Flows on a canvas you can see</figcaption>
+      </figure>
+      <figure class="device device-pad">
+        <div class="device-screen"><img src="assets/shots/ipad/code-workspace.webp" alt="The code workspace on iPad: file explorer, the editor and the terminal together" loading="lazy" width="1032" height="1376"></div>
+        <figcaption>Editor, explorer and terminal together</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<section id="film" class="center">
+  <div class="wrap">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Watch</p>
+      <h2>MacOn + in action, 37 seconds.</h2>
+      <p>Every station, back to back. This one has sound.</p>
+    </div>
+    <div class="film on-paper" data-reveal>
+      <video playsinline preload="none" poster="assets/video/macon-in-action-poster.webp" data-src="assets/video/macon-in-action.mp4" aria-label="The MacOn + spot: screen, compact, builds, deck, flows, assistant, terminal, lock and worlds, on iPhone and iPad."></video>
+      <button class="film-play" type="button" aria-label="Play the spot with sound"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 8 5.5z"/></svg>Play with sound</span></button>
+    </div>
+    <p class="film-credit">Music: "Laserpack" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0.</p>
   </div>
 </section>
 <footer>

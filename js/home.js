@@ -36,15 +36,22 @@
     });
   });
 
-  // Companion phone-mock tabs
+  // Companion live-phone tabs: each tab shows one [data-screen] (a real
+  // recording); js/media.js hears "macon:screen" and plays the chosen one.
   wireTabs('.phone-tabs', 'active', function (group, tab) {
-    var phone = document.querySelector('.phone');
-    var caption = document.querySelector('.phone-caption');
-    if (!phone) return;
-    phone.querySelectorAll('.pscreen').forEach(function (s) {
-      s.classList.toggle('active', s.getAttribute('data-screen') === tab.getAttribute('data-tab'));
+    var stage = group.closest('.phone-stage');
+    if (!stage) return;
+    var caption = stage.querySelector('.phone-caption');
+    var chosen = null;
+    stage.querySelectorAll('[data-screen]').forEach(function (s) {
+      var on = s.getAttribute('data-screen') === tab.getAttribute('data-tab');
+      s.classList.toggle('active', on);
+      if (on) chosen = s;
     });
     if (caption) caption.textContent = tab.getAttribute('data-caption') || '';
+    if (chosen && chosen.tagName === 'VIDEO') {
+      document.dispatchEvent(new CustomEvent('macon:screen', { detail: { video: chosen } }));
+    }
   });
 
   // ----- Hero terminal, types its script forever.
