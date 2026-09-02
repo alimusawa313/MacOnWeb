@@ -1,0 +1,21 @@
+/* support.css, the Support page: contact hero, channel cards, FAQ, closing CTA */
+
+main { max-width: 880px; margin: 0 auto; padding: clamp(3rem, 8vw, 5.5rem) 1.5rem 5rem; }
+main h1 { font-size: clamp(2.4rem, 7vw, 3.8rem); line-height: 1.05; }
+.lead { font-size: clamp(1.15rem, 2.4vw, 1.45rem); color: var(--text-2); margin-top: 1.3rem; max-width: 52ch; }
+main h2 { font-size: clamp(1.4rem, 3.5vw, 1.9rem); letter-spacing: -0.015em; margin: 0 0 .8rem; }
+.rule { height: 1px; background: var(--border); border: 0; margin: 3rem 0; }
+.ctas { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 2rem; }
+
+.section-note { color: var(--text-2); font-size: 1.05rem; margin: 0 0 1.6rem; max-width: 56ch; }
+
+/* Channel cards, keep the arrow line pinned to the bottom */
+.channels .doc-card { display: flex; flex-direction: column; }
+.channels .doc-card p { flex: 1; }
+
+/* FAQ sits inside the article, left-aligned with it */
+.faq { margin: 1.4rem 0 0; max-width: none; }
+
+/* Closing CTA */
+.still-stuck { text-align: center; margin-top: 4.5rem; }
+.still-stuck p { color: var(--text-2); font-size: 1.08rem; margin: .6rem 0 1.4rem; }
