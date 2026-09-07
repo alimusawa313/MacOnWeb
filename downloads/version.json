@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Your paired iPhone or iPad can now browse and open this Mac's files, the Mac's own vitals finally arrive there after a decoding bug that always left them blank, and macon mcp turns this Mac into an MCP server so an AI assistant can run its pipelines, flows and files itself."
+  "notes": "MacOn now speaks Arabic, Chinese, German, Indonesian, Japanese, Korean, Portuguese and Spanish, and Settings has a Language picker so you can switch the app on its own without changing the rest of your Mac."
 }
