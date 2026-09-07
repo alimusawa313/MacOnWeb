@@ -1,5 +1,5 @@
 {
-  "version": "1.4.5",
+  "version": "1.5.0",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Your paired iPhone or iPad now shows a running build as a live card on its Lock Screen, kept moving by this Mac as the build goes, and links you send from the phone can open straight in this Mac's browser."
+  "notes": "Your paired iPhone or iPad can now browse and open this Mac's files, the Mac's own vitals finally arrive there after a decoding bug that always left them blank, and macon mcp turns this Mac into an MCP server so an AI assistant can run its pipelines, flows and files itself."
 }
