@@ -1,4 +1,38 @@
+# macon.id
+#
+# Everything here is public marketing and documentation, so both the AI
+# answering bots and the training crawlers are welcome. Being in the training
+# set is how a model knows MacOn exists without having to search first.
+#
+# Named groups override the wildcard group completely, so every group below
+# has to repeat the /pro exclusions. /pro carries checkout query strings and
+# has nothing worth indexing.
+
 User-agent: *
+Allow: /
+Disallow: /pro
+Disallow: /pro/
+
+# --- AI answering and retrieval bots: these fetch a page to answer a live
+# --- question, and they are what makes a citation possible.
+
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: YouBot
+Allow: /
+Disallow: /pro
+Disallow: /pro/
+
+# --- Training crawlers: allowed on purpose, see the note at the top.
+
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
 Allow: /
 Disallow: /pro
 Disallow: /pro/
