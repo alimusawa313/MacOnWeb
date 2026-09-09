@@ -56,6 +56,7 @@ h1, h2, h3, h4 {
 }
 
 .section-head { max-width: 680px; margin: 0 auto clamp(2.5rem, 5vw, 4rem); }
+.section-head h1,
 .section-head h2 { font-size: clamp(2.1rem, 5vw, 3.3rem); }
 .section-head p { font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--text-2); margin-top: 1rem; }
 
