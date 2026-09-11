@@ -159,8 +159,8 @@
     <p>Anything you set up in the app can be exported and run by the CLI, and vice-versa. The Mac app and companion share one soft 3D "clay world" look you can re-skin across seventeen themes.</p>
 
     <h2 id="install">Install</h2>
-    <h3>Companion (iPhone &amp; iPad)</h3>
-    <p>Download it free from the App Store: <a href="https://apps.apple.com/app/id6794170681">apps.apple.com/app/id6794170681</a>. Requires iOS or iPadOS 17 or later. On first launch, pair it with your Mac using a one-time code (see <a href="#companion-pair">Pairing &amp; devices</a>).</p>
+    <h3>Macon+, the companion (iPhone &amp; iPad)</h3>
+    <p>The iPhone and iPad app is called <strong>Macon+</strong>. Download it free from the App Store: <a href="https://apps.apple.com/app/id6794170681">apps.apple.com/app/id6794170681</a>. Requires iOS or iPadOS 26 or later for now; support back to iOS 18 is coming. On first launch, pair it with your Mac using a one-time code (see <a href="#companion-pair">Pairing &amp; devices</a>).</p>
     <h3>Mac app</h3>
     <p>Download the latest build <a href="/downloads/MacOn.dmg">here</a>. Requires macOS 14 or later. The app hosts the companion server the phone connects to, and runs your CI.</p>
     <h3>CLI (Homebrew)</h3>
@@ -394,15 +394,15 @@ macon watch --config macon-export.json     <span class="c"># run them all</span>
 macon service install --config macon-export.json  <span class="c"># …as a service</span></div>
     <p>Exported without secrets, the file is config-only and safe to commit; supply token/secret values via the environment. Exported with secrets, it's self-contained, keep it private. The app's <strong>Import…</strong> loads a file back, so it also moves a setup between machines.</p>
 
-    <h2 id="companion">Companion app (iPhone &amp; iPad)</h2>
-    <p>The <a href="/companion">MacOn companion app</a> turns your phone or iPad into a remote for the runner: a <strong>home hub</strong> with your pipelines, live build logs, screen streaming, remote control, a Stream Deck-style shortcuts board, a flows canvas, a code workspace, and AI, handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
+    <h2 id="companion">Macon+, the companion app (iPhone &amp; iPad)</h2>
+    <p>The <a href="/companion">companion app</a>, called <strong>Macon+</strong> on the App Store, turns your phone or iPad into a remote for the runner: a <strong>home hub</strong> with your pipelines, live build logs, screen streaming, remote control, a Stream Deck-style shortcuts board, a flows canvas, a code workspace, and AI, handy when the runner is a Mac in another room or a headless cloud instance. Add <code>--companion</code> to any watch to serve it:</p>
     <div class="codeblock"><button class="copy">Copy</button>macon watch --workspace acme --repo app --branch main --companion
 macon watch --config macon-export.json --companion    <span class="c"># with your app setup</span></div>
     <p>Builds show as a <strong>structured step timeline</strong>, each step with its own status, duration, and expandable output (parsed the same way the desktop app does it), with the raw log one tap away. <strong>Re-run</strong> and <strong>Cancel</strong> sit right in the build view and on a long-press of any run.</p>
     <p>Prefer the desktop app? Flip it on in <strong>Settings → Companion app</strong>, then <strong>Pair a device</strong> shows the address, code, and a QR to scan. Pairings are shared with the CLI, so a device works with either.</p>
     <div class="callout gh">
       <span>The app is a separate open-source project, pair it once and it reconnects on its own.</span>
-      <a class="btn-sm" href="https://apps.apple.com/app/id6794170681">Get the companion (App Store) ↗</a>
+      <a class="btn-sm" href="https://apps.apple.com/app/id6794170681">Get Macon+ on the App Store ↗</a>
     </div>
 
     <h2 id="companion-pair">Pairing &amp; devices</h2>
