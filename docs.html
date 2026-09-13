@@ -96,10 +96,14 @@
       <a href="#companion-flows">Flows</a>
       <a href="#companion-code">Code workspace</a>
       <a href="#companion-ai">AI features</a>
+      <a href="#companion-agents">Coding agents</a>
       <a href="#companion-fleet">Fleet map</a>
       <a href="#companion-power">Wake &amp; unlock</a>
       <a href="#companion-icloud">Always connected (iCloud)</a>
       <a href="#companion-privacy">Privacy screen</a>
+      <a href="#companion-leave">When you leave</a>
+      <a href="#mac-widget">Desktop widget</a>
+      <a href="#mac-activity">Activity log</a>
       <a href="#companion-themes">Themes</a>
       <a href="#companion-manage">Manage pipelines</a>
     </div>
@@ -120,6 +124,7 @@
       <a href="#yml-workflows">Workflows</a>
       <a href="#yml-steps">Steps</a>
       <a href="#yml-matrix">Test matrix</a>
+      <a href="#yml-install">Install on your phone</a>
       <a href="#yml-triggers">Triggers</a>
       <a href="#yml-env">Built-in variables</a>
       <a href="#runner-pool">Bitbucket runner pool</a>
@@ -329,6 +334,19 @@ triggers:
   script: bundle exec fastlane test device:"$MACON_MATRIX_DEVICE" os:"$MACON_MATRIX_OS"</div>
     <p>Combinations run sequentially so simulators don't contend. Match the values to installed runtimes (<code>macon sims</code>).</p>
 
+    <h2 id="yml-install">Install on your phone</h2>
+    <p>A step can end with the app it built on a real iPhone or iPad, no TestFlight round trip. Add <code>install:</code> next to the <code>script:</code>; after the script exits 0 the runner finds the <code>.app</code>, installs it with Xcode's <code>devicectl</code> over USB or Wi‑Fi, and launches it.</p>
+    <div class="codeblock"><button class="copy">Copy</button>- name: Build for my iPhone
+  script: xcodebuild -scheme App -configuration Debug -destination 'generic/platform=iOS' -derivedDataPath build build
+  install: build/Build/Products/Debug-iphoneos/*.app       <span class="c"># short form: newest match wins</span>
+- name: Same, but explicit
+  script: …
+  install:
+    app: build/Build/Products/Debug-iphoneos/*.app
+    device: "Ali’s iPhone"     <span class="c"># a name from `macon devices`; default: MACON_INSTALL_DEVICE, else the one connected phone</span>
+    launch: false</div>
+    <p>It needs what Xcode's Run button needs: the device paired with Xcode once, Developer Mode on, and a development signature that lists it. Every app a run installed stays with the run, so the companion's build page has an <strong>Install</strong> button that puts it on that phone, or any other paired one, again.</p>
+
     <h2 id="yml-triggers">Triggers</h2>
     <p>Route branches and pull requests to workflows (like Bitrise's trigger map). When a pipeline's workflow field is blank, MacOn matches here.</p>
     <div class="codeblock"><button class="copy">Copy</button>triggers:
@@ -498,6 +516,15 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
       <li><strong>The agent:</strong> give it a task and it drives the Mac, reading the accessibility tree and screen snapshots, planning steps, clicking, typing, and launching apps. A <strong>supervised mode</strong> pauses for your approval before each step, shown over the live screen so you watch it work. With Playwright installed (<code>macon init</code> offers it), it automates a real browser too.</li>
     </ul>
 
+    <h2 id="companion-agents">Coding agents on your phone</h2>
+    <p>Claude Code and Codex running in a terminal on the Mac show up in the companion under <strong>Code → Agents</strong>, each with what it is doing right now. Tap one for its story: what you asked, each tool it ran and what came back, the permission it wanted and who answered, what it said when it finished.</p>
+    <ul>
+      <li><strong>One switch, no install.</strong> The Mac app carries its own <code>macon</code>; <strong>Settings → Devices → Let paired devices answer coding agent prompts</strong> wires Claude Code (and Codex, if present) up, repairs the hooks if the app moves, and removes them when switched off.</li>
+      <li><strong>Prompts follow you.</strong> When an agent wants permission while nobody is at the Mac (keyboard quiet a minute, screen locked or asleep, or a device watching the screen), the phone gets a push with <strong>Allow</strong> and <strong>Deny</strong>, also from the Lock Screen, and the prompt waits up to 25 minutes. Touching the Mac ends the hold and the dialog appears in the terminal.</li>
+      <li><strong>Done pushes</strong> carry the agent's last sentence.</li>
+      <li>Seeing sessions and getting the pushes is free everywhere. Answering is free on your home network and part of MacOn Pro from away, the same line remote control sits on.</li>
+    </ul>
+
     <h2 id="companion-fleet">Fleet map</h2>
     <p>The <strong>Fleet</strong> screen draws your setup as a little world: the Mac at the center with every paired device hanging off it on <strong>swinging, draggable strings</strong> (the same verlet ropes as the flows canvas). Devices that talked to the Mac recently <strong>glow</strong>; quiet ones fade. Tap a card for its pairing details, device model, last-seen time, token prefix, and revoke from there or with <code>macon companion devices</code>. The Mac app has the same map, so you can audit pairings from either end.</p>
 
@@ -527,6 +554,15 @@ macon companion revoke-all        <span class="c"># revoke everything</span></di
       <li><strong>Burn-in aware</strong>: a Motion option (gentle drift or a DVD-style bounce) keeps the bright content moving so it can't burn into an OLED display.</li>
       <li>It's a privacy curtain, not a security lock, it deters onlookers but isn't a login boundary.</li>
     </ul>
+
+    <h2 id="companion-leave">When you leave the desk</h2>
+    <p>In the companion, <strong>Settings → Mac → When I leave</strong> draws a circle around your desk. When the phone steps out of it, even with the app closed, the Mac raises its privacy curtain, locks its screen, or both, and coming back can lower the curtain again. iOS region monitoring does the watching, so it works from a pocket; the location never leaves the phone, the Mac only ever hears “cover” or “lock”. Needs <em>Always</em> location access. Locking is free; the curtain options follow the same Pro gate as the curtain everywhere else.</p>
+
+    <h2 id="mac-widget">Desktop widget</h2>
+    <p>The Mac app ships a widget for the desktop and Notification Center: what this Mac is building right now with a running clock, the recent runs, and whether the companion is being served. Right-click the desktop → <strong>Edit Widgets</strong> and search for MacON. The app redraws it the moment a build starts, changes step or ends.</p>
+
+    <h2 id="mac-activity">Activity log</h2>
+    <p>Every remote power a paired device uses on the Mac leaves a line: pairings, unlocks, the curtain, screen and control sessions, terminals, files written or deleted, flows and agent tasks, a coding agent prompt answered from a phone, a build installed on a device. Reads never do. Read it under <strong>Settings → Access &amp; Privacy → Activity</strong>, with export and clear, or with <code>macon companion activity</code>. It is kept to the last couple of thousand lines and stays on the Mac.</p>
 
     <h2 id="companion-themes">Themes, the clay world</h2>
     <p>Both the Mac app and the companion are dressed as a soft, tactile 3D <strong>clay world</strong> (rendered with SceneKit), and it's re-skinnable. Pick a world in <strong>Settings</strong> and the whole app repaints, backdrop, cards, and the floating 3D models on the home.</p>
