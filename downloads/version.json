@@ -1,5 +1,5 @@
 {
-  "version": "1.8.0",
+  "version": "1.9.0",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "MacOn now speaks French, Hebrew, Hindi, Russian and Turkish, on top of the eight it already knew, which makes thirteen languages in all. Everything is translated, the help pages included. Settings has a Language picker if you want MacOn in a different language from the rest of your Mac."
+  "notes": "Push notifications now work for everyone: the Mac sends through the MacOn relay, so there is no APNs key to import. Also several Macs paired at once in Macon+."
 }
