@@ -1,5 +1,5 @@
 {
-  "version": "1.9.0",
+  "version": "1.9.1",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Push notifications now work for everyone: the Mac sends through the MacOn relay, so there is no APNs key to import. Also several Macs paired at once in Macon+."
+  "notes": "The free tier's 40 remote minutes a day are now counted on the Mac, so every paired device shares one count and it resets at the Mac's midnight."
 }
