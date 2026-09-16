@@ -1,5 +1,5 @@
 {
-  "version": "1.9.3",
+  "version": "1.9.4",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "The Compact station's app list loads instantly again: icons now arrive one at a time instead of all at once."
+  "notes": "Fixes a second freeze on macOS 27: the app could lock up when a device disconnected from Screen or Compact."
 }
