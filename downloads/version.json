@@ -1,5 +1,5 @@
 {
-  "version": "1.9.2",
+  "version": "1.9.3",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Fixes the Mac app freezing whenever a device opened Screen or Compact on macOS 27."
+  "notes": "The Compact station's app list loads instantly again: icons now arrive one at a time instead of all at once."
 }
