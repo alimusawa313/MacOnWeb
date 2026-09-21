@@ -1,5 +1,5 @@
 {
-  "version": "1.9.4",
+  "version": "1.10.0",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Fixes a second freeze on macOS 27: the app could lock up when a device disconnected from Screen or Compact."
+  "notes": "Jev drives your Mac now: say or type what you want and it acts a step at a time, starting while you're still talking. It comes with Macon+, so there is no API key to set up."
 }
