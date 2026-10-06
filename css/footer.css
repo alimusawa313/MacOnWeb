@@ -14,3 +14,9 @@ footer a:hover { color: var(--text); }
 .footer-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
 
 @media (max-width: 620px) { .footer-inner { flex-direction: column; } }
+
+.footer-legal {
+  max-width: 1280px; margin: 1.5rem auto 0;
+  display: flex; gap: .6rem 1.4rem; flex-wrap: wrap;
+  font-size: .8rem;
+}
