@@ -1,5 +1,5 @@
 {
-  "version": "1.12.0",
+  "version": "1.12.1",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Keep your Mac awake for a set time instead of forever, and it now lets itself sleep when it gets too hot in a bag, then wakes back up once it cools."
+  "notes": "Fixes the Pair a device window squashing the paired devices list in a small MacOn window."
 }
