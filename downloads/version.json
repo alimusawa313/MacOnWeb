@@ -1,5 +1,5 @@
 {
-  "version": "1.12.1",
+  "version": "1.12.2",
   "url": "https://macon.id/downloads/MacOn.dmg",
-  "notes": "Fixes the Pair a device window squashing the paired devices list in a small MacOn window."
+  "notes": "Holding both Shift keys (or both Command, Option or Control keys) and letting go of one no longer drops it from the next key you press."
 }
